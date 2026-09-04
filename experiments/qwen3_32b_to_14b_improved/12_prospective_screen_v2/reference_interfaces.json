@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "read_only_design_references_frozen",
+  "import_or_copy_policy": "no imports and no runtime dependency on experiment 07; hashes document reviewed interfaces only",
+  "legacy_07": {
+    "contracts": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/07_method_dev_evaluation/src/contracts.py",
+      "nbytes": 17119,
+      "sha256": "decf8c273b6046f74a66994619a266ee44ca5ba4e35cb0261b388fec5d6faad4"
+    },
+    "runner": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/07_method_dev_evaluation/src/runner.py",
+      "nbytes": 32631,
+      "sha256": "8f0e3723185582bd3eb9717c56fdf14c485cdd5e0061a9faf41f51656ea065fc"
+    },
+    "validator": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/07_method_dev_evaluation/src/validator.py",
+      "nbytes": 10291,
+      "sha256": "3aaccb69d430e49cec94724ced47941993dc74f91decc6688ea33ff150ce4d68"
+    },
+    "runtime_adapter": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/07_method_dev_evaluation/src/runtime_adapter.py",
+      "nbytes": 22011,
+      "sha256": "0da3d57b74c36dab755c90dc71db53a013fed7c376fdfc8d6ce1a20ca03f8483"
+    },
+    "metrics": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/07_method_dev_evaluation/src/metrics.py",
+      "nbytes": 5376,
+      "sha256": "fe18bcf66e38e66024b8f867dcc7a585563652f40d917c873dca99eb9c14fc7c"
+    },
+    "statistics": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/07_method_dev_evaluation/src/statistics.py",
+      "nbytes": 10852,
+      "sha256": "81a2416934ef2059d40197f7eeaec476eb12dfbe0696ea2b152a1fcccbd3669d"
+    }
+  },
+  "watchdog_11_hypothesis_only": {
+    "config": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/11_watchdog_tail_repair/config.json",
+      "nbytes": 2090,
+      "sha256": "7036c30c607bc21ea7e370f87cc1f1bb51f1210022e65cefd4525b917a2c8ad8"
+    },
+    "method": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/11_watchdog_tail_repair/METHOD.md",
+      "nbytes": 4382,
+      "sha256": "5fa588108760a179ebb0549b897d5e0c2111a3da85bf8645fc6e5d0913fd8821"
+    },
+    "protocol": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/11_watchdog_tail_repair/PROTOCOL.md",
+      "nbytes": 2344,
+      "sha256": "b575e39de8737f55e4710ea2e903b3e8a87fc982df9a96351cd6fc9df46c1359"
+    },
+    "receipt": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/11_watchdog_tail_repair/results/receipt.json",
+      "nbytes": 2479,
+      "sha256": "e967e5e896655faaeda7d1a1e8bd9224e56785883e6abeb74af5bd4d2ba79eb6"
+    },
+    "role": "hypothesis provenance only; not an implementation import, runtime binding, or prior validation result"
+  }
+}

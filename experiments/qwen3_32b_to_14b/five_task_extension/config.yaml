@@ -1,0 +1,46 @@
+schema_version: 1
+extension_version: reverse-five-task-k20-v1
+direction: qwen3_32b_to_14b
+paper_bit_exact: false
+paper_scope: >-
+  The paper does not publish a Qwen3-32B-to-Qwen3-14B full five-task
+  accuracy/PPL table. These are protocol-aligned local extension results.
+
+protocol:
+  completion_mode: true
+  apply_chat_template: false
+  batch_size: 1
+  boundary_replay: true
+  max_gen_tokens: 1024
+  mapper_k: 20
+  ridge_lambda: 0.01
+  modes: [target_standalone, mapped]
+  freshly_executed_tasks:
+    [arc_challenge, winogrande, mmlu, gsm8k_cot, wikitext2_prefix_ppl]
+  bridged_task: hellaswag
+  gsm8k:
+    num_fewshot: 8
+    canonical_metric: exact_match_strict_match
+    reporting_metric: numeric-final-result-level-diagnostic-v1
+    extraction_is_gold_independent: true
+  wikitext2:
+    chunk_length: 2048
+    prefix_length: 1024
+    scored_length: 1024
+
+runtime:
+  source_32b_devices: [0, 1, 2, 3, 4]
+  source_32b_layer_counts: [12, 13, 14, 13, 12]
+  target_14b_devices: [5, 6, 7]
+  target_14b_layer_counts: [13, 14, 13]
+  attention_implementation: flash_attention_2
+  mapper_token_chunk: 1024
+
+reuse_decision:
+  reverse_hellaswag: strict_bridge_after_full_raw_validation
+  old_forward_14b_source: rejected_for_formal_bridge
+  rejection_reasons:
+    - old forward provenance did not content-hash every 14B weight shard
+    - semantic runtime role differs (forward source versus reverse target)
+    - physical topology differs (two GPUs versus three GPUs)
+    - old combined run used max_gen_tokens=256; GSM8K required a separate run

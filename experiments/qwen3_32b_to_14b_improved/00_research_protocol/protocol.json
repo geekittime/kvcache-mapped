@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "protocol_id": "qwen3_32b_to_14b_improved_v1",
+  "status": "preregistered_before_candidate_gpu_runs",
+  "direction": "qwen3_32b_to_14b",
+  "objective": "reduce functional fidelity loss relative to the NVIDIA-compatible k20 ridge baseline",
+  "target_teacher": "native_qwen3_14b",
+  "isolation": {
+    "protocol_directory": "experiments/qwen3_32b_to_14b_improved/00_research_protocol",
+    "baseline_directory": "experiments/qwen3_32b_to_14b",
+    "baseline_access": "read_only_content_addressed",
+    "candidate_output_pattern": "experiments/qwen3_32b_to_14b_improved/NN_candidate_name",
+    "forbidden_write_roots": [
+      "experiments/qwen3_32b_to_14b",
+      "src",
+      "scripts",
+      "configs",
+      "data",
+      "artifacts",
+      "runs"
+    ],
+    "mixed_candidate_artifacts_allowed": false
+  },
+  "system_classes": [
+    {
+      "id": "pure_mapper_r1",
+      "target_replay_tokens": 1,
+      "claim_class": "fair_nvidia_mapper_comparison"
+    },
+    {
+      "id": "hybrid_refresh_r8",
+      "target_replay_tokens": 8,
+      "claim_class": "hybrid_quality_latency_tradeoff"
+    },
+    {
+      "id": "hybrid_refresh_r32",
+      "target_replay_tokens": 32,
+      "claim_class": "hybrid_quality_latency_tradeoff"
+    }
+  ],
+  "primary_method": {
+    "name": "SARR-KV",
+    "expanded_name": "Shrinkage-Anchored Reduced-Rank KV Mapper",
+    "status": "unvalidated_hypothesis",
+    "anchor": "independently_retuned_k4_ridge",
+    "features": "standardized_k20_source_kv",
+    "residual": "per_target_layer_and_KV_low_rank_linear",
+    "ranks_in_order": [64, 128, 256],
+    "gating": "per_target_layer_KV_and_kv_head_with_exact_zero_anchor_fallback",
+    "runtime_guards": [
+      "calibration_p99_residual_norm_clip",
+      "smooth_gate_close_above_standardized_input_p99_9",
+      "finite_value_check"
+    ]
+  },
+  "candidates": [
+    {"order": 0, "id": "A0", "change": "read_only_k20_and_k4_baseline_validation", "data_access": ["none"], "locked_test_allowed": false},
+    {"order": 1, "id": "A1", "change": "native_K_V_and_layer_range_oracle_causal_diagnostics", "data_access": ["method-dev"], "locked_test_allowed": false},
+    {"order": 2, "id": "A2", "change": "sequence_cv_k4_k20_shrinkage_only", "data_access": ["mapper-fit", "method-dev"], "locked_test_allowed": false},
+    {"order": 3, "id": "A3", "change": "feature_standardization_and_per_component_ridge_lambda_only", "data_access": ["mapper-fit", "method-dev"], "locked_test_allowed": false},
+    {"order": 4, "id": "A4", "change": "linear_sarr_residual_rank_64_then_128_then_256", "data_access": ["mapper-fit", "method-dev"], "locked_test_allowed": false},
+    {"order": 5, "id": "A5", "change": "attention_distribution_and_output_loss_only", "data_access": ["mapper-fit", "method-dev"], "locked_test_allowed": false},
+    {"order": 6, "id": "A6", "change": "native14_suffix_KL_8_then_32_and_EOS_loss", "data_access": ["mapper-fit", "method-dev"], "locked_test_allowed": false},
+    {"order": 7, "id": "A7", "change": "nonlinear_residual_only_if_linear_method_saturates", "data_access": ["mapper-fit", "method-dev"], "locked_test_allowed": false},
+    {"order": 8, "id": "A8", "change": "freeze_and_nominate_exactly_one_pure_mapper", "data_access": ["none"], "locked_test_allowed": false},
+    {"order": 9, "id": "A9", "change": "single_nominated_pure_mapper_confirmatory_run", "data_access": ["locked-test"], "locked_test_allowed": true},
+    {"order": 10, "id": "H1", "change": "separately_frozen_r8_and_r32_hybrid_curves", "data_access": ["locked-test"], "locked_test_allowed": true},
+    {"order": 11, "id": "H2", "change": "optional_dev_frozen_risk_fallback_coverage_curve", "data_access": ["locked-test"], "locked_test_allowed": true}
+  ],
+  "capture": {
+    "existing_capture_sufficient_through": "A4_reconstruction_training",
+    "functional_capture_required_from": "A5",
+    "pilot_tokens": 64000,
+    "maximum_tokens_after_pilot_gate": 256000,
+    "sequence_plan": {"length_1024": 64, "length_4096": 32, "length_8192": 8},
+    "split_by_complete_sequence": true,
+    "benchmark_test_content_allowed": false,
+    "saved_signals": [
+      "source32_content_KV",
+      "native14_query_anchors",
+      "native14_attention_outputs",
+      "sampled_attention_top_indices_probabilities_and_tail_mass",
+      "native14_suffix_logits_8_to_32",
+      "labels_positions_sequence_offsets_and_hashes"
+    ]
+  },
+  "metrics": {
+    "mechanism": [
+      "heldout_K_V_normalized_Huber",
+      "heldout_K_V_global_and_uniform_channel_R2",
+      "train_heldout_R2_gap",
+      "native_query_attention_JS",
+      "attention_output_cosine_and_normalized_MSE",
+      "first_token_and_suffix_logit_KL_T1_T2",
+      "EOS_stop_control_token_logit_delta",
+      "residual_norm_gate_and_OOD_fallback_rate"
+    ],
+    "classification_fidelity": [
+      "accuracy",
+      "target_candidate_decision_agreement",
+      "target_correct_retention",
+      "correct_to_wrong_regressions",
+      "wrong_to_correct_gains",
+      "candidate_vs_k20_paired_2x2"
+    ],
+    "generation": [
+      "registered_primary_metric",
+      "paired_per_example_delta",
+      "gold_containment_diagnostic",
+      "generation_length",
+      "EOS_cap_truncation_rates",
+      "stop_reason"
+    ],
+    "systems": [
+      "mapper_time",
+      "target_refresh_time",
+      "end_to_end_TTFT",
+      "peak_allocated_and_reserved_VRAM",
+      "weight_bytes",
+      "hardware_topology"
+    ],
+    "gap_closure": {
+      "higher_better": "(candidate-k20)/(native14-k20)",
+      "lower_better": "(k20-candidate)/(k20-native14)",
+      "undefined_when_k20_meets_or_beats_native14": true
+    }
+  },
+  "statistics": {
+    "alpha": 0.05,
+    "confidence_level": 0.95,
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20260830,
+    "binary_test": "exact_two_sided_McNemar_plus_paired_bootstrap_effect_CI",
+    "continuous_test": "paired_percentile_bootstrap",
+    "coqa_resampling_unit": "conversation",
+    "multinews_resampling_unit": "document",
+    "multiple_comparison_correction": "Holm_within_prespecified_decision_family",
+    "missing_data_policy": "report_all_missing_cap_truncation_and_prespecified_exclusions",
+    "seed_cherry_picking_allowed": false
+  },
+  "gates": [
+    {
+      "id": "G0_integrity",
+      "requirements": [
+        "all_baseline_hashes_and_assertions_pass",
+        "three_tier_registry_has_zero_cross_tier_collisions",
+        "candidate_outputs_resolve_inside_independent_candidate_directory",
+        "config_code_data_and_prompt_hashes_frozen"
+      ]
+    },
+    {
+      "id": "G1_generalization",
+      "thresholds": {
+        "heldout_K_R2_max_drop_from_k20": 0.002,
+        "heldout_V_R2_max_drop_from_best_k20_k4": 0.002,
+        "K_train_heldout_gap_relative_reduction_min": 0.20,
+        "V_train_heldout_gap_relative_reduction_min": 0.20,
+        "zero_gate_anchor_max_abs_error": 1e-6
+      }
+    },
+    {
+      "id": "G2_functional",
+      "thresholds": {
+        "attention_output_cosine_baseline": 0.76107775041509,
+        "attention_output_cosine_absolute_improvement_min": 0.010,
+        "attention_output_cosine_paired_CI_lower_min": 0.0,
+        "suffix_KL_relative_worsening_max": 0.02
+      }
+    },
+    {
+      "id": "G3_nomination",
+      "thresholds": {
+        "degraded_dev_tasks_macro_gap_closure_min": 0.20,
+        "macro_gap_closure_paired_CI_lower_min": 0.0,
+        "classification_task_max_regression_pp": 0.5,
+        "numeric_or_short_QA_max_regression_pp": 1.0,
+        "coqa_max_regression_pp": 1.5,
+        "target_correct_retention_max_drop_pp": 0.5,
+        "mapper_weight_GiB_max": 3.0,
+        "pure_r1_latency_ratio_vs_k20_max": 1.05,
+        "nominated_pure_mapper_count_max": 1
+      }
+    },
+    {
+      "id": "G4_confirmatory_claim",
+      "requirements": [
+        "frozen_nominated_R1_configuration_unchanged_after_unseal",
+        "Holm_adjusted_primary_macro_positive",
+        "at_least_two_degraded_task_families_positive",
+        "no_noninferiority_margin_violation",
+        "all_regressions_and_stop_diagnostics_reported",
+        "raw_record_hashes_and_validator_receipt_complete"
+      ],
+      "failure_action": "record_failure_and_create_new_protocol_version_before_more_development"
+    }
+  ],
+  "claim_policy": {
+    "before_G4": ["candidate", "hypothesis", "method_dev_improvement"],
+    "after_G4": "outperforms_the_local_NVIDIA_compatible_k20_baseline_under_the_frozen_Qwen3_32B_to_14B_protocol",
+    "paper_bit_exact_claim_allowed": false,
+    "pure_and_hybrid_results_may_be_merged": false,
+    "4090_latency_may_be_generalized_to_H100": false
+  }
+}

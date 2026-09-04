@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "experiment_id": "qwen3_32b_to_14b_moment_calibration_probe_v1",
+  "direction": "qwen3_32b_to_14b",
+  "upstream": {
+    "shrinkage_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/artifacts/headwise_shrinkage_v1",
+    "shrinkage_manifest": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/artifacts/headwise_shrinkage_v1/manifest.json",
+      "nbytes": 39059,
+      "sha256": "dabc63b252c5c7b9964fb00fdbe1b5eef440f126fb88c8d4e73a45378d5b4995"
+    },
+    "split_manifest": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/runs/activation_cv_v3/split_manifest.json",
+      "nbytes": 5354,
+      "sha256": "88a956cbd6f7a96dd0ce94e07274eea96fcfd165e6e67ee6d29c1f69c4920f68"
+    },
+    "heldout_tokens": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/calibration/qwen3_fineweb_edu_500x1024_v1/heldout_tokens.npy",
+      "nbytes": 204928,
+      "sha256": "43b7dee7b0b5acf352b53bc3613d176d04f2abe03e811aff955644eb2b026ddd"
+    },
+    "source_activations": "/home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_32b/heldout",
+    "target_activations": "/home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_14b/heldout"
+  },
+  "protocol": {
+    "target_layers": [7, 8, 9, 10, 34, 35],
+    "components": ["key", "value"],
+    "source_layer_count": 20,
+    "kv_heads": 8,
+    "head_dim": 128,
+    "observations_per_sequence": 256,
+    "tuning_sequence_count": 40,
+    "locked_sequence_count": 10,
+    "fold_count": 5,
+    "scale_bounds": [0.5, 1.5],
+    "beta_grid": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
+    "go_gate": {
+      "both_components_oof_sse_strictly_lower": true,
+      "minimum_relative_sse_reduction_in_at_least_one_component": 0.001,
+      "locked_activation_evaluations": 0,
+      "downstream_claim_permitted": false
+    }
+  },
+  "runtime": {
+    "global_gpu_lock": "/home/wby/llm-cache/nvidia-kvcache/runs/gpu8_experiment.lock",
+    "cuda_visible_devices": "0",
+    "device": "cuda:0",
+    "chunk_sequences": 4,
+    "idle_gate_samples": 5,
+    "idle_gate_interval_seconds": 2,
+    "idle_gate_max_memory_mib": 64,
+    "required_python": "/home/wby/llm-cache/nvidia-kvcache/.venv/bin/python",
+    "required_pycache_prefix": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/20_moment_calibration_probe_v1/.formal_empty_pycache"
+  },
+  "outputs": {
+    "run_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/20_moment_calibration_probe_v1/runs/probe_v1"
+  }
+}
+

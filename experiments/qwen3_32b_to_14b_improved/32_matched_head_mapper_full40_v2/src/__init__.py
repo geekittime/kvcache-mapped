@@ -1,0 +1,2 @@
+"""Moment-calibrated shrinkage probe."""
+

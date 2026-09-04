@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "audit_id": "qwen3_mapper_fit_vs_method_dev_v2_cross_tier_v1",
+  "inputs": {
+    "train_tokens": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/calibration/qwen3_fineweb_edu_500x1024_v1/train_tokens.npy",
+      "sha256": "6a045dc9b5c3456b9b1c72b20f6ea5e011bf81eaf0e2ba3c9d079cb93e743f29"
+    },
+    "heldout_tokens": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/calibration/qwen3_fineweb_edu_500x1024_v1/heldout_tokens.npy",
+      "sha256": "43b7dee7b0b5acf352b53bc3613d176d04f2abe03e811aff955644eb2b026ddd"
+    },
+    "tokenizer_json": {
+      "path": "/home/wby/models/Qwen3-14B/tokenizer.json",
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "method_dev_selected": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/artifacts/prepared_method_dev_v2/selected_samples.jsonl",
+      "sha256": "aa8b94367d57b088ba8c12a13068e9c82c6b95d18fc1579b5ccf66270c8aed53"
+    },
+    "method_dev_manifest": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/artifacts/prepared_method_dev_v2/manifest.json",
+      "sha256": "dea34a19ca965f58d8d5f3ffb4c481b22d2420d71f30254287d8247e25062788"
+    }
+  },
+  "expected": {
+    "train_sequences": 500,
+    "heldout_sequences": 50,
+    "tokens_per_sequence": 1024,
+    "method_dev_rows": 384,
+    "eligible_method_dev_rows": 192,
+    "passages": 1902
+  },
+  "algorithm": {
+    "normalization": "NFKC + casefold + map non-alphanumeric runs to one ASCII space + strip",
+    "passage_marker_regex": "(?m)^\\[Passage ([1-9][0-9]*)\\]\\n",
+    "word_shingle_size": 5,
+    "shingle_hash": "BLAKE2b-128",
+    "exact_min_normalized_chars": 120,
+    "near_min_intersection": 20,
+    "near_min_passage_containment": 0.5,
+    "near_min_jaccard": 0.3,
+    "top_candidates": 25
+  },
+  "output_dir": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/08_cross_tier_audit/artifacts/cross_tier_audit_v1"
+}

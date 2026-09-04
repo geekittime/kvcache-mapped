@@ -1,0 +1,52 @@
+{
+  "contract_schema_version": 1,
+  "contract_revision": 2,
+  "consumer": "13_oracle_decontaminated_v2",
+  "contract_id": "dir09_complete_g0_v2_for_native_registry_nested_exact4_v2",
+  "required_top_level_values": {
+    "status": "complete",
+    "pass": true,
+    "closes_complete_g0": true,
+    "scope": "decontaminated_registry_v2_vs_mapper_fit_and_locked_eval",
+    "locked_outcomes_opened": false
+  },
+  "candidate_registry_binding": {
+    "exact_keys": [
+      "published_marker",
+      "registry_manifest",
+      "publication_receipt",
+      "split_artifacts"
+    ],
+    "value_rule": "byte-exact JSON equality with the formal config native experiment-10 binding",
+    "published_marker": {"type": "ArtifactRef"},
+    "registry_manifest": {"type": "ArtifactRef"},
+    "publication_receipt": {"type": "ArtifactRef"},
+    "split_artifacts": {
+      "exact_keys": [
+        "hotpotqa_screen",
+        "hotpotqa_confirm",
+        "musique_screen",
+        "musique_confirm"
+      ],
+      "value_type": "ArtifactRef"
+    }
+  },
+  "comparisons": {
+    "required_keys": [
+      "methoddev_hotpot_vs_mapper_fit",
+      "methoddev_musique_vs_mapper_fit",
+      "methoddev_hotpot_vs_locked_eval",
+      "methoddev_musique_vs_locked_eval"
+    ],
+    "direction_set_must_be_exact": true,
+    "each_direction_exact_object": {"flags": 0},
+    "additional_comparison_directions_allowed": false,
+    "additional_fields_within_direction_allowed": false
+  },
+  "fail_closed": true,
+  "notes": [
+    "The old partial G0 and failed dir09 v1 receipt are never acceptable.",
+    "All artifact references are byte/hash checked before any source data or CUDA API is opened.",
+    "The native dir10 receipt is additionally checked directly for train_sources, answer_access_policy, and answer-free projection declarations."
+  ]
+}

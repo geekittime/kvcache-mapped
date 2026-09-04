@@ -1,0 +1,40 @@
+# Dedicated formal 500-row MultiNews evaluation.  The wrapper freezes the
+# bottom 500 rows of one fixed SHA256 ranking over the official 5,622-row test.
+project_root: /home/wby/llm-cache/nvidia-kvcache
+
+paths:
+  source_model: /home/wby/models/Qwen3-14B
+  target_model: /home/wby/models/Qwen3-32B
+  mapper_manifest: artifacts/mappers/qwen3_14b_to_32b/k8_lambda0.01/manifest.json
+
+data:
+  multi_news_source: data/MultiNews/data/test.src.cleaned
+  multi_news_target: data/MultiNews/data/test.tgt
+  multi_news_sample_count: 500
+  multi_news_selection_seed: qwen3-14b-to-32b-multinews-official-test-bottom500-v1
+
+  # The shared validator resolves these paths even though this dedicated entry
+  # point permits only MultiNews.  They are never loaded by this experiment.
+  hotpotqa_dev_distractor: data/HotpotQA/raw/hotpot_dev_distractor_v1.json
+  lmsys_parquet_dir: data/LMSYS/data
+  lmsys_sample_count: 200
+  lmsys_selection_seed: qwen3-14b-to-32b-lmsys-heldout-v1
+  sharegpt_jsonl: data/ShareGPT4/sharegpt_gpt4.jsonl
+  sharegpt_sample_count: 200
+  sharegpt_selection_seed: qwen3-14b-to-32b-sharegpt4-heldout-v1
+
+runtime:
+  target_devices: [0, 1, 2, 3, 4, 5]
+  target_layer_counts: [10, 11, 11, 11, 11, 10]
+  source_devices: [6, 7]
+  source_layer_counts: [20, 20]
+  attention_implementation: flash_attention_2
+  mapper_token_chunk: 1024
+  max_length: 16384
+  # Required by the shared validator; unused by MultiNews.
+  dialog_reference_score_cap_tokens: 1024
+
+tasks:
+  multi_news:
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think

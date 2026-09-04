@@ -1,0 +1,68 @@
+schema_version: 1
+direction: qwen3_32b_to_14b
+
+paper_reference:
+  paper: arXiv:2608.03893v1
+  section: "4.5"
+  evaluation_domain: HellaSwag tokens
+  published_cross_pair_evaluations: 12
+  published_attention_cosine_retention_pearson_r: 0.57
+  published_calibration_r2k_retention_pearson_r: -0.20
+  qwen3_32b_to_14b_single_pair_values_published: false
+
+dataset:
+  path: /home/wby/llm-cache/nvidia-kvcache/data/hellaswag/data/validation-00000-of-00001.parquet
+  split: validation
+  rows: 10042
+  sha256: 899813071e1e95efafec90f856e1987d2150fa4d020fc005df6962c259f660cd
+  canonical_repo: Rowan/hellaswag
+  canonical_revision: 218ec52e09a7e7462a5400043bb9a69a41d06b76
+
+local_protocol:
+  disclosure: paper does not disclose mechanism sample IDs, sequence construction, or aggregation order
+  documents: 100
+  choices_per_document: 4
+  scoring_sequences: 400
+  selection: sha256_rank_without_gold_label
+  selection_seed: qwen3_32b_to_14b_hellaswag_mechanism_v1
+  completion_mode: true
+  apply_chat_template: false
+  num_fewshot: 0
+  input_tokens: exact_lm_eval_scoring_forward_input_context_plus_continuation_except_final_label_token
+  cache_construction: direct_source_and_target_prefill_then_full_sequence_mapper_diagnostic
+  max_sequence_tokens: 512
+  truncation: forbidden
+  r2_key_space: both_target_rope_stripped_content_primary_and_target_rope_cache_diagnostic
+  r2_value_space: raw_value_space
+  attention_query_source: target_standalone_same_sequence_layer_input
+  attention_output_space: pre_o_proj_per_query_head
+  concentration_key_space: target_rope_cache_space
+  grouped_query_policy: aggregate_five_target_query_heads_that_share_each_kv_head
+  r2_reduction: uniform_channel_then_uniform_target_layer
+  concentration_reduction: per_scoring_sequence_then_uniform_kv_head_then_uniform_target_layer
+  attention_cosine_reduction: per_query_token_and_query_head_then_uniform_target_layer
+  concentration_normalization: isotropic_error_equals_one
+  r2_and_scalar_aggregation_dtype: float64
+  attention_and_concentration_math_dtype: float32
+  checkpoint_every_requests: 10
+
+paths:
+  source_model: /home/wby/models/Qwen3-32B
+  target_model: /home/wby/models/Qwen3-14B
+  mapper_manifest: artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01/manifest.json
+  heldout_result: artifacts/validation/qwen3_32b_to_14b/heldout_activation_reconstruction.json
+  hellaswag_run: runs/formal_pipeline_v1/hellaswag_full_k20
+  output: runs/formal_pipeline_v1/mechanism_hellaswag_k20
+
+runtime:
+  source_devices: [0, 1, 2, 3, 4]
+  source_layer_counts: [12, 13, 14, 13, 12]
+  target_devices: [5, 6, 7]
+  target_layer_counts: [13, 14, 13]
+  attention_implementation: flash_attention_2
+  mapper_token_chunk: 1024
+  require_cuda_visible_devices: "0,1,2,3,4,5,6,7"
+  idle_memory_limit_mib: 64
+  idle_consecutive_samples: 12
+  idle_sample_interval_seconds: 5
+  idle_timeout_seconds: 86400

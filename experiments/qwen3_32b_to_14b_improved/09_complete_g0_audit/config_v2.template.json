@@ -1,0 +1,105 @@
+{
+  "schema_version": 2,
+  "status": "TEMPLATE_PLACEHOLDER_NOT_RUNNABLE",
+  "audit_id": "complete_g0_decontaminated_registry_v2",
+  "normalization": "unicode_nfkc_casefold_keep_alnum_collapse_whitespace",
+  "similarity": {
+    "passage_shingle_words": 5,
+    "passage_min_intersection": 20,
+    "passage_min_containment": 0.5,
+    "passage_min_jaccard": 0.3,
+    "exact_normalized_unit_substring_min_characters": 120,
+    "question_shingle_words": 3,
+    "question_min_intersection": 4,
+    "question_min_containment": 0.8,
+    "question_min_jaccard": 0.7
+  },
+  "inputs": {
+    "g0_v1_threshold_config": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/09_complete_g0_audit/config.json",
+      "nbytes": 3755,
+      "sha256": "1f61ec78e74cff7b8f5b61b40d381ae4ddf78be53af8206eff86494e8caa0702"
+    },
+    "hotpot_train": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/HotpotQA/raw/hotpot_train_v1.1.json",
+      "nbytes": 566426227,
+      "sha256": "26650cf50234ef5fb2e664ed70bbecdfd87815e6bffc257e068efea5cf7cd316",
+      "expected_records": 90447
+    },
+    "hotpot_locked_dev": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/HotpotQA/raw/hotpot_dev_distractor_v1.json",
+      "nbytes": 46320117,
+      "sha256": "4e9ecb5c8d3b719f624d66b60f8d56bf227f03914f5f0753d6fa1b359d7104ea",
+      "expected_records": 7405
+    },
+    "musique_train": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/upstream_raw/data/musique_ans_v1.0_train.jsonl",
+      "nbytes": 241046755,
+      "sha256": "83a75b1e11e4e9bb8f8308e72ac40ca617ae4431b3a0d955b61cab259248490a",
+      "expected_records": 19938
+    },
+    "musique_locked_dev": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/upstream_raw/data/musique_ans_v1.0_dev.jsonl",
+      "nbytes": 30439728,
+      "sha256": "15fa63794d18a94ce12411aca6e2327e65b6e83b0b1490efab3f1962e48abf3b",
+      "expected_records": 2417
+    },
+    "mapper_fit_train": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/calibration/qwen3_fineweb_edu_500x1024_v1/train_tokens.npy",
+      "nbytes": 2048128,
+      "sha256": "6a045dc9b5c3456b9b1c72b20f6ea5e011bf81eaf0e2ba3c9d079cb93e743f29",
+      "expected_records": 500
+    },
+    "mapper_fit_heldout": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/calibration/qwen3_fineweb_edu_500x1024_v1/heldout_tokens.npy",
+      "nbytes": 204928,
+      "sha256": "43b7dee7b0b5acf352b53bc3613d176d04f2abe03e811aff955644eb2b026ddd",
+      "expected_records": 50
+    },
+    "tokenizer_json": {
+      "path": "/home/wby/models/Qwen3-14B/tokenizer.json",
+      "nbytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    }
+  },
+  "registry": {
+    "registry_id": "qwen3_32b_to_14b_decontaminated_method_dev_registry_v2",
+    "published_marker": {"path": "__PUBLISHED_10_MARKER_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "manifest": {"path": "__PUBLISHED_10_MANIFEST_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "receipt": {"path": "__PUBLISHED_10_RECEIPT_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "independent_audit": {"path": "__INDEPENDENT_AUDIT_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "strict_capacity_failure": {"path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/artifacts/failed_attempts/strict_substring_capacity_fail_attempt2.json", "nbytes": 1507, "sha256": "ba4431d54514153811e8b843dbce28b4911cf0998bbc66744ecfaeb23fd9901d"},
+    "strict_sequence_partition_failure": {"path": "__FINAL_10_ATTEMPT3_FAILURE_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "musique_capacity_contract": {"observed_clean_4hop_pool": "__FINAL_10_CLEAN_4HOP_POOL__", "selected_4hop": "__FINAL_10_SELECTED_4HOP__", "reserved_unused_4hop_buffer": "__FINAL_10_UNUSED_4HOP_BUFFER__"},
+    "selection_namespaces": {
+      "hotpotqa_train": "qwen3-32to14-improved/hotpotqa/decontaminated-method-dev-v2",
+      "musique_train": "qwen3-32to14-improved/musique/decontaminated-method-dev-v2"
+    },
+    "files": {
+      "hotpotqa_screen.jsonl": {"path": "__PUBLISHED_10_HOTPOT_SCREEN_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "ordered_rows_sha256": "0000000000000000000000000000000000000000000000000000000000000000", "expected_records": 128, "expected_stratum_counts": {"bridge/easy": 22, "bridge/hard": 21, "bridge/medium": 22, "comparison/easy": 21, "comparison/hard": 21, "comparison/medium": 21}, "dataset_id": "hotpotqa_train", "partition": "screen"},
+      "hotpotqa_confirm.jsonl": {"path": "__PUBLISHED_10_HOTPOT_CONFIRM_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "ordered_rows_sha256": "0000000000000000000000000000000000000000000000000000000000000000", "expected_records": 256, "expected_stratum_counts": {"bridge/easy": 43, "bridge/hard": 43, "bridge/medium": 43, "comparison/easy": 43, "comparison/hard": 42, "comparison/medium": 42}, "dataset_id": "hotpotqa_train", "partition": "confirm"},
+      "musique_screen.jsonl": {"path": "__PUBLISHED_10_MUSIQUE_SCREEN_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "ordered_rows_sha256": "0000000000000000000000000000000000000000000000000000000000000000", "expected_records": "__FINAL_10_MUSIQUE_SCREEN_RECORDS__", "expected_stratum_counts": "__FINAL_10_MUSIQUE_SCREEN_STRATUM_COUNTS__", "dataset_id": "musique_train", "partition": "screen"},
+      "musique_confirm.jsonl": {"path": "__PUBLISHED_10_MUSIQUE_CONFIRM_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "ordered_rows_sha256": "0000000000000000000000000000000000000000000000000000000000000000", "expected_records": "__FINAL_10_MUSIQUE_CONFIRM_RECORDS__", "expected_stratum_counts": "__FINAL_10_MUSIQUE_CONFIRM_STRATUM_COUNTS__", "dataset_id": "musique_train", "partition": "confirm"}
+    }
+  },
+  "consumer_contracts": {
+    "g0_consumer_contract": {"path": "__FINAL_12_G0_CONSUMER_CONTRACT_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "native_registry_consumer_contract": {"path": "__FINAL_12_NATIVE_REGISTRY_CONSUMER_CONTRACT_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "dir13_g0_consumer_contract": {"path": "__FINAL_13_G0_CONSUMER_CONTRACT_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "dir13_native_registry_consumer_contract": {"path": "__FINAL_13_NATIVE_REGISTRY_CONSUMER_CONTRACT_PATH__", "nbytes": 0, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"}
+  },
+  "expected_coverage": {
+    "mapper_fit_sequences": 550,
+    "method_dev_records": "__FINAL_10_TOTAL_METHOD_DEV_RECORDS__",
+    "method_dev_dataset_counts": {"hotpotqa_train": 384, "musique_train": "__FINAL_10_MUSIQUE_TOTAL_RECORDS__"},
+    "method_dev_partition_counts": {"confirm": "__FINAL_10_TOTAL_CONFIRM_RECORDS__", "screen": "__FINAL_10_TOTAL_SCREEN_RECORDS__"},
+    "locked_projection_records": 9822,
+    "locked_dataset_counts": {"hotpotqa_locked_dev": 7405, "musique_locked_dev": 2417},
+    "registry_files": {"hotpotqa_confirm.jsonl": 256, "hotpotqa_screen.jsonl": 128, "musique_confirm.jsonl": "__FINAL_10_MUSIQUE_CONFIRM_RECORDS__", "musique_screen.jsonl": "__FINAL_10_MUSIQUE_SCREEN_RECORDS__"}
+  },
+  "privacy": {
+    "strict_projection_only": true,
+    "write_raw_prompt_or_context_text": false,
+    "write_gold_support_or_model_outcomes": false
+  }
+}

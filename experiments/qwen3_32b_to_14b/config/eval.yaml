@@ -1,0 +1,53 @@
+project_root: /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b
+benchmark_manifest: /home/wby/llm-cache/nvidia-kvcache/data/benchmarks/manifest.json
+local_task_dir: /home/wby/llm-cache/nvidia-kvcache/data/benchmarks/lm_eval_tasks
+
+completion_mode: true
+apply_chat_template: false
+boundary_replay: true
+batch_size: 1
+
+paths:
+  source_model: /home/wby/models/Qwen3-32B
+  target_model: /home/wby/models/Qwen3-14B
+  mapper_manifest: artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01/manifest.json
+  harness_root: /home/wby/llm-cache/nvidia-kvcache/vendor/lm-evaluation-harness
+
+runtime:
+  source_devices: [0, 1, 2, 3, 4]
+  source_layer_counts: [12, 13, 14, 13, 12]
+  target_devices: [5, 6, 7]
+  target_layer_counts: [13, 14, 13]
+  attention_implementation: flash_attention_2
+  mapper_token_chunk: 1024
+  max_gen_tokens: 1024
+
+benchmarks:
+  arc_challenge:
+    num_fewshot: 0
+    metric: acc_norm
+  hellaswag:
+    num_fewshot: 0
+    metric: acc_norm
+  winogrande:
+    num_fewshot: 0
+    metric: acc
+  mmlu:
+    num_fewshot: 5
+    metric: acc
+  gsm8k_cot:
+    num_fewshot: 8
+    metric: exact_match
+    metric_filter: strict-match
+    mode: greedy_generation_cot
+  wikitext2_prefix_ppl:
+    metric: perplexity
+    chunk_length: 2048
+    prefix_length: 1024
+    scored_length: 1024
+    dataset_path: EleutherAI/wikitext_document_level
+    dataset_name: wikitext-2-raw-v1
+    split: test
+    text_field: page
+    document_separator: "\n\n"
+    revision: null

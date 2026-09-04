@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "contract_id": "quota_repair_to_native_registry_interface_v1",
+  "consumer_contracts": [
+    "12_prospective_screen_v2/contracts/native_registry_consumer_contract.json",
+    "13_oracle_decontaminated_v2/native_registry_consumer_contract.json"
+  ],
+  "status": "INTERMEDIATE_INTERFACE_ONLY",
+  "claim_boundary": "answer-free projection interface; not a published native registry",
+  "input": {
+    "source": "18_quota_capacity_repair_v2/artifacts/allocation/allocation.jsonl",
+    "required_fields": [
+      "target_index",
+      "target_selection_rank",
+      "partition",
+      "dataset_id",
+      "stratum",
+      "record_index",
+      "source_projection_sha256"
+    ],
+    "forbidden_fields": [
+      "sample_id",
+      "answer",
+      "answers",
+      "supporting_facts",
+      "model_output",
+      "metrics",
+      "outcome"
+    ]
+  },
+  "four_split_projection": {
+    "hotpotqa_screen": {"dataset_id": "hotpotqa_train", "partition": "screen"},
+    "hotpotqa_confirm": {"dataset_id": "hotpotqa_train", "partition": "confirm"},
+    "musique_screen": {"dataset_id": "musique_train", "partition": "screen"},
+    "musique_confirm": {"dataset_id": "musique_train", "partition": "confirm"}
+  },
+  "intermediate_row_fields": [
+    "dataset_id",
+    "partition",
+    "source_index",
+    "source_projection_sha256",
+    "selection_rank",
+    "stratum"
+  ],
+  "intermediate_row_semantics": {
+    "source_index": "looked up from immutable pairwise-v3 record_index; no raw source opened",
+    "selection_rank": "target_selection_rank, zero-based contiguous within each (dataset_id, partition, stratum)",
+    "source_projection_sha256": "copied exactly from pairwise-v3 privacy-safe record",
+    "stratum": "copied exactly from pairwise-v3 privacy-safe record"
+  },
+  "consumer_projection": {
+    "dir12_prospective_screen_v2": {
+      "native_row_fields_after_downstream_completion": [
+        "dataset_id",
+        "partition",
+        "sample_id",
+        "source_index",
+        "source_projection_sha256",
+        "selection_rank",
+        "selection_rank_sha256",
+        "stratum"
+      ],
+      "selection_rank_scope": "zero-based contiguous within each stratum",
+      "row_order": ["frozen_strata_order", "selection_rank", "source_index", "sample_id"],
+      "required_four_split_artifacts": [
+        "hotpotqa_screen",
+        "hotpotqa_confirm",
+        "musique_screen",
+        "musique_confirm"
+      ]
+    },
+    "dir13_oracle_decontaminated_v2": {
+      "four_split_artifacts_required": [
+        "hotpotqa_screen",
+        "hotpotqa_confirm",
+        "musique_screen",
+        "musique_confirm"
+      ],
+      "downstream_added_fields": {
+        "dataset": "dataset_id with the _train suffix removed",
+        "split": "train",
+        "tier": "method-dev"
+      },
+      "consumed_partition_subset": ["screen"],
+      "selection_rank_scope": "zero-based contiguous within each stratum",
+      "train_sources_and_answer_access_policy": "copied byte-for-byte from the later dir13 publication receipt; not present in this answer-free interface"
+    }
+  },
+  "downstream_completion": {
+    "owner": "later dir10/12 registry adapter",
+    "requires_pinned_train_sources": true,
+    "must_resolve": ["sample_id", "selection_rank_sha256"],
+    "native_row_exact_fields": [
+      "dataset_id",
+      "partition",
+      "sample_id",
+      "source_index",
+      "source_projection_sha256",
+      "selection_rank",
+      "selection_rank_sha256",
+      "stratum"
+    ],
+    "train_sources_receipt_passthrough": true,
+    "answer_access_policy_receipt_passthrough": true,
+    "must_not_use_answer_for_selection_or_ranking": true,
+    "must_recompute_projection_from_pinned_train_source": true,
+    "must_verify_screen_confirm_disjoint": true,
+    "must_verify_strata_order": true
+  },
+  "fail_closed": true
+}

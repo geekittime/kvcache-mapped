@@ -1,0 +1,65 @@
+# Local reverse-direction extension.  This configuration is deliberately
+# isolated from the completed paper-scope pipeline and consumes its committed
+# production k=20 mapper read-only.
+project_root: /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b
+direction: qwen3_32b_to_14b
+protocol: qwen3_32b_to_14b_long_context_k20_v1
+paper_bit_exact: false
+
+paths:
+  source_model: /home/wby/models/Qwen3-32B
+  target_model: /home/wby/models/Qwen3-14B
+  mapper_manifest: /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b/artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01/manifest.json
+
+data:
+  # HotpotQA has public answer gold only on dev; the hidden test labels are not
+  # available.  The complete dev_distractor split contains 7,405 examples.
+  hotpotqa_dev_distractor: /home/wby/llm-cache/nvidia-kvcache/data/HotpotQA/raw/hotpot_dev_distractor_v1.json
+
+  # MultiNews contains aligned official test documents and reference summaries.
+  # The extension freezes the same gold-independent bottom-500 subset used by
+  # the forward-direction experiment.
+  multi_news_source: /home/wby/llm-cache/nvidia-kvcache/data/MultiNews/data/test.src.cleaned
+  multi_news_target: /home/wby/llm-cache/nvidia-kvcache/data/MultiNews/data/test.tgt
+  multi_news_sample_count: 500
+  multi_news_selection_seed: qwen3-14b-to-32b-multinews-official-test-bottom500-v1
+
+  # LMSYS and ShareGPT4 publish train-only corpora.  The final assistant turn is
+  # held out from deterministic, duplicate-free bottom-500 samples.  Historical
+  # forward seeds are intentionally retained to make the comparison paired.
+  lmsys_parquet_dir: /home/wby/llm-cache/nvidia-kvcache/data/LMSYS/data
+  lmsys_sample_count: 500
+  lmsys_selection_seed: qwen3-14b-to-32b-lmsys-heldout-v1
+  sharegpt_jsonl: /home/wby/llm-cache/nvidia-kvcache/data/ShareGPT4/sharegpt_gpt4.jsonl
+  sharegpt_sample_count: 500
+  sharegpt_selection_seed: qwen3-14b-to-32b-sharegpt4-heldout-v1
+
+runtime:
+  # This is the already validated simultaneous reverse evaluation topology:
+  # source 32B on five cards and target 14B plus the resident mapper on three.
+  source_devices: [0, 1, 2, 3, 4]
+  source_layer_counts: [12, 13, 14, 13, 12]
+  target_devices: [5, 6, 7]
+  target_layer_counts: [13, 14, 13]
+  attention_implementation: flash_attention_2
+  mapper_token_chunk: 1024
+  max_length: 16384
+  dialog_reference_score_cap_tokens: 1024
+
+tasks:
+  hotpotqa:
+    # The user requested the larger cap so unfinished or repetitive mapped
+    # answers remain visible and are counted explicitly rather than truncated
+    # at the earlier 512-token ceiling.
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think
+  multi_news:
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think
+  lmsys:
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think
+  sharegpt4:
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think
+

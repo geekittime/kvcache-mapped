@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qwen3-cross-model-kv-transfer"
+version = "0.1.0"
+description = "Reproduction of closed-form cross-model KV cache transfer for Qwen3-14B to Qwen3-32B."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "accelerate==0.29.3",
+  "datasets==2.19.0",
+  "dill==0.3.8",
+  "fsspec==2024.3.1",
+  "huggingface-hub==0.30.2",
+  "multiprocess==0.70.16",
+  "protobuf==6.32.0",
+  "pyarrow-hotfix==0.7",
+  # LongBench's reference summarization metric implementation.
+  "rouge==1.0.1",
+  # ShareGPT held-out reference/output-retention metric.
+  "sacrebleu==2.5.1",
+  "sentencepiece==0.2.1",
+  "tokenizers==0.21.4",
+  "transformers==4.51.0",
+  # lm-evaluation-harness v0.4.12 uses PEP 728 TypedDict extra_items.
+  "typing_extensions>=4.15,<5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+markers = [
+  "cuda: requires a CUDA GPU",
+  "slow: long-running integration test",
+]

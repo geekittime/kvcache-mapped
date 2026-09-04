@@ -1,0 +1,32 @@
+project_root: /home/wby/llm-cache/nvidia-kvcache
+source_model: /home/wby/models/Qwen3-14B
+target_model: /home/wby/models/Qwen3-32B
+direction: qwen3_14b_to_32b
+
+paper:
+  calibration_sequences: 500
+  sequence_length: 1024
+  position_stride: 4
+  selected_source_layers: 8
+  ridge_lambda: 0.01
+  forward_dtype: bfloat16
+  covariance_dtype: float32
+  analysis_dtype: float64
+
+architecture:
+  source_layers: 40
+  target_layers: 64
+  source_kv_heads: 8
+  target_kv_heads: 8
+  source_head_dim: 128
+  target_head_dim: 128
+  rope_theta: 1000000
+
+runtime:
+  batch_size: 1
+  sampled_positions_start: 0
+  disable_tf32_for_master_fit: true
+  activation_chunk_tokens: 1024
+  statistics_chunk_tokens: 1024
+  mapper_checkpoint_every_layer: true
+

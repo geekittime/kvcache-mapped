@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "experiment_id": "qwen3_32b_to_14b_functional_residual_v1",
+  "status": "preformal_template",
+  "direction": "qwen3_32b_to_14b",
+  "method_id": "frozen_anchor_head_structured_functional_residual_v1",
+  "execution_policy": {
+    "formal_config": false,
+    "gpu_execution_authorized_by_this_config": false,
+    "locked_outcomes_must_remain_unopened": true,
+    "locked_or_test_examples_must_remain_unopened": true,
+    "answers_may_influence_selection": false,
+    "source_32b_logits_as_teacher_allowed": false,
+    "writes_must_resolve_under_experiment_root": true
+  },
+  "experiment_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/14_functional_residual_mapper",
+  "anchor": {
+    "id": "headwise_shrinkage_v1",
+    "selection_state": "frozen_before_functional_training",
+    "manifest": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/artifacts/headwise_shrinkage_v1/manifest.json",
+      "nbytes": 39059,
+      "sha256": "dabc63b252c5c7b9964fb00fdbe1b5eef440f126fb88c8d4e73a45378d5b4995"
+    },
+    "deep_payload_hash_required": true,
+    "mutable": false,
+    "fallback": "abort_and_create_a_new_config_version_if_anchor_validation_fails",
+    "dev_metric_based_anchor_switching_allowed": false,
+    "k4_is_only_a_separately_preregistered_future_control": true
+  },
+  "integrity_inputs": {
+    "complete_g0_v2": {
+      "path": "__FINAL_COMPLETE_G0_V2_RECEIPT_PATH__",
+      "nbytes": "__FINAL_COMPLETE_G0_V2_RECEIPT_NBYTES__",
+      "sha256": "__FINAL_COMPLETE_G0_V2_RECEIPT_SHA256__"
+    },
+    "decontaminated_registry_receipt": {
+      "path": "__FINAL_DIR10_REGISTRY_RECEIPT_PATH__",
+      "nbytes": "__FINAL_DIR10_REGISTRY_RECEIPT_NBYTES__",
+      "sha256": "__FINAL_DIR10_REGISTRY_RECEIPT_SHA256__"
+    },
+    "train_only_oracle_receipt": {
+      "path": "__FINAL_TRAIN_ONLY_ORACLE_RECEIPT_PATH__",
+      "nbytes": "__FINAL_TRAIN_ONLY_ORACLE_RECEIPT_NBYTES__",
+      "sha256": "__FINAL_TRAIN_ONLY_ORACLE_RECEIPT_SHA256__"
+    },
+    "capture_manifest": {
+      "path": "__FINAL_MAPPER_FIT_FUNCTIONAL_CAPTURE_MANIFEST_PATH__",
+      "nbytes": "__FINAL_MAPPER_FIT_FUNCTIONAL_CAPTURE_MANIFEST_NBYTES__",
+      "sha256": "__FINAL_MAPPER_FIT_FUNCTIONAL_CAPTURE_MANIFEST_SHA256__"
+    },
+    "tier_registry": {
+      "path": "__FINAL_THREE_TIER_REGISTRY_PATH__",
+      "nbytes": "__FINAL_THREE_TIER_REGISTRY_NBYTES__",
+      "sha256": "__FINAL_THREE_TIER_REGISTRY_SHA256__"
+    }
+  },
+  "data_policy": {
+    "parameter_fit_tier": "mapper-fit",
+    "hyperparameter_selection_tier": "method-dev",
+    "hyperparameter_selection_split": "train",
+    "confirmatory_tier": "locked-test",
+    "split_unit": "complete_sequence_or_conversation_before_tokenization",
+    "cross_tier_content_overlap_allowed": false,
+    "answer_fields_in_mapper_fit_or_selection_records_allowed": false,
+    "model_outcomes_in_selection_records_allowed": false,
+    "selection_metric_allowlist": [
+      "attention_output_cosine",
+      "attention_output_nmse",
+      "attention_logit_huber",
+      "suffix_kl_native14",
+      "eos_bce_native14",
+      "kv_r2_guardrail"
+    ],
+    "selection_metric_denylist": [
+      "answer",
+      "gold_first_token_margin",
+      "qa_f1",
+      "qa_em",
+      "accuracy",
+      "rouge",
+      "chrf",
+      "normalized_token_f1",
+      "locked_test_outcome"
+    ],
+    "teacher": "native_qwen3_14b",
+    "source_32b_logits_as_teacher_allowed": false
+  },
+  "architecture": {
+    "source_layers": 64,
+    "target_layers": 40,
+    "selected_source_layers_per_target": 20,
+    "kv_heads": 8,
+    "query_heads": 40,
+    "head_dim": 128,
+    "input_dim": 20480,
+    "components": ["key", "value"],
+    "residual_type": "shared_encoder_per_layer_component_plus_head_specific_decoder",
+    "formula": "anchor(x)+layer_gain*ood_gate*norm_cap*sigmoid(head_gate)*(standardize(x)@A@B_head+delta_bias_head)",
+    "encoder_shape_per_layer_component": [20480, "rank"],
+    "decoder_shape_per_layer_component": [8, "rank", 128],
+    "delta_bias_shape_per_layer_component": [8, 128],
+    "head_gate_shape_per_layer_component": [8],
+    "decoder_zero_initialized": true,
+    "delta_bias_zero_initialized": true,
+    "step_zero_is_exact_anchor": true,
+    "rank_candidates_in_order": [64, 128, 256],
+    "rank": "__FREEZE_ONE_RANK_FROM_TRAIN_ONLY_SCREEN_BEFORE_CONFIRM__",
+    "oracle_candidate_layers": [7, 8, 9, 10, 34, 35],
+    "active_layers": "__FREEZE_NONEMPTY_SUBSET_FROM_ANSWER_FREE_TRAIN_ONLY_ORACLE__",
+    "layer_loss_weights": "__FREEZE_POSITIVE_WEIGHTS_FROM_ANSWER_FREE_TRAIN_ONLY_ORACLE__",
+    "layers_outside_active_set_return_anchor_exactly": true,
+    "parameter_formula_per_active_layer": "2*(input_dim*rank+kv_heads*rank*head_dim+kv_heads*head_dim+kv_heads)",
+    "parameter_counts": {
+      "six_active_layers_rank64": 16527456,
+      "six_active_layers_rank128": 33042528,
+      "six_active_layers_rank256": 66072672,
+      "forty_active_layers_rank64": 110183040,
+      "forty_active_layers_rank128": 220283520,
+      "forty_active_layers_rank256": 440484480
+    },
+    "residual_weight_mib": {
+      "six_active_layers_rank64_bf16": 31.52362060546875,
+      "six_active_layers_rank128_bf16": 63.02362060546875,
+      "six_active_layers_rank256_bf16": 126.02362060546875,
+      "forty_active_layers_rank64_bf16": 210.157470703125,
+      "forty_active_layers_rank128_bf16": 420.157470703125,
+      "forty_active_layers_rank256_bf16": 840.157470703125
+    },
+    "training_state_upper_bound_bytes_per_parameter": 16,
+    "gpu_memory_must_be_measured_not_inferred_for_any_result": true
+  },
+  "layer_selection": {
+    "source": "answer_free_train_only_causal_oracle_and_method_dev_screen",
+    "candidate_layer_order": [7, 8, 9, 10, 34, 35],
+    "metric_order": [
+      "native_repair_first_token_kl_reduction",
+      "native_fixed_query_attention_output_cosine_gain",
+      "native_fixed_query_attention_logit_huber_reduction"
+    ],
+    "answers_or_downstream_scores_used": false,
+    "selection_rule": "retain_layer_only_if_primary_effect_is_positive_and_paired_bootstrap_lcb_gt_0_then_normalize_positive_confirmed_effects_to_mean_one",
+    "minimum_active_layers": 1,
+    "maximum_active_layers": 6,
+    "weight_lower_bound": 0.25,
+    "weight_upper_bound": 2.0,
+    "bootstrap_seed": 20260830,
+    "bootstrap_replicates": 10000
+  },
+  "runtime_guards": {
+    "standardization_statistics_tier": "mapper-fit",
+    "ood_statistic": "max(standardized_rms/rms_q99,standardized_absmax/absmax_q99)",
+    "ood_gate_open_at_or_below": 1.0,
+    "ood_gate_closed_at_or_above": 1.25,
+    "ood_gate_curve": "one_minus_cubic_smoothstep",
+    "nonfinite_input_action": "anchor_fallback",
+    "residual_to_anchor_rms_cap": 0.25,
+    "residual_cap_granularity": "token_layer_component_kv_head",
+    "zero_gate_tolerance": 1e-6
+  },
+  "functional_capture": {
+    "tier": "mapper-fit",
+    "teacher": "native_qwen3_14b",
+    "source_features": "qwen3_32b_content_space_kv_for_same_exact_prefix",
+    "required_signals": [
+      "source32_content_kv_k20_order",
+      "anchor14_mapped_kv",
+      "native14_kv",
+      "native14_fixed_queries",
+      "sampled_causal_attention_rows",
+      "native14_suffix_logits_online_or_hash_bound_capture",
+      "suffix_token_ids",
+      "eos_token_ids",
+      "exact_positions_sequence_offsets_and_hashes"
+    ],
+    "suffix_horizons": [8, 32],
+    "full_attention_t_squared_materialization_required": false,
+    "query_row_sampling": "tail_rows_plus_chunk_boundaries_plus_seeded_uniform_rows",
+    "truncation_allowed": false,
+    "sequence_group_disjoint": true
+  },
+  "loss": {
+    "primary_objective": "native14_functional_fidelity",
+    "attention_logit": {
+      "type": "mean_centered_smooth_l1",
+      "weight": 0.25,
+      "fixed_native_queries": true
+    },
+    "attention_output": {
+      "cosine_weight": 1.0,
+      "normalized_mse_weight": 0.25,
+      "fixed_native_queries": true
+    },
+    "suffix_kl": {
+      "direction": "KL(native14_teacher||mapped14_candidate)",
+      "temperatures": [1.0, 2.0],
+      "weight": 1.0,
+      "horizons_in_order": [8, 32]
+    },
+    "eos_soft_bce": {
+      "target": "native14_teacher_eos_probability",
+      "weight": 0.1
+    },
+    "kv_guardrail": {
+      "type": "variance_normalized_huber",
+      "weight": 0.02,
+      "is_primary_selection_metric": false,
+      "heldout_key_r2_max_drop_from_anchor": 0.002,
+      "heldout_value_r2_max_drop_from_anchor": 0.002
+    },
+    "head_gate_l1_weight": 0.0001,
+    "curriculum": [
+      {
+        "name": "attention_alignment",
+        "fraction_start": 0.0,
+        "fraction_end": 0.15,
+        "suffix_horizon": 0,
+        "suffix_kl_scale": 0.0,
+        "eos_scale": 0.0,
+        "kv_scale": 1.0
+      },
+      {
+        "name": "suffix8",
+        "fraction_start": 0.15,
+        "fraction_end": 0.4,
+        "suffix_horizon": 8,
+        "suffix_kl_scale": 1.0,
+        "eos_scale": 1.0,
+        "kv_scale": 0.5
+      },
+      {
+        "name": "suffix32",
+        "fraction_start": 0.4,
+        "fraction_end": 1.0,
+        "suffix_horizon": 32,
+        "suffix_kl_scale": 1.0,
+        "eos_scale": 1.0,
+        "kv_scale": 0.25
+      }
+    ]
+  },
+  "optimization": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0002,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 1.0,
+    "mixed_precision": "bf16",
+    "seed": 20260831,
+    "rank_selection": "train_all_candidates_on_mapper_fit_then_choose_the_first_rank_in_registered_order_passing_method_dev_screen",
+    "confirm_access_budget": 1,
+    "confirm_failure_action": "fail_method_version_without_trying_another_rank",
+    "early_stopping_metric": "weighted_native14_functional_loss",
+    "early_stopping_uses_answers": false
+  },
+  "system_comparisons": [
+    {
+      "id": "functional_residual_r1",
+      "target_replay_tokens": 1,
+      "claim_class": "pure_mapper_primary",
+      "tail_refresh": false
+    },
+    {
+      "id": "functional_residual_r32",
+      "target_replay_tokens": 32,
+      "claim_class": "optional_hybrid_quality_latency_secondary",
+      "tail_refresh": true
+    }
+  ],
+  "comparison_policy": {
+    "primary_baseline": "frozen_nvidia_compatible_k20_r1",
+    "pure_r1_must_be_evaluated_without_tail_refresh": true,
+    "r32_may_not_rescue_or_be_merged_with_r1_claim": true,
+    "same_ids_prompts_tokenizer_decoding_and_scoring_required": true,
+    "locked_test_access_before_unique_candidate_freeze": false
+  },
+  "formal_runtime": {
+    "required_cuda_visible_devices": "0,1,2,3,4,5,6,7",
+    "global_gpu_lock": "/home/wby/llm-cache/nvidia-kvcache/runs/gpu8_experiment.lock",
+    "idle_consecutive_samples": 12,
+    "gpu_plan": "__FREEZE_AFTER_INDEPENDENT_MEMORY_PREFLIGHT__",
+    "capture_runner": "__NOT_IMPLEMENTED_IN_PRE_FORMAL_CPU_FRAMEWORK__",
+    "target_receiver_adapter": "__NOT_IMPLEMENTED_IN_PRE_FORMAL_CPU_FRAMEWORK__"
+  },
+  "outputs": {
+    "runs_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/14_functional_residual_mapper/runs",
+    "artifacts_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/14_functional_residual_mapper/artifacts",
+    "checkpoints_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/14_functional_residual_mapper/checkpoints"
+  },
+  "claim_policy": {
+    "current_claim": "untrained_candidate_framework_only",
+    "may_claim_better_than_nvidia_now": false,
+    "required_before_comparative_claim": "frozen_prospective_paired_R1_evidence_passing_G0_through_G4",
+    "pure_and_hybrid_results_may_be_merged": false
+  }
+}

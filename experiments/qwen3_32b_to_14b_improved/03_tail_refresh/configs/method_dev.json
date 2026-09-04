@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "protocol_id": "qwen3_32b_to_14b_tail_refresh_method_dev_v2",
+  "status": "method_dev_only_locked_test_forbidden",
+  "candidate_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh",
+  "models": {
+    "source_32b": {
+      "path": "/home/wby/models/Qwen3-32B",
+      "config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb"
+    },
+    "target_14b": {
+      "path": "/home/wby/models/Qwen3-14B",
+      "config_sha256": "e73c3664ca09b10a673fef0c22e8a6b456201d49bd4713c9691f775720e8857a"
+    }
+  },
+  "mapper": {
+    "manifest": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b/artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01/manifest.json",
+    "manifest_sha256": "382a1deb6f4fd33c824fe782d956f46bdfb2b876081cb36487616e4de92a8ee2",
+    "access": "read_only_content_addressed"
+  },
+  "method": {
+    "id": "native_target_tail_refresh_k20_v1",
+    "replay_tokens": [1, 8, 32],
+    "builder_native_tail_tokens": [0, 7, 31],
+    "engine_boundary_tokens": 1,
+    "r1_is_nvidia_compatible_k20_zero_op": true
+  },
+  "datasets": {
+    "hotpotqa_train": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/HotpotQA/raw/hotpot_train_v1.1.json",
+      "sha256": "26650cf50234ef5fb2e664ed70bbecdfd87815e6bffc257e068efea5cf7cd316",
+      "rows": 90447,
+      "split": "official_train_v1.1",
+      "license": "CC BY-SA 4.0",
+      "grouping_key": "_id",
+      "strata": ["type", "level"]
+    },
+    "musique_train": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/upstream_raw/data/musique_ans_v1.0_train.jsonl",
+      "sha256": "83a75b1e11e4e9bb8f8308e72ac40ca617ae4431b3a0d955b61cab259248490a",
+      "rows": 19938,
+      "split": "official_answerable_train_v1.0",
+      "license": "CC BY 4.0",
+      "grouping_key": "id",
+      "strata": ["hop_count"]
+    }
+  },
+  "selection": {
+    "rank_seed": "qwen3-32to14-tail-refresh-method-dev-v1-20260830",
+    "split_namespace": "qwen3-32to14-improved/method-dev/tail-refresh/v1",
+    "split_salt_commitment": "sha256:cb0dbce9942468381d102880a668510e349930c6f1fbf6b14bb8196e671b7e9f",
+    "per_stratum": {
+      "hotpotqa_train": {"smoke": 1, "pilot": 8, "expansion": 32},
+      "musique_train": {"smoke": 1, "pilot": 16, "expansion": 64}
+    },
+    "selection_reads_answers_or_metrics": false,
+    "rank_inputs": ["rank_seed", "dataset_id", "sample_id"]
+  },
+  "prompt": {
+    "mode": "qwen_chat_no_think",
+    "max_length": 16384,
+    "max_generation_tokens": 256,
+    "truncation": "forbidden_in_method_dev_selection",
+    "instruction": "Answer the multi-hop question using only the supplied context. Return only the shortest answer span and no explanation.",
+    "completion_template": "Answer the multi-hop question using only the supplied context. Return only the shortest answer span and no explanation.\n\nContext:\n{context}\n\nQuestion: {question}\nAnswer:",
+    "paragraph_order": "official_idx_ascending_for_musique",
+    "stop_sequences": ["\nQuestion:", "\nContext:"]
+  },
+  "musique_protocol_binding": {
+    "config": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/config.json",
+      "nbytes": 3099,
+      "sha256": "b328d746fd9df345ecfc2e7f75d56237b6c4326c797a9e93d96545e0f1037417"
+    },
+    "registry_manifest": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/artifacts/registry_v1/registry_manifest.json",
+      "nbytes": 1433,
+      "sha256": "c26036e2ada0b2868e0e56d9d6fe548ce0908c07d78731c0eeeab8ae68eb7225"
+    },
+    "prompt_implementation": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/src/musique_benchmark.py",
+      "nbytes": 16140,
+      "sha256": "cbf5d890e9b445bcd84033f047e24aaf42705bc96e10f8e4925034f10dc7fe28",
+      "function": "build_prompt"
+    }
+  },
+  "runtime": {
+    "attention_implementation": "flash_attention_2",
+    "mapper_token_chunk": 1024,
+    "source_devices": [0, 1, 2, 3, 4],
+    "source_layer_counts": [12, 13, 14, 13, 12],
+    "target_devices": [5, 6, 7],
+    "target_layer_counts": [13, 14, 13],
+    "greedy": true,
+    "temperature": 0.0
+  },
+  "outputs": {
+    "prepared": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/artifacts/prepared_method_dev_v2",
+    "runs_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/runs"
+  },
+  "isolation": {
+    "allowed_data_tier": "method-dev",
+    "allowed_splits": ["hotpotqa_train", "musique_train"],
+    "forbidden_path_fragments": [
+      "hotpot_dev_distractor_v1.json",
+      "hotpot_dev_fullwiki_v1.json",
+      "hotpot_test_fullwiki_v1.json",
+      "musique_ans_v1.0_dev.jsonl",
+      "musique_ans_v1.0_test.jsonl",
+      "/runs/long_context_extension_full_k20_v1",
+      "/five_task_extension_full_k20_v1"
+    ],
+    "baseline_tree_write_allowed": false,
+    "locked_test_access_allowed": false
+  }
+}

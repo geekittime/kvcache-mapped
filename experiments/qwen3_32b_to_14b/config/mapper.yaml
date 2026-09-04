@@ -1,0 +1,54 @@
+project_root: /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b
+shared_repository: /home/wby/llm-cache/nvidia-kvcache
+source_model: /home/wby/models/Qwen3-32B
+target_model: /home/wby/models/Qwen3-14B
+direction: qwen3_32b_to_14b
+
+paper:
+  calibration_sequences: 500
+  sequence_length: 1024
+  position_stride: 4
+  selected_source_layers: 20
+  ridge_lambda: 0.01
+  forward_dtype: bfloat16
+  covariance_dtype: float32
+  analysis_dtype: float64
+
+# The paper does not disclose an activation held-out split for this pair.
+# This independent split is a local fail-closed reconstruction audit only.
+local_validation:
+  heldout_sequences: 50
+  sequence_length: 1024
+  position_stride: 4
+
+architecture:
+  source_layers: 64
+  target_layers: 40
+  source_kv_heads: 8
+  target_kv_heads: 8
+  source_head_dim: 128
+  target_head_dim: 128
+  rope_theta: 1000000
+
+captures:
+  source_train: /home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_32b/train
+  target_train: /home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_14b/train
+  source_heldout: /home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_32b/heldout
+  target_heldout: /home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_14b/heldout
+  source_native_role: target
+  target_native_role: source
+
+outputs:
+  selection: artifacts/selection/qwen3_32b_to_14b/selected_layers.json
+  selection_work: artifacts/selection/qwen3_32b_to_14b/_implementation
+  statistics: artifacts/statistics/qwen3_32b_to_14b/selection
+  mapper: artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01
+  heldout_validation: artifacts/validation/qwen3_32b_to_14b/heldout_activation_reconstruction.json
+
+runtime:
+  batch_size: 1
+  sampled_positions_start: 0
+  disable_tf32_for_master_fit: true
+  activation_chunk_tokens: 1024
+  statistics_chunk_tokens: 1024
+  mapper_checkpoint_every_layer: true

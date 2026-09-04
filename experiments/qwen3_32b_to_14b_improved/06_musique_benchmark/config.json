@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "musique_ans_v1.0_qwen3_32b_to_14b_improved",
+  "status": "data_frozen_before_candidate_evaluation",
+  "source": {
+    "repository": "https://github.com/StonyBrookNLP/musique",
+    "commit": "922ac98f19a201998dbdae6d7f2887a5258dbdeb",
+    "license": "CC-BY-4.0",
+    "download_archive": {
+      "relative_path": "upstream_download/musique_v1.0.zip",
+      "nbytes": 272049578,
+      "sha256": "98f839bf2fd5319f5c688aed77901a6d5c30b3b9f9f691ab9a8ecafb045ee0cd"
+    },
+    "answerable_train": {
+      "relative_path": "upstream_raw/data/musique_ans_v1.0_train.jsonl",
+      "count": 19938,
+      "nbytes": 241046755,
+      "sha256": "83a75b1e11e4e9bb8f8308e72ac40ca617ae4431b3a0d955b61cab259248490a"
+    },
+    "answerable_dev": {
+      "relative_path": "upstream_raw/data/musique_ans_v1.0_dev.jsonl",
+      "count": 2417,
+      "nbytes": 30439728,
+      "sha256": "15fa63794d18a94ce12411aca6e2327e65b6e83b0b1490efab3f1962e48abf3b"
+    },
+    "single_hop_leakage_registry": {
+      "relative_path": "upstream_raw/data/dev_test_singlehop_questions_v1.0.json",
+      "nbytes": 915921,
+      "sha256": "013be00ab914799891e5ae40de6cdc1baf03aaffd1f3ce4bf0de796020069613"
+    }
+  },
+  "official_metric": {
+    "implementation": "vendor/musique/metrics/answer.py",
+    "implementation_sha256": "10368f619b4d5ef5d83748c05a96c0afd332a14ab5c010740c98d58dfaefe974",
+    "headline": "answer_f1",
+    "secondary": "answer_em",
+    "aliases": "max_over_primary_answer_and_answer_aliases",
+    "support_metric_in_scope": false
+  },
+  "split_policy": {
+    "selection_unit": "complete_question_record",
+    "rank_rule": "ascending_sha256(namespace + NUL + record_id), then source_index",
+    "train_screen": {
+      "namespace": "qwen3-32to14-improved/musique/train-screen/v1",
+      "count": 256,
+      "tier": "method-dev",
+      "purpose": "fast candidate screening"
+    },
+    "train_confirm": {
+      "namespace": "qwen3-32to14-improved/musique/train-confirm/v1",
+      "count": 512,
+      "tier": "method-dev",
+      "purpose": "candidate confirmation after screening"
+    },
+    "official_dev": {
+      "namespace": "qwen3-32to14-improved/musique/official-dev-locked/v1",
+      "count": 2417,
+      "tier": "locked-test",
+      "state": "sealed_until_candidate_freeze",
+      "access_budget": 1,
+      "disclosure": "one schema example was inspected before sealing; no model aggregate has been evaluated"
+    }
+  },
+  "generation_protocol": {
+    "model_modes": ["target_standalone", "mapped"],
+    "prompt": "fixed_no_thinking_completion_prompt_with_all_official_paragraphs",
+    "paragraph_order": "official_idx_ascending",
+    "batch_size": 1,
+    "do_sample": false,
+    "temperature": 0.0,
+    "max_new_tokens": 256,
+    "max_total_tokens": 16384,
+    "stop_sequences": ["\nQuestion:", "\nContext:"]
+  },
+  "claim_boundary": {
+    "paper_bit_exact": false,
+    "reason": "MuSiQue is an additional prospectively frozen challenge benchmark, not an NVIDIA-paper task",
+    "train_splits_may_select_methods": true,
+    "official_dev_may_select_methods": false
+  }
+}

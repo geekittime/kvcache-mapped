@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "frozen_posthoc_pilot_development_only",
+  "method": "gold_free_r1_to_r32_risk_router",
+  "tokenization": {
+    "prompt_count": "registry prompt token count",
+    "context_count": "tokenize context alone with add_special_tokens=false",
+    "reference_tokenizer": "/home/wby/models/Qwen3-14B/tokenizer.json",
+    "reference_tokenizer_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+  },
+  "signals": {
+    "prompt_tokens": {
+      "enter": 2800,
+      "exit": 2600,
+      "required": true,
+      "source": "completed_input_tokenization"
+    },
+    "context_tokens": {
+      "enter": 2800,
+      "exit": 2600,
+      "required": false,
+      "source": "context_only_tokenization"
+    },
+    "r1_generated_tokens": {
+      "enter": 16,
+      "exit": 12,
+      "required": true,
+      "source": "completed_R1_generation_length"
+    }
+  },
+  "priority": {
+    "both_input_and_generation": 3,
+    "generation_only": 2,
+    "input_only": 1,
+    "no_signal": 0,
+    "tie_break": "original_batch_order"
+  },
+  "hysteresis": {
+    "scope": "one_request_telemetry_latch",
+    "enter": "any_available_dimension_at_or_above_enter",
+    "clear": "all_available_dimensions_strictly_below_exit",
+    "invalid_telemetry": "clear_and_fallback"
+  },
+  "budget": {
+    "max_escalation_fraction": 0.3,
+    "max_escalations_absolute": 32,
+    "rounding": "floor",
+    "canonical_96_request_limit": 28,
+    "overflow": "fallback_R1_and_record_no_go"
+  },
+  "no_go": [
+    "missing_or_non_integer_prompt_tokens",
+    "missing_or_non_integer_R1_generated_tokens",
+    "negative_or_over_limit_token_count",
+    "context_tokens_greater_than_prompt_tokens",
+    "incomplete_R1_first_pass",
+    "budget_exhausted_or_priority_deferred"
+  ],
+  "forbidden_inputs": [
+    "wall_time",
+    "output_text",
+    "references",
+    "quality_metrics",
+    "dataset_or_task_label",
+    "GPU_state"
+  ],
+  "promotion_rule": {
+    "must_use_new_fresh_registry": true,
+    "must_be_locked_before_observing_fresh_quality": true,
+    "pilot_claim_allowed": false,
+    "paper_superiority_claim_allowed": false
+  }
+}

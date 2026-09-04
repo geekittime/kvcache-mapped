@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "protocol_id": "quota_capacity_repair_v1",
+  "status": "PRE_FORMAL_CPU_ONLY",
+  "claim_boundary": "capacity-repaired quotas and answer-free allocation framework only; no model outcomes, no GPU, no formal claim",
+  "source_protocol": "pairwise_direct_collision_hypergraph_feasibility_v3",
+  "source_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3",
+  "source_bindings": {
+    "graph_published": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/hypergraph_v3/PUBLISHED.json",
+      "nbytes": 1931,
+      "sha256": "e2b3104598573a1e2d789f5ee74c3c25a93e106c097cfbd28e4f5b422caae94e"
+    },
+    "graph_manifest": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/hypergraph_v3/manifest.json",
+      "nbytes": 10461,
+      "sha256": "63131642697b04fd0c270074cf26c4ccb0689a81601b910fdd3361aa703bbdc3"
+    },
+    "records": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/hypergraph_v3/records.jsonl",
+      "nbytes": 6010725,
+      "sha256": "285e308e1e41ca121953df17ea9cd41deb51087080840192d4bca99987cee11c"
+    },
+    "hyperedges": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/hypergraph_v3/hyperedges.jsonl",
+      "nbytes": 10297376,
+      "sha256": "7760335418d04f2eaf5730b627e2592aab54da56087a7a6952621571bbb55a4f"
+    },
+    "graph_report": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/hypergraph_v3/graph_report.json",
+      "nbytes": 6963,
+      "sha256": "f94eff030f0d7b5540e2d974d2f0c397e43d0e9e23643ca1b97d2ee040e14cc6"
+    },
+    "solver_contract": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/hypergraph_v3/solver_contract.json",
+      "nbytes": 9736,
+      "sha256": "115e881f7a47ac748bfa6350b6a7cb329bcbbebcb9c834aa26a59c137bd6013d"
+    },
+    "graph_deep_published": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/validations/hypergraph_v3_deep/PUBLISHED.json",
+      "nbytes": 768,
+      "sha256": "8fe5684aec716ac3da5cbe365017ef508b10187135d19d93fe4b8ebf683e87c5"
+    },
+    "graph_deep_receipt": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/validations/hypergraph_v3_deep/receipt.json",
+      "nbytes": 2926,
+      "sha256": "6a30fa89e3655cd2b2b47066244b69075842ebe3a459b514e5ab8fcfc60d15a7"
+    },
+    "allocation_published": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/allocation_v3/PUBLISHED.json",
+      "nbytes": 1953,
+      "sha256": "23bc1c923c3a14e2136fc69089beca173c459ddcca613843e658bb6a89d1b3e3"
+    },
+    "allocation_receipt": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/allocation_v3/receipt.json",
+      "nbytes": 1440,
+      "sha256": "33262dd0aa0c1117ded88d7c9d71e4f973d034078a0d7805dadfa30150c4c50e"
+    },
+    "allocation_report": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/allocation_v3/allocation_report.json",
+      "nbytes": 7761,
+      "sha256": "10c3d93aa484efe4ef0e3c6b8ab19716d4ac68411e606a9f90f5b9c9c3350ba6"
+    },
+    "allocation_deep_receipt_placeholder": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/validations/allocation_v3_deep",
+      "required": true,
+      "placeholder_allowed_before_formal": true,
+      "expected_status": "published_complete_allocation_deep_validation",
+      "published": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/validations/allocation_v3_deep/PUBLISHED.json",
+        "nbytes": 778,
+        "sha256": "7d1e54942bf3731d50fc493230a6a43143fea1d2e784c3db22290ca8a92e7a31"
+      },
+      "receipt": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/validations/allocation_v3_deep/receipt.json",
+        "nbytes": 6719,
+        "sha256": "d5894b3f72455e1775d80376287fe4b971a5d35181b53549a6279407662eb02a"
+      },
+      "receipt_sidecar": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/validations/allocation_v3_deep/receipt.json.sha256.json",
+        "nbytes": 301,
+        "sha256": "d169feb68a4ddf2ccfd11d9aad0ab52a1bdad86a5b056a6e9c503cd736b8c2be"
+      },
+      "gate_snapshot": "allocation_v3_deep_ready_2026-09-02"
+    },
+    "allocation_deep_published": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/validations/allocation_v3_deep/PUBLISHED.json",
+      "nbytes": 778,
+      "sha256": "7d1e54942bf3731d50fc493230a6a43143fea1d2e784c3db22290ca8a92e7a31"
+    },
+    "allocation_deep_receipt": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/validations/allocation_v3_deep/receipt.json",
+      "nbytes": 6719,
+      "sha256": "d5894b3f72455e1775d80376287fe4b971a5d35181b53549a6279407662eb02a"
+    },
+    "allocation_deep_receipt_sidecar": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v3/artifacts/validations/allocation_v3_deep/receipt.json.sha256.json",
+      "nbytes": 301,
+      "sha256": "d169feb68a4ddf2ccfd11d9aad0ab52a1bdad86a5b056a6e9c503cd736b8c2be"
+    }
+  },
+  "target_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "partitions_order": [
+    "screen",
+    "confirm"
+  ],
+  "cells_order": [
+    "hotpotqa_train|bridge/easy",
+    "hotpotqa_train|bridge/medium",
+    "hotpotqa_train|bridge/hard",
+    "hotpotqa_train|comparison/easy",
+    "hotpotqa_train|comparison/medium",
+    "hotpotqa_train|comparison/hard",
+    "musique_train|2hop",
+    "musique_train|3hop",
+    "musique_train|4hop"
+  ],
+  "upper_quotas": {
+    "0": 22,
+    "1": 22,
+    "2": 21,
+    "3": 21,
+    "4": 21,
+    "5": 21,
+    "6": 109,
+    "7": 108,
+    "8": 39,
+    "9": 43,
+    "10": 43,
+    "11": 43,
+    "12": 43,
+    "13": 42,
+    "14": 42,
+    "15": 217,
+    "16": 217,
+    "17": 78
+  },
+  "ratio_constraint": {
+    "screen_to_confirm": {
+      "screen_multiplier": 2,
+      "confirm_multiplier": 1
+    },
+    "absolute_difference_maximum": 1,
+    "meaning": "abs(confirm_quota - 2 * screen_quota) <= 1 for every cell"
+  },
+  "musique_4hop_buffer": {
+    "strict_clean_records": 119,
+    "minimum_unselected_records": 2,
+    "maximum_selected_records": 117
+  },
+  "thresholds": {
+    "exact_normalized_unit_substring_min_characters": 120,
+    "exact_substring_candidate_recall": "complete deterministic character-winnowing recall followed by literal shorter-in-longer verification; no full reference scan",
+    "locked_comparison_scope": "every candidate question and passage against the union of HotpotQA locked dev and MuSiQue locked dev; all four train-to-locked dataset pairs",
+    "mapper_comparison_scope": "candidate question and every passage against all 550 decoded FineWeb mapper-fit sequences",
+    "normalization": "unicode_nfkc_casefold_keep_alnum_collapse_whitespace",
+    "partition_sequence_policy": "freeze both screen sets first, then exclude every confirm candidate with any exact/normalized/substring/near question or passage collision against either screen set",
+    "passage_min_containment": 0.5,
+    "passage_min_intersection": 20,
+    "passage_min_jaccard": 0.3,
+    "passage_shingle_words": 5,
+    "question_min_containment": 0.8,
+    "question_min_intersection": 4,
+    "question_min_jaccard": 0.7,
+    "question_shingle_words": 3,
+    "train_duplicate_policy": "quarantine_both_endpoints_of_all_exact_normalized_or_near_question_collisions_across_the_HotpotQA_plus_MuSiQue_train_union"
+  },
+  "thresholds_canonical_sha256": "9bb804292b9a35bd137d1b1b8ebc1b29ab5cad383d7e8aa18c71e631cc73aecb",
+  "collision_policy": {
+    "no_transitive_closure": true,
+    "selected_records_per_hyperedge_maximum": 1,
+    "record_target_assignments_per_record_maximum": 1,
+    "all_hyperedges_consumed_byte_for_byte": true,
+    "hyperedge_source": "pairwise-v3 artifacts/hypergraph_v3/hyperedges.jsonl"
+  },
+  "solver": {
+    "backend": "scipy.optimize.milp",
+    "scipy_version": "1.12.0",
+    "integrality": "binary records; continuous lambda in phase A",
+    "required_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "highs_options": {
+      "threads": 1,
+      "presolve": true,
+      "mip_rel_gap": 0.0
+    },
+    "replica_python_hash_seeds": [
+      "1",
+      "777"
+    ],
+    "replica_highs_random_seeds": [
+      1,
+      777
+    ],
+    "hash_cost_namespace": "qwen3-32to14-improved/pairwise-hypergraph-v2",
+    "binary_tolerance": 1e-07,
+    "objective_denominator": 4503599627370496
+  },
+  "outputs": {
+    "quota_search": "artifacts/quota_search",
+    "allocation": "artifacts/allocation",
+    "deep_validation": "artifacts/validations/deep",
+    "preformal_stop": "artifacts/preformal/PRE_FORMAL_STOP_v11.json"
+  },
+  "forbidden_data": {
+    "model_outcomes_read": false,
+    "answer_values_read": false,
+    "forbidden_field_names": [
+      "answer",
+      "answers",
+      "support",
+      "supporting_facts",
+      "gold",
+      "prediction",
+      "predictions",
+      "model_output",
+      "model_outputs",
+      "outcome",
+      "outcomes",
+      "metric",
+      "metrics",
+      "logits",
+      "loss"
+    ]
+  },
+  "formal_execution": {
+    "allowed": false,
+    "gpu_allowed": false,
+    "required_external_gate": "allocation_v3_deep_receipt",
+    "stop_status": "PRE_FORMAL_STOP"
+  },
+  "runtime_bootstrap": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPYCACHEPREFIX": "absolute_path_must_be_absent_before_local_import",
+    "sys_dont_write_bytecode": true,
+    "sys_pycache_prefix_matches_env": true,
+    "prefix_parent_policy": "all_existing_parents_real_directories_no_symlinks",
+    "local_src_import_guard": true
+  },
+  "snapshot": {
+    "snapshot_id": "allocation_v3_deep_ready_v2",
+    "parent_preformal_stop": "artifacts/preformal/PRE_FORMAL_STOP_v3.json",
+    "gate_status": "READY",
+    "a_b_c_d_started": false,
+    "formal_started": false,
+    "gpu_started": false
+  }
+}

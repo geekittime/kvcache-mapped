@@ -1,0 +1,87 @@
+{
+  "contract_schema_version": 1,
+  "consumer": "12_prospective_screen_v2",
+  "publication_order": "verify PUBLISHED.json first; open no other registry artifact until the atomic complete marker passes",
+  "published_marker": {
+    "filename": "PUBLISHED.json",
+    "exact_keys": [
+      "schema_version",
+      "registry_id",
+      "status",
+      "atomic_last_completion_marker",
+      "published_files",
+      "ordered_inventory_sha256",
+      "receipt",
+      "receipt_sidecar"
+    ],
+    "required_values": {
+      "schema_version": 1,
+      "status": "published_complete",
+      "atomic_last_completion_marker": true
+    },
+    "published_files_exact_names": [
+      "hotpotqa_screen.jsonl",
+      "hotpotqa_screen.jsonl.sha256.json",
+      "hotpotqa_confirm.jsonl",
+      "hotpotqa_confirm.jsonl.sha256.json",
+      "musique_screen.jsonl",
+      "musique_screen.jsonl.sha256.json",
+      "musique_confirm.jsonl",
+      "musique_confirm.jsonl.sha256.json",
+      "quarantine_aggregate.json",
+      "quarantine_aggregate.json.sha256.json",
+      "registry_manifest.json",
+      "registry_manifest.json.sha256.json",
+      "receipt.json",
+      "receipt.json.sha256.json"
+    ],
+    "published_files_entry_exact_keys": ["nbytes", "sha256"],
+    "receipt_equals_published_files_entry": "receipt.json",
+    "receipt_sidecar_equals_published_files_entry": "receipt.json.sha256.json",
+    "sidecar_exact_keys": ["path", "nbytes", "sha256"],
+    "sidecar_path_semantics": "absolute path to its core payload; nbytes and sha256 describe that core payload",
+    "verify_all_14_inventory_file_bytes_after_marker_passes": true,
+    "ordered_inventory_sha256": "sha256(canonical JSON plus LF of filename-sorted [{name,nbytes,sha256}])"
+  },
+  "manifest_required_values": {
+    "status": "prepared_decontaminated_method_dev_only"
+  },
+  "publication_receipt_required_values": {
+    "status": "pass",
+    "artifact_publication.completion_marker_required": "PUBLISHED.json",
+    "artifact_publication.status_pass_receipt_without_completion_marker_is_not_published": true
+  },
+  "native_split_exact_keys": [
+    "dataset_id",
+    "partition",
+    "sample_id",
+    "source_index",
+    "source_projection_sha256",
+    "selection_rank",
+    "selection_rank_sha256",
+    "stratum"
+  ],
+  "split_artifacts": {
+    "hotpotqa_screen": {"dataset_id": "hotpotqa_train", "partition": "screen", "rows": "config.profiles.screen.hotpotqa_train"},
+    "hotpotqa_confirm": {"dataset_id": "hotpotqa_train", "partition": "confirm", "rows": "config.profiles.confirm.hotpotqa_train"},
+    "musique_screen": {"dataset_id": "musique_train", "partition": "screen", "rows": "config.profiles.screen.musique_train"},
+    "musique_confirm": {"dataset_id": "musique_train", "partition": "confirm", "rows": "config.profiles.confirm.musique_train"}
+  },
+  "count_binding": "formal config copies exact final experiment-10 published row counts; smoke remains 2+2; no screen/confirm count is frozen in this template before final publication",
+  "strata_order": {
+    "hotpotqa_train": [
+      "bridge/easy",
+      "bridge/medium",
+      "bridge/hard",
+      "comparison/easy",
+      "comparison/medium",
+      "comparison/hard"
+    ],
+    "musique_train": ["2hop", "3hop", "4hop"]
+  },
+  "row_order": ["strata_order", "selection_rank", "source_index", "sample_id"],
+  "selection_rank_scope": "zero-based contiguous within each stratum",
+  "screen_confirm_disjoint_on": ["sample_id", "source_index"],
+  "shadow_or_translated_registry_forbidden": true,
+  "fail_closed": true
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment_id": "qwen3_32b_to_14b_headwise_shrinkage_v1",
+  "direction": "qwen3_32b_to_14b",
+  "upstream": {
+    "k20_mapper": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b/artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01",
+    "k4_mapper": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b/artifacts/mappers/qwen3_32b_to_14b/k4_retuned_lambda0.01",
+    "heldout_source_activations": "/home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_32b/heldout",
+    "heldout_target_activations": "/home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_14b/heldout",
+    "heldout_tokens": "/home/wby/llm-cache/nvidia-kvcache/data/calibration/qwen3_fineweb_edu_500x1024_v1/heldout_tokens.npy"
+  },
+  "protocol": {
+    "source_layers": 64,
+    "target_layers": 40,
+    "kv_heads": 8,
+    "head_dim": 128,
+    "k20": 20,
+    "k4": 4,
+    "heldout_sequences": 50,
+    "sequence_length": 1024,
+    "activation_stride": 4,
+    "observations_per_sequence": 256,
+    "tuning_sequences": 40,
+    "locked_audit_sequences": 10,
+    "group_cv_folds": 5,
+    "alpha_lower": 0.0,
+    "alpha_upper": 1.0,
+    "alpha_granularity": "target_layer,cache_component,target_kv_head",
+    "alpha_objective": "scalar_sse_over_all_observations_and_128_channels_in_each_target_kv_head",
+    "split_rule": "sha256-int32-token-row; ten lowest hashes locked; remaining sorted hashes round-robin over five folds"
+  },
+  "runtime": {
+    "global_gpu_lock": "/home/wby/llm-cache/nvidia-kvcache/runs/gpu8_experiment.lock",
+    "cuda_visible_devices": "0",
+    "compute_device": "cuda:0",
+    "idle_gate_samples": 12,
+    "idle_gate_interval_seconds": 5,
+    "idle_gate_max_memory_mib": 64,
+    "chunk_sequences": 4,
+    "allow_tf32": false
+  },
+  "outputs": {
+    "preflight": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/runs/cpu_preflight_v4",
+    "activation_cv_run": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/runs/activation_cv_v3",
+    "mapper": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/artifacts/headwise_shrinkage_v1"
+  }
+}

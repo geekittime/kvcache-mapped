@@ -1,0 +1,177 @@
+{
+  "schema_version": 2,
+  "registry_id": "qwen3_32b_to_14b_decontaminated_method_dev_registry_v2",
+  "status": "preregistered_cpu_only",
+  "selection": {
+    "rank_rule": "ascending_sha256(namespace + NUL + partition + NUL + stratum + NUL + record_id), then source_index",
+    "selection_reads_answers": false,
+    "selection_reads_prompt_length": false,
+    "selection_reads_model_outcomes": false,
+    "hotpotqa": {
+      "namespace": "qwen3-32to14-improved/hotpotqa/decontaminated-method-dev-v2",
+      "strata_order": [
+        "bridge/easy",
+        "bridge/medium",
+        "bridge/hard",
+        "comparison/easy",
+        "comparison/medium",
+        "comparison/hard"
+      ],
+      "screen_quotas": {
+        "bridge/easy": 22,
+        "bridge/medium": 22,
+        "bridge/hard": 21,
+        "comparison/easy": 21,
+        "comparison/medium": 21,
+        "comparison/hard": 21
+      },
+      "confirm_quotas": {
+        "bridge/easy": 43,
+        "bridge/medium": 43,
+        "bridge/hard": 43,
+        "comparison/easy": 43,
+        "comparison/medium": 42,
+        "comparison/hard": 42
+      }
+    },
+    "musique": {
+      "namespace": "qwen3-32to14-improved/musique/decontaminated-method-dev-v2",
+      "strata_order": ["2hop", "3hop", "4hop"],
+      "screen_quotas": {"2hop": 109, "3hop": 108, "4hop": 39},
+      "confirm_quotas": {"2hop": 217, "3hop": 217, "4hop": 78},
+      "quota_derivation": "capacity-only max-min water-filling after the complete exact-substring attempt2 froze the strict clean pool: clean 4hop capacity=119, reserve an unused 2-row buffer, allocate 117 total in the exact 1:2 screen/confirm ratio (39/78), then allocate the remaining 651 slots as evenly as integer totals permit between 2hop and 3hop (326/325) with the frozen strata-order tiebreak; split those totals as screen109/108 and confirm217/217",
+      "quota_derivation_reads_answers_or_model_outcomes": false,
+      "expected_clean_4hop_capacity": 119,
+      "reserved_clean_4hop_buffer": 2
+    }
+  },
+  "decontamination": {
+    "normalization": "unicode_nfkc_casefold_keep_alnum_collapse_whitespace",
+    "exact_normalized_unit_substring_min_characters": 120,
+    "exact_substring_candidate_recall": "complete deterministic character-winnowing recall followed by literal shorter-in-longer verification; no full reference scan",
+    "passage_shingle_words": 5,
+    "passage_min_intersection": 20,
+    "passage_min_containment": 0.5,
+    "passage_min_jaccard": 0.3,
+    "question_shingle_words": 3,
+    "question_min_intersection": 4,
+    "question_min_containment": 0.8,
+    "question_min_jaccard": 0.7,
+    "locked_comparison_scope": "every candidate question and passage against the union of HotpotQA locked dev and MuSiQue locked dev; all four train-to-locked dataset pairs",
+    "mapper_comparison_scope": "candidate question and every passage against all 550 decoded FineWeb mapper-fit sequences",
+    "train_duplicate_policy": "quarantine_both_endpoints_of_all_exact_normalized_or_near_question_collisions_across_the_HotpotQA_plus_MuSiQue_train_union",
+    "partition_sequence_policy": "freeze both screen sets first, then exclude every confirm candidate with any exact/normalized/substring/near question or passage collision against either screen set"
+  },
+  "threshold_binding": {
+    "source": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/09_complete_g0_audit/config.json",
+      "nbytes": 3755,
+      "sha256": "1f61ec78e74cff7b8f5b61b40d381ae4ddf78be53af8206eff86494e8caa0702"
+    },
+    "source_keys": [
+      "normalization",
+      "similarity.exact_normalized_unit_substring_min_characters",
+      "similarity.passage_shingle_words",
+      "similarity.passage_min_intersection",
+      "similarity.passage_min_containment",
+      "similarity.passage_min_jaccard",
+      "similarity.question_shingle_words",
+      "similarity.question_min_intersection",
+      "similarity.question_min_containment",
+      "similarity.question_min_jaccard"
+    ]
+  },
+  "failure_evidence": {
+    "complete_g0_v1_receipt": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/09_complete_g0_audit/artifacts/complete_g0_v1/complete_g0_receipt.json",
+      "nbytes": 7293564,
+      "sha256": "4b66efa69e269dae9bf5d710e2dd4adb8041b3c4651ee3f140c6a44031ae71f8"
+    },
+    "interpretation": "09 v1 found cross-dataset passage flags, so v2 selection quarantines against both locked-dev datasets rather than only the matching dataset",
+    "local_equal_quota_attempt": {
+      "path": "artifacts/failed_attempts/musique_equal_quota_fail_v1.json",
+      "nbytes": 879,
+      "sha256": "096dc69499e70efd5f888e4aa260d861e7c600568cfebea19f110b6651422bd4",
+      "status": "failed_closed_preserved_append_only"
+    },
+    "local_complexity_terminated_attempt": {
+      "path": "artifacts/failed_attempts/substring_fallback_complexity_terminated_v1.json",
+      "nbytes": 628,
+      "sha256": "e564994142801be6ac413bbe14570592cf57f368031727d5788b9d6a9aa458e6",
+      "status": "terminated_with_root_authorization_preserved_append_only"
+    },
+    "local_strict_substring_capacity_attempt": {
+      "path": "artifacts/failed_attempts/strict_substring_capacity_fail_attempt2.json",
+      "nbytes": 1507,
+      "sha256": "ba4431d54514153811e8b843dbce28b4911cf0998bbc66744ecfaeb23fd9901d",
+      "status": "failed_closed_preserved_append_only"
+    }
+  },
+  "inputs": {
+    "hotpot_train": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/HotpotQA/raw/hotpot_train_v1.1.json",
+      "nbytes": 566426227,
+      "sha256": "26650cf50234ef5fb2e664ed70bbecdfd87815e6bffc257e068efea5cf7cd316",
+      "expected_records": 90447
+    },
+    "hotpot_locked_dev": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/HotpotQA/raw/hotpot_dev_distractor_v1.json",
+      "nbytes": 46320117,
+      "sha256": "4e9ecb5c8d3b719f624d66b60f8d56bf227f03914f5f0753d6fa1b359d7104ea",
+      "expected_records": 7405
+    },
+    "musique_train": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/upstream_raw/data/musique_ans_v1.0_train.jsonl",
+      "nbytes": 241046755,
+      "sha256": "83a75b1e11e4e9bb8f8308e72ac40ca617ae4431b3a0d955b61cab259248490a",
+      "expected_records": 19938
+    },
+    "musique_locked_dev": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/upstream_raw/data/musique_ans_v1.0_dev.jsonl",
+      "nbytes": 30439728,
+      "sha256": "15fa63794d18a94ce12411aca6e2327e65b6e83b0b1490efab3f1962e48abf3b",
+      "expected_records": 2417
+    },
+    "mapper_fit_train": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/calibration/qwen3_fineweb_edu_500x1024_v1/train_tokens.npy",
+      "nbytes": 2048128,
+      "sha256": "6a045dc9b5c3456b9b1c72b20f6ea5e011bf81eaf0e2ba3c9d079cb93e743f29",
+      "expected_records": 500
+    },
+    "mapper_fit_heldout": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/data/calibration/qwen3_fineweb_edu_500x1024_v1/heldout_tokens.npy",
+      "nbytes": 204928,
+      "sha256": "43b7dee7b0b5acf352b53bc3613d176d04f2abe03e811aff955644eb2b026ddd",
+      "expected_records": 50
+    },
+    "tokenizer_json": {
+      "path": "/home/wby/models/Qwen3-14B/tokenizer.json",
+      "nbytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    }
+  },
+  "privacy": {
+    "locked_projection_fields": ["id", "question", "context"],
+    "train_projection_fields": ["id", "question", "context", "stratum"],
+    "registry_output_fields": [
+      "dataset_id",
+      "partition",
+      "sample_id",
+      "source_index",
+      "source_projection_sha256",
+      "selection_rank",
+      "selection_rank_sha256",
+      "stratum"
+    ],
+    "write_question_or_context": false,
+    "raw_source_file_bytes_necessarily_read_by_json_decoder": true,
+    "raw_answer_values_transiently_parsed_into_decoder_object_pairs": true,
+    "answer_fields_projected_into_Projection": false,
+    "answer_values_available_to_rank_quota_or_decontamination_logic": false,
+    "answer_values_persisted_to_registry_or_quarantine": false,
+    "model_outcome_fields_retained_inspected_used_or_written": false
+  },
+  "outputs": {
+    "artifact_dir": "artifacts/registry_v2_strict_attempt3"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "protocol_id": "qwen3_32b_to_14b_prospective_shrinkage_router_v1",
+  "experiment_id": "qwen3_32b_to_14b_prospective_shrinkage_router_attempt29_v1",
+  "status": "frozen_cpu_preregistration",
+  "runtime": {
+    "gpu_allowed": false,
+    "quality_inputs_allowed": false,
+    "dataset_label_inputs_allowed": false,
+    "wall_time_inputs_allowed": false,
+    "output_text_inputs_allowed": false,
+    "cap_flag_inputs_allowed": false
+  },
+  "tokenizer": {
+    "path": "/home/wby/models/Qwen3-14B/tokenizer.json",
+    "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+  },
+  "route": {
+    "default_arm": "nvidia_k20",
+    "escalation_arm": "shrinkage_r1",
+    "prompt_enter_tokens": 2800,
+    "r1_generated_enter_tokens": 16,
+    "gate": "prompt_and_r1_generation",
+    "first_pass_required": true,
+    "tie_break": "original_batch_order"
+  },
+  "budget": {
+    "max_escalation_fraction": 0.3,
+    "max_escalations_absolute": 32,
+    "rounding": "floor",
+    "canonical_96_request_limit": 28,
+    "overflow_action": "fallback_nvidia_and_record_no_go"
+  },
+  "fresh_registry": {
+    "calibration_min_per_dataset": 24,
+    "sealed_eval_min_per_dataset": 48,
+    "required_datasets": ["hotpotqa_train", "musique_train"],
+    "split_names": ["calibration", "sealed_eval"],
+    "disjoint_by": "sample_id",
+    "labels_hidden_from_router": true,
+    "thresholds_locked_before_sealed": true
+  },
+  "arms": ["native14", "nvidia_k20", "shrinkage_r1"],
+  "statistics": {
+    "primary_metric": "relaxed_qa_f1",
+    "secondary_metric": "relaxed_qa_exact_match",
+    "bootstrap": "stratified_paired_percentile",
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 2901,
+    "confidence_level": 0.95
+  },
+  "promotion_gates": {
+    "per_dataset_f1_min": 0.0,
+    "hotpot_f1_safety_min": -0.01,
+    "hotpot_em_safety_min": -0.02,
+    "per_dataset_em_min": -0.02,
+    "combined_f1_ci_lower_strictly_positive": true,
+    "max_cap_rate_increase": 0.01,
+    "max_complete_rate_decrease": 0.01,
+    "max_no_go_fraction": 0.05
+  },
+  "immutable_hypothesis_refs": [
+    {
+      "name": "old03_paired_samples",
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/analysis/outputs/paired_samples.jsonl",
+      "nbytes": 68414,
+      "sha256": "d76097b3d85af6dcfb8573ec9215e772048597b936620c4b69b33d54276e3a74"
+    },
+    {
+      "name": "old03_analysis",
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/analysis/outputs/analysis.json",
+      "nbytes": 20325,
+      "sha256": "1dd5311595e211ae96c10deed61413468e287559d8ed712b25a2fca6d87e8b73"
+    },
+    {
+      "name": "attempt28_paired_summary",
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/28_shrinkage_old_pilot_eval_v1/runs/pilot_shrinkage_r1_attempt28_v1/paired_summary.json",
+      "nbytes": 123368,
+      "sha256": "d5255d777a302b322f0b97c3080bc5f1c5c882f27d3bee6064e7178b8dbde2b1"
+    },
+    {
+      "name": "attempt28_completion_receipt",
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/28_shrinkage_old_pilot_eval_v1/runs/pilot_shrinkage_r1_attempt28_v1/completion_receipt.json",
+      "nbytes": 34994,
+      "sha256": "e2c743902932ceb20e182fbf72bbc2890552f5a820bf6aff0f0ba4c6c56d5e88"
+    },
+    {
+      "name": "attempt28_stop_marker",
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/28_shrinkage_old_pilot_eval_v1/artifacts/STOP_PILOT_SHRINKAGE_R1_attempt28_v1.json",
+      "nbytes": 1680,
+      "sha256": "636a91f26d85716cf7c07c3360ac22831fe0bf7c9b908c96c32f732469df0f8e"
+    }
+  ],
+  "claim_boundary": "posthoc_old03_and_attempt28_only; no fresh quality claim or NVIDIA-paper-superiority claim"
+}

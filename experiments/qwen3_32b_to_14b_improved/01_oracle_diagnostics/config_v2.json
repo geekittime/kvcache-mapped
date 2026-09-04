@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "experiment_id": "qwen3_32b_to_14b_a1_oracle_diagnostics_v2",
+  "direction": "qwen3_32b_to_14b",
+  "tier": "method-dev",
+  "prepared_registry": {
+    "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/01_oracle_diagnostics/artifacts/prepare_v1/prepare_manifest.json",
+    "nbytes": 6069,
+    "sha256": "b842139a805fbbc7b0706b1976c86415ca465100471a311074f31db5d2ecb0cb"
+  },
+  "prepared_records": {
+    "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/01_oracle_diagnostics/artifacts/prepare_v1/method_dev_records.jsonl",
+    "nbytes": 14055990,
+    "sha256": "e22c93d9ca562836e50fbc1ec6ae3762cd01429d376a4f4b7fed667a1aa4dd90"
+  },
+  "interventions": {
+    "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/01_oracle_diagnostics/artifacts/prepare_v1/interventions.json",
+    "nbytes": 1321,
+    "sha256": "17b9dcb5bd3ac4a8dec022ff1e502796afe458fa0e4bc7f4eecdba24f832b5ed"
+  },
+  "legacy_v1_config": {
+    "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/01_oracle_diagnostics/config.json",
+    "gpu_execution_authorized_must_remain": false
+  },
+  "complete_g0_gate": {
+    "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/00_research_protocol/receipts/g0_complete_v1.json",
+    "nbytes": 0,
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "required_status": "pass",
+    "required_closes_complete_g0": true,
+    "note": "Deliberately absent until an independently published complete-G0 receipt exists. The partial 08 audit is not acceptable."
+  },
+  "models": {
+    "source_32b": "/home/wby/models/Qwen3-32B",
+    "target_14b": "/home/wby/models/Qwen3-14B",
+    "source_devices": [0,1,2,3,4],
+    "source_layer_counts": [12,13,14,13,12],
+    "target_devices": [5,6,7],
+    "target_layer_counts": [13,14,13],
+    "attention_implementation": "flash_attention_2",
+    "mapper_token_chunk": 1024
+  },
+  "mapper": {
+    "manifest": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b/artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01/manifest.json",
+    "manifest_sha256": "382a1deb6f4fd33c824fe782d956f46bdfb2b876081cb36487616e4de92a8ee2"
+  },
+  "runtime": {
+    "required_cuda_visible_devices": "0,1,2,3,4,5,6,7",
+    "global_gpu_lock": "/home/wby/llm-cache/nvidia-kvcache/runs/gpu8_experiment.lock",
+    "idle_memory_limit_mib": 64,
+    "idle_consecutive_samples": 12,
+    "idle_sample_interval_seconds": 5,
+    "idle_timeout_seconds": 86400
+  },
+  "profiles": {
+    "smoke": {"hotpotqa_train": 2, "musique_train": 2},
+    "screen": {"hotpotqa_train": 64, "musique_train": 64}
+  },
+  "generation": {"max_new_tokens": 256, "do_sample": false, "stop": "eos_only"},
+  "outputs_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/01_oracle_diagnostics/runs"
+}

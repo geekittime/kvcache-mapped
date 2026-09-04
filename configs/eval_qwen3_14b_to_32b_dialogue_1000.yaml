@@ -1,0 +1,43 @@
+# Dedicated 1,000-sample dialogue extension.  This is intentionally separate
+# from the frozen 200-sample long-context configuration.
+project_root: /home/wby/llm-cache/nvidia-kvcache
+
+paths:
+  source_model: /home/wby/models/Qwen3-14B
+  target_model: /home/wby/models/Qwen3-32B
+  mapper_manifest: artifacts/mappers/qwen3_14b_to_32b/k8_lambda0.01/manifest.json
+
+data:
+  # The base runner resolves all four paths during validation even though this
+  # specialized entry point permits only the two dialogue tasks.
+  multi_news_source: data/MultiNews/data/test.src.cleaned
+  multi_news_target: data/MultiNews/data/test.tgt
+  hotpotqa_dev_distractor: data/HotpotQA/raw/hotpot_dev_distractor_v1.json
+
+  # Keep the original seeds so the old bottom-200 selections are nested within
+  # the new bottom-1,000 selections.  Evaluation indices are regenerated for
+  # this independent run and must not be mixed with a 200-sample run.
+  lmsys_parquet_dir: data/LMSYS/data
+  lmsys_sample_count: 1000
+  lmsys_selection_seed: qwen3-14b-to-32b-lmsys-heldout-v1
+  sharegpt_jsonl: data/ShareGPT4/sharegpt_gpt4.jsonl
+  sharegpt_sample_count: 1000
+  sharegpt_selection_seed: qwen3-14b-to-32b-sharegpt4-heldout-v1
+
+runtime:
+  target_devices: [0, 1, 2, 3, 4, 5]
+  target_layer_counts: [10, 11, 11, 11, 11, 10]
+  source_devices: [6, 7]
+  source_layer_counts: [20, 20]
+  attention_implementation: flash_attention_2
+  mapper_token_chunk: 1024
+  max_length: 16384
+  dialog_reference_score_cap_tokens: 1024
+
+tasks:
+  lmsys:
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think
+  sharegpt4:
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think

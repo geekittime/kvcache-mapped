@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "method_id": "watchdog_gated_tail_repair_r32_v1",
+  "status": "post_hoc_hypothesis_only",
+  "direction": "qwen3_32b_to_14b",
+  "watchdog": {
+    "stall_budget_generated_tokens": 32,
+    "initial_mode": "mapped_r1",
+    "repair_mode": "tail_refresh_r32",
+    "trigger": "r1_generated_tokens_gt_32_or_cap_hit",
+    "gold_blind": true,
+    "dataset_blind": true
+  },
+  "bootstrap": {
+    "seed": 20260830,
+    "replicates": 10000,
+    "resampling_unit": "paired_sample_id"
+  },
+  "upstream": {
+    "root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh",
+    "analysis_receipt": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/analysis/outputs/validation_receipt.json",
+      "nbytes": 3005,
+      "sha256": "93e9d016ee65bbd800c0f0c4c1d1620dcf5e62109e2cdecf484fbb9ab3915ea7"
+    },
+    "result_inventory": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/analysis/outputs/result_inventory.json",
+      "nbytes": 76728,
+      "sha256": "ad6a5c029a61b81bd176095c1a7ce43ccf916695fc74012def57ea1085cb858a"
+    },
+    "paired_samples": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/analysis/outputs/paired_samples.jsonl",
+      "nbytes": 68414,
+      "sha256": "d76097b3d85af6dcfb8573ec9215e772048597b936620c4b69b33d54276e3a74"
+    },
+    "expected_atomic_results": 384,
+    "expected_samples": 96,
+    "expected_modes": [
+      "target_standalone",
+      "mapped_r1",
+      "tail_refresh_r8",
+      "tail_refresh_r32"
+    ],
+    "expected_datasets": {
+      "hotpotqa_train": 48,
+      "musique_train": 48
+    }
+  },
+  "claim_boundary": {
+    "pilot_was_observed_before_hypothesis": true,
+    "counterfactual_label": "exploratory_post_hoc",
+    "may_claim_paper_superiority": false,
+    "required_next_step": "prospective evaluation on the still-unobserved 10_decontaminated_eval screen and confirm splits, frozen before any outcomes are opened"
+  }
+}

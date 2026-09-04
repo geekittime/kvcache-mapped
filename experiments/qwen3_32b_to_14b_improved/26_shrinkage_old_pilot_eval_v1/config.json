@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "protocol_id": "qwen3_32b_to_14b_shrinkage_old_pilot_eval_v1",
+  "experiment_id": "qwen3_32b_to_14b_shrinkage_old_pilot_eval_attempt26_v1",
+  "status": "method_dev_only_gpu_execution_requires_operator_confirmation",
+  "direction": "qwen3_32b_to_14b",
+  "upstream": {
+    "old03_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh",
+    "prior_attempt": {
+      "experiment_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1",
+      "attempt_id": "qwen3_32b_to_14b_shrinkage_old_pilot_eval_attempt25_v1",
+      "failure_reason": "pre-GPU execute validation failed before CUDA_VISIBLE_DEVICES guard: _validate_stop_receipt received a PosixPath instead of the preflight artifact Mapping",
+      "failure_stage": "before_cuda_visible_devices_guard",
+      "error_type": "TypeError",
+      "error": "dict(preflight_ref): PosixPath object is not iterable",
+      "preflight": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1/artifacts/preflight_pilot_shrinkage_r1_attempt25_v1.json",
+        "nbytes": 96639,
+        "sha256": "7ba90744aeaacc82170cefd5edf28a48df954fd146e72a8102b2c26c6f065441"
+      },
+      "preflight_sidecar": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1/artifacts/preflight_pilot_shrinkage_r1_attempt25_v1.json.sha256.json",
+        "nbytes": 162,
+        "sha256": "4abd9eb5352b2dacad3e9c8602ebe506160531c44e1cc1bc90d3467154160969"
+      },
+      "stop": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1/artifacts/STOP_PILOT_SHRINKAGE_R1_attempt25_v1.json",
+        "nbytes": 1614,
+        "sha256": "ad2b45ba7be32712f66b226dd28bef0c7b13c1fffeb866b57f07c1d511d76416"
+      },
+      "stop_sidecar": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1/artifacts/STOP_PILOT_SHRINKAGE_R1_attempt25_v1.json.sha256.json",
+        "nbytes": 156,
+        "sha256": "20d16a4dfd492cb6ca2dd371708f5a800aeaefa89df431b63ab8cddd6a477ce3"
+      },
+      "log": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1/logs/shrinkage_old_pilot_eval_attempt25_v1.log",
+        "nbytes": 941,
+        "sha256": "96ad5f8b4560045d7c2309a9c9ab78539c58da02eb99dd9e4443230f566e139b"
+      },
+      "config": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1/config.json",
+        "nbytes": 14328,
+        "sha256": "ffe199147b65291db6c19d2b4fb8ab5f56387d6c4226bbbf00db475fd500b021"
+      },
+      "runner": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1/src/runner.py",
+        "nbytes": 99872,
+        "sha256": "7e9afbcddef263a417e8a6f95126b3ba0a6f56ea947ee4dae62b7aa4baf0117d"
+      },
+      "tests": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1/tests/test_runner.py",
+        "nbytes": 12861,
+        "sha256": "5d409aeb0037554f0fe72f3f9792ee7d8ab24647ad799f056cb4f4d1351ecd5c"
+      },
+      "status_witness": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/26_shrinkage_old_pilot_eval_v1/artifacts/prior25_status_witness.json",
+        "nbytes": 826,
+        "sha256": "5e41ead7e509438cd5eece5c25a310117bd7cf0eba5e0c0659a8acc5b95d6e27"
+      },
+      "status_witness_sidecar": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/26_shrinkage_old_pilot_eval_v1/artifacts/prior25_status_witness.json.sha256.json",
+        "nbytes": 141,
+        "sha256": "42fbc92842863df2f6e9974d618d568127b6277355e1f08d6dfb3ebde6296fbd"
+      },
+      "run_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/25_shrinkage_old_pilot_eval_v1/runs/pilot_shrinkage_r1_attempt25_v1",
+      "run_root_exists": false,
+      "status_path_exists": false,
+      "candidate_count": 96,
+      "candidate_results_sha256": "ad764524eee4a86d5c74339ab7c7f688e3d2bf114de6a75b44d42944477cb024",
+      "candidate_inventory": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/artifacts/prior23_candidate_inventory.json",
+        "nbytes": 32663,
+        "sha256": "78d77ed4b0448ea94cce87c8c0294697cdb8fbf0cade3fc6632fb42f0c20fdd1"
+      },
+      "prior24_evidence": {
+      "experiment_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1",
+      "attempt_id": "qwen3_32b_to_14b_shrinkage_old_pilot_eval_attempt24_v1",
+      "failure_reason": "dir24 STOP invalidated by post-STOP source/config drift; v2 CPU preflight interrupted with exit 130 before receipt write",
+      "v2_preflight_interrupted_exit_code": 130,
+      "preflight": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/artifacts/preflight_pilot_shrinkage_r1_attempt24_v1.json",
+        "nbytes": 93246,
+        "sha256": "a36bf0921159439062dbb457c0edd24642eacb299fcd34a24b9b3ce552dd6456"
+      },
+      "preflight_sidecar": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/artifacts/preflight_pilot_shrinkage_r1_attempt24_v1.json.sha256.json",
+        "nbytes": 162,
+        "sha256": "be4f24ffd4e579e8a6f5b2153142747d8eb38a516902c72ddfbdbb126711b5e8"
+      },
+      "stop": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/artifacts/STOP_PILOT_SHRINKAGE_R1_attempt24_v1.json",
+        "nbytes": 1614,
+        "sha256": "94335614c3cc1961f13d0edef8b48b96622c8e253da5a4d6e593183785c4de78"
+      },
+      "stop_sidecar": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/artifacts/STOP_PILOT_SHRINKAGE_R1_attempt24_v1.json.sha256.json",
+        "nbytes": 156,
+        "sha256": "e830c0f4b9cd8bc225fc513911d97057fd2e2b11a2ba5ea95f0bce15e51e0c77"
+      },
+      "config": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/config.json",
+        "nbytes": 10798,
+        "sha256": "9ee872440c89746ac744c7f52dd86bb7fe248e44d2b2cc9957251c8cfb6b5383"
+      },
+      "runner": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/src/runner.py",
+        "nbytes": 89314,
+        "sha256": "5f6ead0cb4b74aeb803e0a415ce9f24f868e3106cfe01958f29e578328169b4c"
+      },
+      "tests": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/tests/test_runner.py",
+        "nbytes": 8368,
+        "sha256": "73eb5bdf75d3f23f48589a9e129376326adc03be0aff2d75db289268d58c8e61"
+      },
+      "inventory": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/artifacts/prior23_candidate_inventory.json",
+        "nbytes": 32663,
+        "sha256": "78d77ed4b0448ea94cce87c8c0294697cdb8fbf0cade3fc6632fb42f0c20fdd1"
+      },
+      "inventory_sidecar": {
+        "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/artifacts/prior23_candidate_inventory.json.sha256.json",
+        "nbytes": 148,
+        "sha256": "32a5bb7295571cfeaadb56aa48f7865a0d8da6f5318d7d12afb240e28708969c"
+      },
+      "candidate_count": 96,
+      "candidate_results_sha256": "ad764524eee4a86d5c74339ab7c7f688e3d2bf114de6a75b44d42944477cb024",
+      "prior23_evidence": {
+        "experiment_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/23_shrinkage_old_pilot_eval_v1",
+        "attempt_id": "qwen3_32b_to_14b_shrinkage_old_pilot_eval_attempt23_v1",
+        "failure_reason": "NameError: completion_path was not bound before final receipt serialization",
+        "log": {
+          "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/23_shrinkage_old_pilot_eval_v1/logs/shrinkage_old_pilot_eval_attempt23_v1.log",
+          "nbytes": 10561,
+          "sha256": "39421c8c3caee6fa88ab17227f7f15abb8bec3f505671b0709d392efef0b9f6e"
+        },
+        "idle_gate": {
+          "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/23_shrinkage_old_pilot_eval_v1/runs/pilot_shrinkage_r1_attempt23_v1/idle_gate.json",
+          "nbytes": 5114,
+          "sha256": "33fa616942652fec6057e3103c57e44affbbc18fc75daf0846ca33925b7d85a6"
+        },
+        "run_definition": {
+          "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/23_shrinkage_old_pilot_eval_v1/runs/pilot_shrinkage_r1_attempt23_v1/run_definition.json",
+          "nbytes": 54023,
+          "sha256": "422907c99d80cb0349c49849d7641d2a9cc024805358dfe3c9d19e11128580e3"
+        },
+        "status": {
+          "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/23_shrinkage_old_pilot_eval_v1/runs/pilot_shrinkage_r1_attempt23_v1/status.json",
+          "nbytes": 229,
+          "sha256": "b55da32b41663ddcd4eae9072132763feea497099d366202f2a41d111af44919"
+        },
+        "paired_summary": {
+          "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/23_shrinkage_old_pilot_eval_v1/runs/pilot_shrinkage_r1_attempt23_v1/paired_summary.json",
+          "nbytes": 123367,
+          "sha256": "8473630a8a7b2ef547502170e8316c3ef3382355f8f90a6ba92e718e88885636"
+        },
+        "candidate_inventory": {
+          "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/24_shrinkage_old_pilot_eval_v1/artifacts/prior23_candidate_inventory.json",
+          "nbytes": 32663,
+          "sha256": "78d77ed4b0448ea94cce87c8c0294697cdb8fbf0cade3fc6632fb42f0c20fdd1"
+        },
+        "candidate_count": 96,
+        "candidate_results_sha256": "ad764524eee4a86d5c74339ab7c7f688e3d2bf114de6a75b44d42944477cb024"
+      }
+      }
+    },
+    "old03_config": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/configs/method_dev.json",
+      "nbytes": 5104,
+      "sha256": "1a431672369f931581b77aa2d2a5576ea950c495d13d1076fee156a06e43ed5c"
+    },
+    "prepared_manifest": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/artifacts/prepared_method_dev_v2/manifest.json",
+      "nbytes": 2447,
+      "sha256": "dea34a19ca965f58d8d5f3ffb4c481b22d2420d71f30254287d8247e25062788"
+    },
+    "selected_samples": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/artifacts/prepared_method_dev_v2/selected_samples.jsonl",
+      "nbytes": 6981062,
+      "sha256": "aa8b94367d57b088ba8c12a13068e9c82c6b95d18fc1579b5ccf66270c8aed53"
+    },
+    "baseline_run_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/runs/method_dev_pilot_r1_r8_r32_v2",
+    "baseline_inventory": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/analysis/outputs/result_inventory.json",
+      "nbytes": 76728,
+      "sha256": "ad6a5c029a61b81bd176095c1a7ce43ccf916695fc74012def57ea1085cb858a"
+    },
+    "baseline_run_definition": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/runs/method_dev_pilot_r1_r8_r32_v2/run_definition.json",
+      "nbytes": 3154,
+      "sha256": "caa4b053619d04653de4251924451c0c09cb81bd50b2403dda7dc858e303c529"
+    },
+    "baseline_summary": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/runs/method_dev_pilot_r1_r8_r32_v2/summary.json",
+      "nbytes": 4262,
+      "sha256": "9a5342437418427cebd1944adc15068b7656dee8dbf7b2af4690b6cc46ca1f61"
+    },
+    "candidate_mapper_manifest": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/artifacts/headwise_shrinkage_v1/manifest.json",
+      "nbytes": 39059,
+      "sha256": "dabc63b252c5c7b9964fb00fdbe1b5eef440f126fb88c8d4e73a45378d5b4995"
+    },
+    "candidate_mapper_marker": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/artifacts/headwise_shrinkage_v1/manifest.sha256.json",
+      "nbytes": 110,
+      "sha256": "adc27d723ffab1877004fdc981b98d0a815cd74ae84a49ec18a8f4b93863c868"
+    },
+    "candidate_completion_receipt": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/runs/activation_cv_v3_completion_amendment_v1/receipt_amended.json",
+      "nbytes": 9586,
+      "sha256": "49450ace00fee697fd2ebd07c6b2def9efe9241721e7cebe82bea8518699dd14"
+    },
+    "candidate_completion_manifest": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/runs/activation_cv_v3_completion_amendment_v1/manifest.json",
+      "nbytes": 375,
+      "sha256": "ccf9e60fed4dd0f5ef4208ed8ee800fba13140c16f12790190f421af168ccb3a"
+    },
+    "candidate_completion_marker": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/02_shrinkage_mapper/runs/activation_cv_v3_completion_amendment_v1/manifest.sha256.json",
+      "nbytes": 110,
+      "sha256": "d7e38d78d41cd58d9508a975cbad5c5cd27b617a408eb4d3d83f0f99d976f650"
+    },
+    "source_model": {
+      "path": "/home/wby/models/Qwen3-32B",
+      "config": {
+        "path": "/home/wby/models/Qwen3-32B/config.json",
+        "nbytes": 728,
+        "sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb"
+      },
+      "weight_index": {
+        "path": "/home/wby/models/Qwen3-32B/model.safetensors.index.json",
+        "nbytes": 58330,
+        "sha256": "bed42c6c55274bc08a1f616bceb3bcb84b3f02cb6584c573bd18c6519291ecd0"
+      },
+      "tokenizer": {
+        "path": "/home/wby/models/Qwen3-32B/tokenizer.json",
+        "nbytes": 11422654,
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+      }
+    },
+    "target_model": {
+      "path": "/home/wby/models/Qwen3-14B",
+      "config": {
+        "path": "/home/wby/models/Qwen3-14B/config.json",
+        "nbytes": 728,
+        "sha256": "e73c3664ca09b10a673fef0c22e8a6b456201d49bd4713c9691f775720e8857a"
+      },
+      "weight_index": {
+        "path": "/home/wby/models/Qwen3-14B/model.safetensors.index.json",
+        "nbytes": 36514,
+        "sha256": "62d7ad35757bae5e7baa452cb1483178b7daa50e869e923226b8da10871f7ebc"
+      },
+      "tokenizer": {
+        "path": "/home/wby/models/Qwen3-14B/tokenizer.json",
+        "nbytes": 11422654,
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+      }
+    },
+    "old03_metrics": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/03_tail_refresh/src/qa_metrics.py",
+      "nbytes": 3717,
+      "sha256": "60aa30920df4c7ceda4ad843d1aac6ba7fa9b2941fccf53f16d853f94df66996"
+    },
+    "old03_prompt_impl": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/src/musique_benchmark.py",
+      "nbytes": 16140,
+      "sha256": "cbf5d890e9b445bcd84033f047e24aaf42705bc96e10f8e4925034f10dc7fe28"
+    },
+    "old03_musique_config": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/config.json",
+      "nbytes": 3099,
+      "sha256": "b328d746fd9df345ecfc2e7f75d56237b6c4326c797a9e93d96545e0f1037417"
+    },
+    "old03_musique_registry": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/06_musique_benchmark/artifacts/registry_v1/registry_manifest.json",
+      "nbytes": 1433,
+      "sha256": "c26036e2ada0b2868e0e56d9d6fe548ce0908c07d78731c0eeeab8ae68eb7225"
+    }
+  },
+  "protocol": {
+    "phase": "pilot",
+    "candidate_mode": "shrinkage_r1",
+    "baseline_aliases": {
+      "native14": "target_standalone",
+      "nvidia_k20": "mapped_r1"
+    },
+    "sample_count": 96,
+    "dataset_counts": {
+      "hotpotqa_train": 48,
+      "musique_train": 48
+    },
+    "source_layers": 64,
+    "target_layers": 40,
+    "source_kv_heads": 8,
+    "target_kv_heads": 8,
+    "head_dim": 128,
+    "selected_source_layers": 20,
+    "prompt_mode": "qwen_chat_no_think",
+    "max_length": 16384,
+    "max_generation_tokens": 256,
+    "stop_sequences": [
+      "\nQuestion:",
+      "\nContext:"
+    ],
+    "truncation": "error",
+    "greedy": true,
+    "temperature": 0,
+    "r1_boundary_tokens": 1,
+    "candidate_builder_native_tail_tokens": 0,
+    "candidate_mapper_method": "headwise-convex-shrinkage-of-independent-k4-and-k20-affine-mappers"
+  },
+  "runtime": {
+    "required_python": "/home/wby/llm-cache/nvidia-kvcache/.venv/bin/python",
+    "required_pycache_prefix": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/26_shrinkage_old_pilot_eval_v1/.formal_empty_pycache",
+    "cuda_visible_devices": "0,1,2,3,4,5,6,7",
+    "global_gpu_lock": "/home/wby/llm-cache/nvidia-kvcache/runs/gpu8_experiment.lock",
+    "source_devices": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "source_layer_counts": [
+      12,
+      13,
+      14,
+      13,
+      12
+    ],
+    "target_devices": [
+      5,
+      6,
+      7
+    ],
+    "target_layer_counts": [
+      13,
+      14,
+      13
+    ],
+    "attention_implementation": "flash_attention_2",
+    "mapper_token_chunk": 1024,
+    "idle_gate_samples": 5,
+    "idle_gate_interval_seconds": 2,
+    "idle_gate_max_memory_mib": 64
+  },
+  "outputs": {
+    "run_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/26_shrinkage_old_pilot_eval_v1/runs/pilot_shrinkage_r1_attempt26_v1",
+    "preflight_receipt": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/26_shrinkage_old_pilot_eval_v1/artifacts/preflight_pilot_shrinkage_r1_attempt26_v1.json",
+    "stop_receipt": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/26_shrinkage_old_pilot_eval_v1/artifacts/STOP_PILOT_SHRINKAGE_R1_attempt26_v1.json"
+  }
+}

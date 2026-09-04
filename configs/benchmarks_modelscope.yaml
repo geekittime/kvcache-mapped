@@ -1,0 +1,54 @@
+schema_version: 1
+
+# The paper does not publish dataset revisions.  These immutable ModelScope
+# commits are the local reproduction convention.  canonical_revision records
+# the Hugging Face snapshot whose parquet bytes are verified one-for-one.
+manifest: data/benchmarks/manifest.json
+local_task_dir: data/benchmarks/lm_eval_tasks
+modelscope_endpoint: https://modelscope.cn
+modelscope_cli: /home/wby/.venvs/modelscope/bin/ms-hub
+
+datasets:
+  hellaswag:
+    canonical_repo: Rowan/hellaswag
+    canonical_revision: 218ec52e09a7e7462a5400043bb9a69a41d06b76
+    modelscope_repo: evalscope/hellaswag
+    modelscope_revision: 00764c4f16f01a72d5fb7a3b8510d0401f620587
+    local_root: data/hellaswag
+
+  mmlu:
+    canonical_repo: cais/mmlu
+    canonical_revision: c30699e8356da336a370243923dbaf21066bb9fe
+    modelscope_repo: cais/mmlu
+    modelscope_revision: 93de4dd9a33bb6b5fc2e35a23dfa1c9f1ffae9fb
+    local_root: data/mmlu
+
+  arc_challenge:
+    canonical_repo: allenai/ai2_arc
+    canonical_revision: 210d026faf9955653af8916fad021475a3f00453
+    # modelscope/ai2_arc contains only a legacy loader and no parquet data.
+    # allenai/ai2_arc is the byte-identical parquet mirror used here.
+    modelscope_repo: allenai/ai2_arc
+    modelscope_revision: 3b223fe10ad96166674b08e3c55e295e061f8105
+    local_root: data/ai2_arc
+
+  winogrande:
+    canonical_repo: allenai/winogrande
+    canonical_revision: 01e74176c63542e6b0bcb004dcdea22d94fb67b5
+    modelscope_repo: allenai/winogrande
+    modelscope_revision: 617fce771010a27646694e79f4365ca2e3d86a62
+    local_root: data/winogrande
+
+  gsm8k_cot:
+    canonical_repo: openai/gsm8k
+    canonical_revision: 740312add88f781978c0658806c59bc2815b9866
+    modelscope_repo: AI-ModelScope/gsm8k
+    modelscope_revision: 74a11c336e5045a1c8e83de0d96c556606f264f5
+    local_root: data/gsm8k
+
+  wikitext2_prefix_ppl:
+    canonical_repo: EleutherAI/wikitext_document_level
+    canonical_revision: 647234772b9554e208af6c826f23b99e3cac88c8
+    modelscope_repo: EleutherAI/wikitext_document_level
+    modelscope_revision: 4033a7474d3e9157b82547a771e62968359869ee
+    local_root: data/wikitext_document_level

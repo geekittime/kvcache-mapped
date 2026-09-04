@@ -1,0 +1,56 @@
+schema_version: 1
+direction: qwen3_32b_to_14b
+paper_reference:
+  paper: arXiv:2608.03893v1
+  sections: ["4.7", "Appendix G"]
+  table: 16
+  pair: "Qwen3 32B->14B (k=20)"
+
+protocol:
+  lengths: [64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768]
+  warmup: 50
+  timed_repeats: 30
+  batch_size: 1
+  seed: 20260813
+  dtype: bfloat16
+  attention_implementation: flash_attention_2
+  mapper_execution: eager
+  torch_compile: false
+  cuda_graphs: false
+  mapper_token_chunk: 1024
+  source_prefill_in_timed_region: false
+  target_reprefill_scope: transformer_body_with_kv_excluding_lm_head
+  mapper_scope: source_cache_handoff_inverse_rope_fp32_affine_target_rope_bf16_cache_build
+  source_cache_lifecycle: untimed_6gpu_prefill_cpu_raw_bit_stage_release_5gpu_restage
+  cpu_staging_in_timed_region: false
+  gpu_restage_in_timed_region: false
+  mapper_timer_start: preexisting_gpu_resident_source_kv
+  endpoint_memory_smoke_length: 32768
+  minimum_post_operation_headroom_mib: 2048
+
+paths:
+  source_model: /home/wby/models/Qwen3-32B
+  target_model: /home/wby/models/Qwen3-14B
+  mapper_manifest: ../artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01/manifest.json
+
+runtime:
+  source_prefill_devices: [0, 1, 2, 3, 4, 5]
+  source_prefill_layer_counts: [10, 11, 11, 11, 11, 10]
+  source_cache_devices: [3, 4, 5, 6, 7]
+  source_cache_layer_counts: [13, 13, 13, 13, 12]
+  target_devices: [0, 1, 2]
+  target_layer_counts: [13, 14, 13]
+  host_staging_overhead_bytes: 34359738368
+  require_cuda_visible_devices: "0,1,2,3,4,5,6,7"
+  idle_memory_limit_mib: 64
+  idle_consecutive_samples: 12
+  idle_sample_interval_seconds: 5
+  idle_timeout_seconds: 86400
+
+paper_h100_reference_only:
+  hardware: "8xH100 NVLink; do not compare absolute 4090 latency as bit-exact"
+  anchors:
+    "64": {mapper_ms: 11.6, target_reprefill_ms: 39.2}
+    "8192": {mapper_ms: 101.9, target_reprefill_ms: 501.0}
+    "32768": {mapper_ms: 427.1, target_reprefill_ms: 2952.7}
+  reported_speedup_range: [3.3, 6.9]

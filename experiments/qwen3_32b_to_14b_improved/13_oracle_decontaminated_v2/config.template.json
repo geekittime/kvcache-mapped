@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "experiment_id": "qwen3_32b_to_14b_oracle_decontaminated_v2",
+  "status": "preformal_template",
+  "direction": "qwen3_32b_to_14b",
+  "tier": "method-dev-train-only",
+  "execution_policy": {
+    "gpu_execution_authorized_by_this_config": false,
+    "locked_outcomes_must_remain_unopened": true,
+    "answers_require_registry_authorization": true
+  },
+  "complete_g0_v2": {
+    "path": "__FINAL_DIR09_G0_V2_RECEIPT_PATH__",
+    "nbytes": "__FINAL_DIR09_G0_V2_RECEIPT_NBYTES__",
+    "sha256": "__FINAL_DIR09_G0_V2_RECEIPT_SHA256__"
+  },
+  "native_registry": {
+    "published_marker": {
+      "path": "__FINAL_DIR10_PUBLISHED_PATH__",
+      "nbytes": "__FINAL_DIR10_PUBLISHED_NBYTES__",
+      "sha256": "__FINAL_DIR10_PUBLISHED_SHA256__"
+    },
+    "registry_manifest": {
+      "path": "__FINAL_DIR10_MANIFEST_PATH__",
+      "nbytes": "__FINAL_DIR10_MANIFEST_NBYTES__",
+      "sha256": "__FINAL_DIR10_MANIFEST_SHA256__"
+    },
+    "publication_receipt": {
+      "path": "__FINAL_DIR10_RECEIPT_PATH__",
+      "nbytes": "__FINAL_DIR10_RECEIPT_NBYTES__",
+      "sha256": "__FINAL_DIR10_RECEIPT_SHA256__"
+    },
+    "split_artifacts": {
+      "hotpotqa_screen": {
+        "path": "__FINAL_DIR10_HOTPOT_SCREEN_PATH__",
+        "nbytes": "__FINAL_DIR10_HOTPOT_SCREEN_NBYTES__",
+        "sha256": "__FINAL_DIR10_HOTPOT_SCREEN_SHA256__"
+      },
+      "hotpotqa_confirm": {
+        "path": "__FINAL_DIR10_HOTPOT_CONFIRM_PATH__",
+        "nbytes": "__FINAL_DIR10_HOTPOT_CONFIRM_NBYTES__",
+        "sha256": "__FINAL_DIR10_HOTPOT_CONFIRM_SHA256__"
+      },
+      "musique_screen": {
+        "path": "__FINAL_DIR10_MUSIQUE_SCREEN_PATH__",
+        "nbytes": "__FINAL_DIR10_MUSIQUE_SCREEN_NBYTES__",
+        "sha256": "__FINAL_DIR10_MUSIQUE_SCREEN_SHA256__"
+      },
+      "musique_confirm": {
+        "path": "__FINAL_DIR10_MUSIQUE_CONFIRM_PATH__",
+        "nbytes": "__FINAL_DIR10_MUSIQUE_CONFIRM_NBYTES__",
+        "sha256": "__FINAL_DIR10_MUSIQUE_CONFIRM_SHA256__"
+      }
+    },
+    "consumed_partitions": {
+      "hotpotqa": "hotpotqa_screen",
+      "musique": "musique_screen"
+    },
+    "strata_order": {
+      "hotpotqa": "__FINAL_HOTPOT_STRATA_ORDER__",
+      "musique": "__FINAL_MUSIQUE_STRATA_ORDER__"
+    },
+    "required_answer_access_policy": {
+      "policy_id": "train_method_dev_oracle_metrics_only",
+      "allowed": true,
+      "allowed_uses": ["gold_first_token_margin", "qa_f1", "qa_em"],
+      "forbidden_uses": ["selection", "ranking", "quota", "partition_assignment"]
+    }
+  },
+  "train_sources": {
+    "hotpotqa": {
+      "artifact": {
+        "path": "__FINAL_PINNED_HOTPOT_TRAIN_PATH__",
+        "nbytes": "__FINAL_PINNED_HOTPOT_TRAIN_NBYTES__",
+        "sha256": "__FINAL_PINNED_HOTPOT_TRAIN_SHA256__"
+      },
+      "format": "json",
+      "adapter": "hotpotqa_train_v1",
+      "declared_split": "train"
+    },
+    "musique": {
+      "artifact": {
+        "path": "__FINAL_PINNED_MUSIQUE_TRAIN_PATH__",
+        "nbytes": "__FINAL_PINNED_MUSIQUE_TRAIN_NBYTES__",
+        "sha256": "__FINAL_PINNED_MUSIQUE_TRAIN_SHA256__"
+      },
+      "format": "jsonl",
+      "adapter": "musique_train_v1",
+      "declared_split": "train"
+    }
+  },
+  "registry_projection": {
+    "algorithm": "__FINAL_DIR10_PROJECTION_ALGORITHM__"
+  },
+  "profiles": {
+    "smoke": {
+      "hotpotqa": "__FINAL_SMOKE_HOTPOT_COUNT__",
+      "musique": "__FINAL_SMOKE_MUSIQUE_COUNT__"
+    },
+    "diagnostic": {
+      "hotpotqa": "__FINAL_DIAGNOSTIC_HOTPOT_COUNT__",
+      "musique": "__FINAL_DIAGNOSTIC_MUSIQUE_COUNT__"
+    }
+  },
+  "sampling": {
+    "algorithm": "registry_screen_round_robin_strata_v1",
+    "uses_answers_or_model_outcomes": false
+  },
+  "profile_limits": {
+    "maximum_per_dataset": 32,
+    "maximum_total": 64
+  },
+  "prompt": {
+    "schema": "qa_passages_chat_v1",
+    "system_text": "Answer the question using the supplied passages. Give only the short answer.",
+    "enable_thinking": false,
+    "add_generation_prompt": true,
+    "maximum_serialized_tokens": 8192,
+    "truncation_forbidden": true
+  },
+  "generation": {
+    "max_new_tokens": 256,
+    "do_sample": false,
+    "stop": "eos_only"
+  },
+  "intervention_contract": {
+    "catalog": "native_kv_2x2_plus_preregistered_layer_repairs_v1",
+    "expected_count": 11,
+    "target_layers": 40,
+    "layer_ids_are_zero_based": true
+  },
+  "models": {
+    "source_32b": "/home/wby/models/Qwen3-32B",
+    "source_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+    "target_14b": "/home/wby/models/Qwen3-14B",
+    "target_config_sha256": "e73c3664ca09b10a673fef0c22e8a6b456201d49bd4713c9691f775720e8857a",
+    "source_devices": [0, 1, 2, 3, 4],
+    "source_layer_counts": [12, 13, 14, 13, 12],
+    "target_devices": [5, 6, 7],
+    "target_layer_counts": [13, 14, 13],
+    "attention_implementation": "flash_attention_2",
+    "mapper_token_chunk": 1024
+  },
+  "mapper": {
+    "manifest": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b/artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01/manifest.json",
+    "manifest_nbytes": 141889,
+    "manifest_sha256": "382a1deb6f4fd33c824fe782d956f46bdfb2b876081cb36487616e4de92a8ee2",
+    "deep_hash_scope": "all_regular_files_under_manifest_directory"
+  },
+  "borrowed_read_only_interfaces": {
+    "cache_oracle": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/01_oracle_diagnostics/src/cache_oracle.py",
+      "nbytes": 41062,
+      "sha256": "c61722344ebe71e3b58609d3db526692085596539ae57561692c8c02f02cea02"
+    },
+    "gpu_oracle": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/01_oracle_diagnostics/src/gpu_oracle.py",
+      "nbytes": 24800,
+      "sha256": "cd89dffbbfa449cd763a644703d003087bd8e411690adaf3cc853015edb90bb0"
+    },
+    "runtime_harness": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/01_oracle_diagnostics/src/runtime_harness.py",
+      "nbytes": 6438,
+      "sha256": "de5c55b0aee52976b1a27666f668245aea7eb7c8e3e4a011c96b8070e93beec4"
+    },
+    "oracle_diagnostics": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/01_oracle_diagnostics/src/oracle_diagnostics.py",
+      "nbytes": 52357,
+      "sha256": "6401d316cdae11d15081151d167f7dab6849ccd728a36db112dab5a6e7fdecdd"
+    }
+  },
+  "runtime": {
+    "required_cuda_visible_devices": "0,1,2,3,4,5,6,7",
+    "global_gpu_lock": "/home/wby/llm-cache/nvidia-kvcache/runs/gpu8_experiment.lock",
+    "idle_memory_limit_mib": 64,
+    "idle_consecutive_samples": 12,
+    "idle_sample_interval_seconds": 5,
+    "idle_timeout_seconds": 86400
+  },
+  "outputs_root": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/13_oracle_decontaminated_v2/runs"
+}

@@ -1,0 +1,54 @@
+# Long-context extension; intentionally separate from the frozen paper-table eval.
+project_root: /home/wby/llm-cache/nvidia-kvcache
+
+paths:
+  source_model: /home/wby/models/Qwen3-14B
+  target_model: /home/wby/models/Qwen3-32B
+  mapper_manifest: artifacts/mappers/qwen3_14b_to_32b/k8_lambda0.01/manifest.json
+
+data:
+  # Complete paired official test split (5,622 examples).
+  multi_news_source: data/MultiNews/data/test.src.cleaned
+  multi_news_target: data/MultiNews/data/test.tgt
+  # Complete development distractor split with public gold answers (7,405).
+  hotpotqa_dev_distractor: data/HotpotQA/raw/hotpot_dev_distractor_v1.json
+  # Both conversation datasets publish train only.  The final GPT turn is held
+  # out from duplicate-free deterministic SHA256 bottom-k samples; neither is
+  # called an official test set.
+  lmsys_parquet_dir: data/LMSYS/data
+  lmsys_sample_count: 200
+  lmsys_selection_seed: qwen3-14b-to-32b-lmsys-heldout-v1
+  sharegpt_jsonl: data/ShareGPT4/sharegpt_gpt4.jsonl
+  sharegpt_sample_count: 200
+  sharegpt_selection_seed: qwen3-14b-to-32b-sharegpt4-heldout-v1
+
+runtime:
+  # Six target GPUs leave more per-card KV headroom at the 16,384-token formal
+  # budget; the source model occupies the remaining two cards.
+  target_devices: [0, 1, 2, 3, 4, 5]
+  target_layer_counts: [10, 11, 11, 11, 11, 10]
+  source_devices: [6, 7]
+  source_layer_counts: [20, 20]
+  attention_implementation: flash_attention_2
+  mapper_token_chunk: 1024
+  # Frozen total sequence budget (prompt + generated continuation).  This is
+  # below the model's architectural 40,960 limit to fit the 8x24-GiB host.
+  max_length: 16384
+  dialog_reference_score_cap_tokens: 1024
+
+tasks:
+  multi_news:
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think
+  hotpotqa:
+    # The public answers are at most 57 Qwen tokens.  A 512-token ceiling is
+    # intentionally generous (16x the LongBench default) and every cap hit is
+    # still recorded, so an unfinished answer cannot pass silently.
+    max_gen_tokens: 512
+    prompt_mode: qwen_chat_no_think
+  lmsys:
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think
+  sharegpt4:
+    max_gen_tokens: 1024
+    prompt_mode: qwen_chat_no_think

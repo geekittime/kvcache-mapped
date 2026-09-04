@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "kind": "three_tier_sequence_level_data_isolation_policy",
+  "split_unit": "complete_sequence_conversation_or_document_before_tokenization",
+  "token_level_random_split_forbidden": true,
+  "cross_tier_exact_id_overlap_allowed": false,
+  "cross_tier_normalized_text_overlap_allowed": false,
+  "cross_tier_near_duplicate_policy": "quarantine_complete_group_and_record_append_only_exclusion",
+  "teacher_policy": {
+    "fidelity_teacher": "native_qwen3_14b",
+    "qwen3_32b_logits_as_teacher_allowed": false,
+    "reason": "32B-logit training is capability distillation and requires a separate protocol"
+  },
+  "tiers": [
+    {
+      "id": "mapper-fit",
+      "ordinal": 0,
+      "namespace": "qwen3-32to14-improved/mapper-fit/v1",
+      "purpose": "fit mapper parameters and feature statistics",
+      "allowed_sources": [
+        "general_domain_training_corpora_with_pinned_revision",
+        "new_synthetic_material_with_recorded_generator_and_seed"
+      ],
+      "forbidden_sources": [
+        "official_benchmark_validation_or_test_examples",
+        "official_benchmark_answers_for_nontraining_splits",
+        "existing_evaluation_raw_records_or_prompts",
+        "locked_test_ids_or_normalized_text_near_duplicates"
+      ],
+      "allowed_decisions": ["gradient_updates", "closed_form_fit", "feature_statistics"],
+      "registry_required_before_use": true
+    },
+    {
+      "id": "method-dev",
+      "ordinal": 1,
+      "namespace": "qwen3-32to14-improved/method-dev/v1",
+      "purpose": "select rank lambda loss weights layers gates early stop and replay window",
+      "allowed_sources": [
+        "sequence_disjoint_general_domain_holdout",
+        "official_downstream_training_partitions_when_license_permits",
+        "new_synthetic_development_cases"
+      ],
+      "forbidden_sources": [
+        "official_benchmark_test_examples",
+        "mapper_fit_sequence_groups",
+        "locked_test_ids_or_normalized_text_near_duplicates"
+      ],
+      "allowed_decisions": [
+        "hyperparameter_selection",
+        "early_stopping",
+        "causal_oracle_diagnostics",
+        "candidate_nomination"
+      ],
+      "registry_required_before_use": true
+    },
+    {
+      "id": "locked-test",
+      "ordinal": 2,
+      "namespace": "qwen3-32to14-improved/locked-test/v1",
+      "purpose": "single confirmatory evaluation of one frozen pure mapper and separately frozen hybrid modes",
+      "state": "sealed_pending_candidate_freeze",
+      "allowed_sources": [
+        "preregistered_official_evaluation_partitions",
+        "externally_held_unseen_evaluation_if_available"
+      ],
+      "forbidden_actions": [
+        "training",
+        "early_stopping",
+        "rank_or_loss_selection",
+        "layer_gate_selection",
+        "replay_window_selection",
+        "prompt_or_metric_revision_after_results",
+        "second_candidate_run_in_same_confirmatory_family"
+      ],
+      "access_budget": {
+        "pure_mapper_nominated_configurations": 1,
+        "hybrid_refresh_prespecified_modes": [8, 32],
+        "rerun_allowed_only_for_verified_infrastructure_failure_before_metric_visibility": true
+      },
+      "registry_required_before_unseal": true
+    }
+  ],
+  "historical_exposure": {
+    "aggregate_results_previously_observed": true,
+    "affected_families": [
+      "arc_challenge",
+      "hellaswag",
+      "winogrande",
+      "mmlu",
+      "gsm8k",
+      "wikitext2",
+      "coqa",
+      "hotpotqa_partial"
+    ],
+    "required_report_language": "prospectively locked against further tuning; not historically blind",
+    "stronger_claim_requirement": "external holdout or evaluator whose outcomes were never exposed"
+  },
+  "required_registry_fields": [
+    "dataset_id",
+    "source_uri",
+    "revision",
+    "config",
+    "split",
+    "license",
+    "raw_payload_sha256",
+    "normalized_sample_ids_sha256",
+    "grouping_key",
+    "split_namespace",
+    "split_salt_commitment",
+    "tokenizer_id",
+    "tokenizer_revision",
+    "serialized_prompt_sha256",
+    "exact_overlap_audit",
+    "near_duplicate_audit"
+  ]
+}

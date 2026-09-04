@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "consumer": "13_oracle_decontaminated_v2",
+  "contract_id": "dir10_native_registry_train_oracle_v2",
+  "contract_revision": 2,
+  "required_artifacts": [
+    "published_marker",
+    "registry_manifest",
+    "publication_receipt",
+    "split_artifacts.hotpotqa_screen",
+    "split_artifacts.hotpotqa_confirm",
+    "split_artifacts.musique_screen",
+    "split_artifacts.musique_confirm"
+  ],
+  "consumed_rows": {
+    "partitions": ["hotpotqa_screen", "musique_screen"],
+    "required_fields": [
+      "dataset",
+      "split",
+      "partition",
+      "source_index",
+      "selection_rank",
+      "stratum",
+      "source_projection_sha256"
+    ],
+    "split_must_equal": "train",
+    "tier_must_equal": "method-dev",
+    "within_stratum_order": "ascending stratum-local selection_rank, then source_index",
+    "diagnostic_sampling": "round-robin over configured strata order until the frozen profile count is reached",
+    "model_outcome_fields_forbidden": true
+  },
+  "receipt_requirements": {
+    "status": "PUBLISHED",
+    "pass": true,
+    "locked_outcomes_opened": false,
+    "answer_access_policy": {
+      "exact_keys": ["policy_id", "allowed", "allowed_uses", "forbidden_uses"],
+      "exact_typed_value": {
+        "policy_id": "train_method_dev_oracle_metrics_only",
+        "allowed": true,
+        "allowed_uses": ["gold_first_token_margin", "qa_f1", "qa_em"],
+        "forbidden_uses": ["selection", "ranking", "quota", "partition_assignment"]
+      },
+      "additional_keys_allowed": false,
+      "typed_values_must_match_exactly": true,
+      "formal_config_must_embed_exact_typed_value": true
+    },
+    "train_sources": "exact path/nbytes/sha256 bindings for hotpotqa and musique raw train artifacts"
+  },
+  "projection": {
+    "must_be_recomputed_from_pinned_train_source": true,
+    "excludes_answers": true,
+    "algorithm_must_be_declared_in_receipt": true
+  },
+  "fail_closed": true
+}

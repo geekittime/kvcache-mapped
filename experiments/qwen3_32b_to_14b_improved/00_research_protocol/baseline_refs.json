@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "kind": "read_only_content_addressed_baseline_references",
+  "repository_root_relative_to_this_file": "../../..",
+  "baseline_root": "experiments/qwen3_32b_to_14b",
+  "write_policy": "forbidden",
+  "refresh_policy": "new protocol version required if any referenced digest changes",
+  "references": [
+    {
+      "id": "mapper_k20_manifest",
+      "role": "nvidia_compatible_primary_mapper",
+      "path": "experiments/qwen3_32b_to_14b/artifacts/mappers/qwen3_32b_to_14b/k20_lambda0.01/manifest.json",
+      "sha256": "382a1deb6f4fd33c824fe782d956f46bdfb2b876081cb36487616e4de92a8ee2",
+      "media_type": "application/json",
+      "assertions": [
+        {"pointer": "/status", "equals": "complete"},
+        {"pointer": "/direction", "equals": "qwen3_32b_to_14b"},
+        {"pointer": "/architecture/selected_source_layers", "equals": 20},
+        {"pointer": "/architecture/source_layers", "equals": 64},
+        {"pointer": "/architecture/target_layers", "equals": 40},
+        {"pointer": "/fit_definition/method", "equals": "two-pass-centered-ridge"},
+        {"pointer": "/fit_definition/standardize_features", "equals": false},
+        {"pointer": "/ridge_lambda", "equals": 0.01},
+        {"pointer": "/weight_count", "equals": 1677721600}
+      ]
+    },
+    {
+      "id": "mapper_k4_manifest",
+      "role": "stable_anchor_mapper",
+      "path": "experiments/qwen3_32b_to_14b/artifacts/mappers/qwen3_32b_to_14b/k4_retuned_lambda0.01/manifest.json",
+      "sha256": "186733ac87af1f289e0c4719d14de03b07a7f8f498055bfdf7f6413e4c9939ad",
+      "media_type": "application/json",
+      "assertions": [
+        {"pointer": "/status", "equals": "complete"},
+        {"pointer": "/direction", "equals": "qwen3_32b_to_14b"},
+        {"pointer": "/architecture/selected_source_layers", "equals": 4},
+        {"pointer": "/architecture/target_layers", "equals": 40},
+        {"pointer": "/independent_refit_evidence/k20_mapper_weights_consumed", "equals": false},
+        {"pointer": "/independent_refit_evidence/weights_refit_from_frozen_train_activations", "equals": true},
+        {"pointer": "/weight_count", "equals": 335544320}
+      ]
+    },
+    {
+      "id": "heldout_k20",
+      "role": "primary_reconstruction_baseline",
+      "path": "experiments/qwen3_32b_to_14b/artifacts/validation/qwen3_32b_to_14b/heldout_activation_reconstruction.json",
+      "sha256": "3cba253f08219bcf4269deb4b28425ef30e1253af9422f9c39fd55ebaf6ade27",
+      "media_type": "application/json",
+      "assertions": [
+        {"pointer": "/status", "equals": "complete"},
+        {"pointer": "/acceptance/status", "equals": "passed"},
+        {"pointer": "/summary/target_layers", "equals": 40},
+        {"pointer": "/summary/key_uniform_channel_r2_fp64_mean_across_layers", "approx": 0.7450309364565508, "atol": 1e-15},
+        {"pointer": "/summary/value_uniform_channel_r2_fp64_mean_across_layers", "approx": 0.6522259130382182, "atol": 1e-15}
+      ]
+    },
+    {
+      "id": "heldout_k4",
+      "role": "anchor_reconstruction_baseline",
+      "path": "experiments/qwen3_32b_to_14b/artifacts/validation/qwen3_32b_to_14b/k4_retuned/heldout_activation_reconstruction.json",
+      "sha256": "4a588411a7b2e4b0cb4c1573b2a667f92a27079ea624a44ce10da6751027a586",
+      "media_type": "application/json",
+      "assertions": [
+        {"pointer": "/status", "equals": "complete"},
+        {"pointer": "/summary/key_uniform_channel_r2_fp64_mean_across_layers", "approx": 0.7422297861431657, "atol": 1e-15},
+        {"pointer": "/summary/value_uniform_channel_r2_fp64_mean_across_layers", "approx": 0.6586864759543981, "atol": 1e-15}
+      ]
+    },
+    {
+      "id": "mechanism_hellaswag_k20",
+      "role": "functional_mechanism_baseline",
+      "path": "experiments/qwen3_32b_to_14b/runs/formal_pipeline_v1/mechanism_hellaswag_k20/mechanism_result.json",
+      "sha256": "0956c7ec48ff69f2daa1929fd05842936f4e8c1b02a2994c6f741fb433a91a2a",
+      "media_type": "application/json",
+      "assertions": [
+        {"pointer": "/direction", "equals": "qwen3_32b_to_14b"},
+        {"pointer": "/documents", "equals": 100},
+        {"pointer": "/headline/attention_output_cosine", "approx": 0.76107775041509, "atol": 1e-15},
+        {"pointer": "/headline/hellaswag_eval_domain_r2_k_content", "approx": 0.6951131337373384, "atol": 1e-15},
+        {"pointer": "/headline/hellaswag_eval_domain_r2_v", "approx": 0.6174332080612583, "atol": 1e-15}
+      ]
+    },
+    {
+      "id": "coqa_k20_summary",
+      "role": "generation_fidelity_baseline",
+      "path": "experiments/qwen3_32b_to_14b/runs/formal_pipeline_v1/coqa_reverse_k20/summary.json",
+      "sha256": "bc96bd5560108a20a8caf6317028a30ec2ea98c1ac001ea1bb2deb4dfb262ce8",
+      "media_type": "application/json",
+      "assertions": [
+        {"pointer": "/status", "equals": "complete"},
+        {"pointer": "/modes/mapped/records", "equals": 500},
+        {"pointer": "/modes/mapped/official_word_f1", "approx": 0.7287313884627377, "atol": 1e-15},
+        {"pointer": "/modes/target_standalone/official_word_f1", "approx": 0.7822125910909565, "atol": 1e-15}
+      ]
+    },
+    {
+      "id": "coqa_k4_summary",
+      "role": "anchor_generation_baseline",
+      "path": "experiments/qwen3_32b_to_14b/runs/formal_pipeline_v1/coqa_reverse_k4_retuned/summary.json",
+      "sha256": "82ece290f9af3b4f6b11672671dbd8fab6d5f570d1a40465cb6a70f3bbb5195c",
+      "media_type": "application/json",
+      "assertions": [
+        {"pointer": "/status", "equals": "complete"},
+        {"pointer": "/modes/mapped/records", "equals": 500},
+        {"pointer": "/modes/mapped/official_word_f1", "approx": 0.7251939605359911, "atol": 1e-15}
+      ]
+    },
+    {
+      "id": "five_task_k20_summary",
+      "role": "downstream_accuracy_baseline",
+      "path": "experiments/qwen3_32b_to_14b/runs/five_task_extension_full_k20_v1/five_task_extension_summary.json",
+      "sha256": "38a1f8902194181a6c4297c38319c9b15249988cdb92e0b273e230c720949b51",
+      "media_type": "application/json",
+      "assertions": [
+        {"pointer": "/status", "equals": "complete"},
+        {"pointer": "/direction", "equals": "qwen3_32b_to_14b"},
+        {"pointer": "/mapper", "equals": "k20_lambda0.01"},
+        {"pointer": "/accuracy/hellaswag/mapped_32b_to_14b", "approx": 0.7760406293567018, "atol": 1e-15},
+        {"pointer": "/accuracy/gsm8k_cot/mapped_32b_to_14b", "approx": 0.9037149355572404, "atol": 1e-15},
+        {"pointer": "/wikitext2_prefix_ppl/mapped_32b_to_14b", "approx": 7.802226569138273, "atol": 1e-15}
+      ]
+    },
+    {
+      "id": "latency_k20_summary",
+      "role": "local_hardware_latency_baseline",
+      "path": "experiments/qwen3_32b_to_14b/runs/formal_pipeline_v1/reverse_latency_k20/summary.json",
+      "sha256": "55372432e86cf01799a47721660aded7ce4699946b68e6697d41d99d66e9280f",
+      "media_type": "application/json",
+      "assertions": [
+        {"pointer": "/direction", "equals": "qwen3_32b_to_14b"},
+        {"pointer": "/lengths/0", "equals": 64},
+        {"pointer": "/lengths/9", "equals": 32768},
+        {"pointer": "/rows/0/speedup_reprefill_over_mapper", "approx": 0.49476637042366, "atol": 1e-15}
+      ]
+    }
+  ]
+}

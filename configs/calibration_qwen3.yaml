@@ -1,0 +1,98 @@
+schema_version: 1
+
+# The paper publicly specifies only these calibration facts.  Do not present
+# any value under `source`, `selection`, or `local_conventions` as an unpublished
+# paper detail.
+paper_protocol:
+  dataset: FineWeb-Edu
+  train_sequences: 500
+  sequence_length: 1024
+  activation_token_stride: 4
+
+# LOCAL CONVENTION: the paper does not publish the FineWeb-Edu config, revision,
+# shard, or selected document IDs.  We pin one immutable sample-10BT shard so a
+# later run has a finite, auditable sampling universe.  The LFS SHA256 is checked
+# against Hugging Face metadata before streaming starts.
+source:
+  type: hf_streaming
+  dataset_name: HuggingFaceFW/fineweb-edu
+  config_name: sample-10BT
+  split: train
+  revision: 87f09149ef4734204d70ed1d046ddc9ca3f2b8f9
+  data_files:
+    - sample/10BT/000_00000.parquet
+  # Formal local mirror: this remains the pinned HF source, not a debug local
+  # override.  The script hashes all 2.15 GB and requires the LFS SHA256/size
+  # below before reading row zero.  A partially downloaded `.incomplete` file
+  # therefore cannot enter the calibration set.
+  # Retrieved from the AI-ModelScope/fineweb-edu mirror.  Its byte size and
+  # SHA256 below are identical to the pinned Hugging Face LFS object, so the
+  # transport mirror does not change the calibration-data identity.
+  local_mirror_path: data/fineweb-edu/sample/10BT/000_00000.parquet
+  expected_lfs_sha256:
+    sample/10BT/000_00000.parquet: b1ba7b2ce4cb5ea6ef42dca40263eabb85f37700d01693a68e9b30a31d78e871
+  expected_sizes:
+    sample/10BT/000_00000.parquet: 2152819114
+  verify_remote_files_metadata: true
+
+tokenizer:
+  # Qwen3-14B and Qwen3-32B tokenizer files were verified identical.  Token IDs
+  # are prepared once and then consumed by both models.
+  path: /home/wby/models/Qwen3-14B
+  local_files_only: true
+  trust_remote_code: false
+  use_fast: true
+
+selection:
+  train_count: 500
+  # LOCAL CONVENTION: 50 extra documents are held out for mapper diagnostics.
+  # They are not included in the paper's 500-sequence fitting set.
+  heldout_count: 50
+  sequence_length: 1024
+  stride: 4
+  seed: "20260813"
+  text_field: text
+  identity_fields:
+    - id
+    - url
+    - dump
+    - file_path
+  # LOCAL CONVENTION: globally choose the 550 eligible documents having the
+  # smallest SHA256(seed || record_uid); choose one valid within-document window
+  # via an independent hash.  No cross-document concatenation is performed.
+  algorithm: sha256-bottom-k-v1
+  window_algorithm: sha256-modulo-valid-offsets-v1
+  within_document_only: true
+  # LOCAL CONVENTION: the paper does not publish BOS/EOS insertion behavior.
+  # Completion-mode reproduction uses raw tokenizer IDs without inserted tokens.
+  add_special_tokens: false
+
+output:
+  directory: data/calibration/qwen3_fineweb_edu_500x1024_v1
+  checkpoint_every_records: 10000
+
+# These strings are copied verbatim into manifest.json.  They make the boundary
+# between paper-stated protocol and local deterministic choices machine-visible.
+local_conventions:
+  - >-
+    The pinned sample/10BT/000_00000.parquet payload was transported through
+    AI-ModelScope/fineweb-edu because Hugging Face transfer was slow; its
+    2152819114-byte payload and SHA256 b1ba7b2ce4cb5ea6ef42dca40263eabb85f37700d01693a68e9b30a31d78e871
+    exactly match the pinned Hugging Face LFS object.
+  - >-
+    sample-10BT is a local FineWeb-Edu config choice; the paper only names
+    FineWeb-Edu.
+  - >-
+    Revision 87f09149ef4734204d70ed1d046ddc9ca3f2b8f9 and shard
+    sample/10BT/000_00000.parquet are local choices because the paper does not
+    publish its dataset revision or shards.
+  - >-
+    SHA256 bottom-k document selection with seed 20260813 and a separately
+    hashed within-document window offset are local deterministic conventions;
+    the paper does not publish its 500 document IDs or sampling code.
+  - >-
+    Documents are not concatenated and add_special_tokens=false is a local
+    tokenization convention; the paper does not publish either detail.
+  - >-
+    The additional 50-sequence held-out diagnostic split is local and is not
+    part of the paper's 500-sequence mapper fit.

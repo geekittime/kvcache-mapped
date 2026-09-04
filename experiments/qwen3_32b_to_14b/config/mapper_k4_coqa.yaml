@@ -1,0 +1,41 @@
+project_root: /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b
+shared_repository: /home/wby/llm-cache/nvidia-kvcache
+source_model: /home/wby/models/Qwen3-32B
+target_model: /home/wby/models/Qwen3-14B
+direction: qwen3_32b_to_14b
+curve_variant: figure4_large_to_small_retuned_k4
+
+# Figure 4 labels the dotted large-to-small curve "k=4, re-tuned".  The
+# paper does not disclose the sweep objective/tie break that selected k=4.
+paper:
+  calibration_sequences: 500
+  sequence_length: 1024
+  position_stride: 4
+  selected_source_layers: 4
+  ridge_lambda: 0.01
+  forward_dtype: bfloat16
+  covariance_dtype: float32
+  analysis_dtype: float64
+
+architecture:
+  source_layers: 64
+  target_layers: 40
+  source_kv_heads: 8
+  target_kv_heads: 8
+  source_head_dim: 128
+  target_head_dim: 128
+  rope_theta: 1000000
+
+captures:
+  source_train: /home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_32b/train
+  target_train: /home/wby/llm-cache/nvidia-kvcache/data/activations/qwen3_14b/train
+  source_native_role: target
+  target_native_role: source
+
+outputs:
+  selection: artifacts/selection/qwen3_32b_to_14b/k4_retuned/selected_layers.json
+  mapper: artifacts/mappers/qwen3_32b_to_14b/k4_retuned_lambda0.01
+
+runtime:
+  disable_tf32_for_master_fit: true
+  statistics_chunk_tokens: 1024

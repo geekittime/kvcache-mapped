@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "audit_id": "decontaminated_component_partition_feasibility_v1",
+  "status": "preregistered_cpu_only_feasibility_not_registry",
+  "bindings": {
+    "registry_config": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/config.json",
+      "nbytes": 8324,
+      "sha256": "56c62715793041df3fb532a2a14cf4fd5748be6c086eb7fbe87059beaa6d0d09"
+    },
+    "registry_source": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/src/registry.py",
+      "nbytes": 54002,
+      "sha256": "c6f2e75388276c1fb22b976610949a8cbd42c16f9cb82ddcb903d598f3de78de"
+    },
+    "attempt2_capacity_failure": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/artifacts/failed_attempts/strict_substring_capacity_fail_attempt2.json",
+      "nbytes": 1507,
+      "sha256": "ba4431d54514153811e8b843dbce28b4911cf0998bbc66744ecfaeb23fd9901d"
+    },
+    "attempt2_capacity_failure_sidecar": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/artifacts/failed_attempts/strict_substring_capacity_fail_attempt2.json.sha256.json",
+      "nbytes": 283,
+      "sha256": "f3107441ebd554239d32dbe8bd1ebb8a7ad8746f21677f409ce9800dff750f9a"
+    },
+    "attempt3_sequence_failure": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/artifacts/failed_attempts/screen_confirm_sequence_capacity_fail_attempt3.json",
+      "nbytes": 1904,
+      "sha256": "0fd2553ef8b2d1fa2a0ad52c0945834155f5f3cd7682b64d9c96b992933f361b"
+    },
+    "attempt3_sequence_failure_sidecar": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/artifacts/failed_attempts/screen_confirm_sequence_capacity_fail_attempt3.json.sha256.json",
+      "nbytes": 290,
+      "sha256": "57827ff2aa9fedbd90ef795d8306cc6f72efff8c6c5b5ac6711f24b8e8708ca1"
+    }
+  },
+  "component_policy": {
+    "edge_relation": "same symmetric exact-id, raw/normalized question, normalized question+context, >=120 normalized substring, or thresholded near-shingle question/passage relation as formal registry",
+    "selected_records_per_connected_component_maximum": 1,
+    "partitions_per_connected_component_maximum": 1,
+    "component_id": "sha256 of canonical sorted member source_projection_sha256 array",
+    "persist_raw_id_question_context_answer": false
+  },
+  "component_buffer": {
+    "cell": "musique_train|4hop",
+    "minimum_completely_unselected_supporting_components": 2,
+    "scope": "a component supporting this cell counts as used when assigned to any dataset, stratum, or partition"
+  },
+  "cells_order": [
+    "hotpotqa_train|bridge/easy",
+    "hotpotqa_train|bridge/medium",
+    "hotpotqa_train|bridge/hard",
+    "hotpotqa_train|comparison/easy",
+    "hotpotqa_train|comparison/medium",
+    "hotpotqa_train|comparison/hard",
+    "musique_train|2hop",
+    "musique_train|3hop",
+    "musique_train|4hop"
+  ],
+  "original_quotas": {
+    "screen": {
+      "hotpotqa_train|bridge/easy": 22,
+      "hotpotqa_train|bridge/medium": 22,
+      "hotpotqa_train|bridge/hard": 21,
+      "hotpotqa_train|comparison/easy": 21,
+      "hotpotqa_train|comparison/medium": 21,
+      "hotpotqa_train|comparison/hard": 21,
+      "musique_train|2hop": 109,
+      "musique_train|3hop": 108,
+      "musique_train|4hop": 39
+    },
+    "confirm": {
+      "hotpotqa_train|bridge/easy": 43,
+      "hotpotqa_train|bridge/medium": 43,
+      "hotpotqa_train|bridge/hard": 43,
+      "hotpotqa_train|comparison/easy": 43,
+      "hotpotqa_train|comparison/medium": 42,
+      "hotpotqa_train|comparison/hard": 42,
+      "musique_train|2hop": 217,
+      "musique_train|3hop": 217,
+      "musique_train|4hop": 78
+    }
+  },
+  "maximum_balanced_search": {
+    "hotpot_screen_total": "H",
+    "hotpot_confirm_total": "2H",
+    "musique_screen_total": "2H",
+    "musique_confirm_total": "4H",
+    "H_search": "descending integers 128 to 0",
+    "within_dataset_allocation": "capacity-only max-min water-fill in frozen cells_order; MuSiQue 4hop component capacity reserves two unused components; split each combined stratum total as close to 1:2 as possible with exact global 1:2 and frozen-order tiebreak",
+    "selection_reads_answers_or_model_outcomes": false
+  },
+  "outputs": {
+    "artifact_dir": "artifacts/component_feasibility_v1"
+  },
+  "privacy": {
+    "raw_answer_values_transiently_parsed_into_decoder_object_pairs": true,
+    "answer_values_available_to_decontamination_component_or_flow_logic": false,
+    "model_outcomes_read": false,
+    "written_component_inventory_fields": [
+      "component_id",
+      "eligible_cell_mask",
+      "eligible_cells",
+      "member_record_count",
+      "member_record_count_by_cell",
+      "representative_projection_sha256_by_cell"
+    ]
+  }
+}

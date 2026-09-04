@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "protocol_id": "pairwise_direct_collision_hypergraph_feasibility_v2",
+  "status": "preregistered_cpu_only_graph_then_allocation",
+  "bindings": {
+    "registry_config": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/config.json",
+      "nbytes": 8324,
+      "sha256": "56c62715793041df3fb532a2a14cf4fd5748be6c086eb7fbe87059beaa6d0d09"
+    },
+    "registry_source": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/src/registry.py",
+      "nbytes": 54002,
+      "sha256": "c6f2e75388276c1fb22b976610949a8cbd42c16f9cb82ddcb903d598f3de78de"
+    },
+    "component_v1_source": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/component_feasibility_v1/src/feasibility.py",
+      "nbytes": 38043,
+      "sha256": "91f02490eb9a8aa37b2cf7bf09563725d9c842e234e0121fe0537fdce7119658"
+    },
+    "component_v1_failure": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/artifacts/failed_attempts/component_feasibility_buffer_prerequisite_fail_v1.json",
+      "nbytes": 2971,
+      "sha256": "1b66bcf05be368a8ab53d97ccaca1fa6821d1b46bdc7031812d16bc16e98accd"
+    },
+    "component_v1_failure_sidecar": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/artifacts/failed_attempts/component_feasibility_buffer_prerequisite_fail_v1.json.sha256.json",
+      "nbytes": 293,
+      "sha256": "758b8c353133b42dcfd02724a3de3d9ed8dd46ead6f775325502f0b6401538f5"
+    },
+    "attempt2_failure": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/artifacts/failed_attempts/strict_substring_capacity_fail_attempt2.json",
+      "nbytes": 1507,
+      "sha256": "ba4431d54514153811e8b843dbce28b4911cf0998bbc66744ecfaeb23fd9901d"
+    },
+    "attempt3_failure": {
+      "path": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/artifacts/failed_attempts/screen_confirm_sequence_capacity_fail_attempt3.json",
+      "nbytes": 1904,
+      "sha256": "0fd2553ef8b2d1fa2a0ad52c0945834155f5f3cd7682b64d9c96b992933f361b"
+    }
+  },
+  "direct_hyperedge_policy": {
+    "no_transitive_closure": true,
+    "selected_records_per_hyperedge_maximum": 1,
+    "record_target_assignments_per_record_maximum": 1,
+    "exact_groups": [
+      "raw_sample_id",
+      "raw_question",
+      "normalized_question",
+      "normalized_question_context",
+      "normalized_question_unit_owners",
+      "normalized_passage_unit_owners"
+    ],
+    "pair_groups": [
+      "normalized_question_substring_owner_union",
+      "near_question_owner_union",
+      "normalized_passage_substring_owner_union",
+      "near_passage_owner_union"
+    ],
+    "owner_union_semantics": "for a directly matching unit pair A,B, every owner of A directly collides with every owner of B; exact within-unit owner collisions plus cross-pair collisions make owners(A) union owners(B) a clique",
+    "overlapping_hyperedges_are_not_merged": true,
+    "duplicate_identical_member_sets_are_content_deduplicated_with_derivation_counts": true,
+    "record_index_order": "strict ascending source_projection_sha256; projection hashes must be unique",
+    "hyperedge_id_algorithm": "sha256(canonical-json-line(ordered member source_projection_sha256 array))",
+    "hyperedge_publication_order": "strict ascending hyperedge_id"
+  },
+  "cells_order": [
+    "hotpotqa_train|bridge/easy",
+    "hotpotqa_train|bridge/medium",
+    "hotpotqa_train|bridge/hard",
+    "hotpotqa_train|comparison/easy",
+    "hotpotqa_train|comparison/medium",
+    "hotpotqa_train|comparison/hard",
+    "musique_train|2hop",
+    "musique_train|3hop",
+    "musique_train|4hop"
+  ],
+  "partitions_order": ["screen", "confirm"],
+  "original_quotas": {
+    "screen": {
+      "hotpotqa_train|bridge/easy": 22,
+      "hotpotqa_train|bridge/medium": 22,
+      "hotpotqa_train|bridge/hard": 21,
+      "hotpotqa_train|comparison/easy": 21,
+      "hotpotqa_train|comparison/medium": 21,
+      "hotpotqa_train|comparison/hard": 21,
+      "musique_train|2hop": 109,
+      "musique_train|3hop": 108,
+      "musique_train|4hop": 39
+    },
+    "confirm": {
+      "hotpotqa_train|bridge/easy": 43,
+      "hotpotqa_train|bridge/medium": 43,
+      "hotpotqa_train|bridge/hard": 43,
+      "hotpotqa_train|comparison/easy": 43,
+      "hotpotqa_train|comparison/medium": 42,
+      "hotpotqa_train|comparison/hard": 42,
+      "musique_train|2hop": 217,
+      "musique_train|3hop": 217,
+      "musique_train|4hop": 78
+    }
+  },
+  "musique_4hop_record_buffer": {
+    "strict_clean_records": 119,
+    "maximum_selected_records": 117,
+    "minimum_unselected_records": 2,
+    "does_not_require_distinct_or_unselected_connected_components": true
+  },
+  "expected_complete_scan": {
+    "clean_eligible_records": 31260,
+    "unique_normalized_passage_units": 244038,
+    "passage_candidates_verified": 39817022,
+    "passage_direct_relation_pairs": 7797
+  },
+  "runtime_identity": {
+    "python_executable": "/home/wby/llm-cache/nvidia-kvcache/.venv/bin/python",
+    "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "numpy_version": "1.26.4",
+    "scipy_version": "1.12.0",
+    "networkx_version": "3.4.2",
+    "highs_wrapper_binary": {
+      "path": "/usr/local/lib/python3.12/dist-packages/scipy/optimize/_highs/_highs_wrapper.cpython-312-x86_64-linux-gnu.so",
+      "nbytes": 4018736,
+      "sha256": "6fed4f5d664806b53a4754d249cf4888efb66450c518ab91c1c3bc2f6033c4df"
+    }
+  },
+  "deterministic_processes": {
+    "graph_build_python_hash_seed": "1",
+    "graph_deep_python_hash_seed": "777",
+    "empty_python_pycache_prefix": "/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache",
+    "graph_deep_must_be_a_separate_process": true
+  },
+  "solver": {
+    "library": "scipy.optimize.milp",
+    "scipy_version": "1.12.0",
+    "backend": "HiGHS",
+    "integrality": "binary",
+    "required_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "phase_1": "zero-objective feasibility under exact original target quotas",
+    "phase_1_infeasibility_publication_gate": "only scipy status exactly integer 2, success exactly false, x exactly null, and pinned infeasible message semantics; status 1/3/4 or any other nonoptimal result fails closed without PUBLISHED",
+    "phase_2": "minimize frozen sha256-derived target-record cost under identical constraints",
+    "replica_python_hash_seeds": ["1", "777"],
+    "replica_highs_random_seeds": [1, 777],
+    "highs_options": {
+      "threads": 1,
+      "presolve": true,
+      "mip_rel_gap": 0.0
+    },
+    "publication_requires_selection_jsonl_byte_identical_across_replicas": true,
+    "hash_cost_namespace": "qwen3-32to14-improved/pairwise-hypergraph-v2"
+  },
+  "commands": {
+    "nonartifact_tests": "test ! -e /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache && env PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache PYTHONHASHSEED=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/wby/llm-cache/nvidia-kvcache/.venv/bin/python -m pytest -q -p no:cacheprovider /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/tests",
+    "graph_build": "test ! -e /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache && env PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache PYTHONHASHSEED=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/wby/llm-cache/nvidia-kvcache/.venv/bin/python /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/scripts/build_graph.py",
+    "graph_structural_validation": "test ! -e /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache && env PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache PYTHONHASHSEED=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/wby/llm-cache/nvidia-kvcache/.venv/bin/python /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/scripts/validate_graph.py",
+    "graph_deep_validation": "test ! -e /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache && env PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache PYTHONHASHSEED=777 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/wby/llm-cache/nvidia-kvcache/.venv/bin/python /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/scripts/validate_graph.py --deep --write-receipt",
+    "allocation": "test ! -e /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache && env PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache PYTHONHASHSEED=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/wby/llm-cache/nvidia-kvcache/.venv/bin/python /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/scripts/solve_allocation.py",
+    "allocation_deep_validation": "test ! -e /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache && env PYTHONDONTWRITEBYTECODE=1 PYTHONPYCACHEPREFIX=/home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/.formal_empty_pycache PYTHONHASHSEED=777 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/wby/llm-cache/nvidia-kvcache/.venv/bin/python /home/wby/llm-cache/nvidia-kvcache/experiments/qwen3_32b_to_14b_improved/10_decontaminated_method_dev_registry/pairwise_hypergraph_feasibility_v2/scripts/validate_allocation.py --deep"
+  },
+  "outputs": {
+    "graph_artifact_dir": "artifacts/hypergraph_v2",
+    "graph_deep_receipt": "artifacts/validations/hypergraph_v2_deep",
+    "allocation_artifact_dir": "artifacts/allocation_v2",
+    "allocation_deep_receipt": "artifacts/validations/allocation_v2_deep"
+  },
+  "privacy": {
+    "raw_answer_values_transiently_parsed_into_decoder_object_pairs": true,
+    "answer_values_available_to_graph_solver_or_allocation_logic": false,
+    "solver_selection_inputs": [
+      "privacy_safe_graph_records",
+      "direct_hyperedges",
+      "exact_target_quotas",
+      "sha256_target_record_cost"
+    ],
+    "solver_selection_input_projection_excludes_answers": true,
+    "model_outcomes_read": false,
+    "graph_records_fields": [
+      "record_index",
+      "dataset_id",
+      "stratum",
+      "source_index",
+      "source_projection_sha256"
+    ],
+    "hyperedges_fields": [
+      "hyperedge_id",
+      "member_record_indices",
+      "member_count",
+      "relation_kinds",
+      "derivation_count_by_kind"
+    ]
+  }
+}

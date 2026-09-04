@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "STOP_FROZEN",
+  "scope": "CPU-only gold-free prospective router contract; posthoc pilot development",
+  "frozen_at_utc": "2026-09-02T18:27:00Z",
+  "implementation_inventory": {
+    "includes": "all regular files below this directory except FREEZE.json itself",
+    "count": 9,
+    "digest_algorithm": "sha256(canonical_json([{path,nbytes,sha256}, ...]))",
+    "digest": "e248dadf46c1833fc450fb99161aa1810e1fb05f130d92e5029a443d9ac4f2be"
+  },
+  "receipt": {
+    "path": "artifacts/pilot_development_receipt.json",
+    "nbytes": 5344,
+    "sha256": "8fb9d5e4dfd2eea2803fe80d7991c6db5942d520bbde61c7c1843ef760774500"
+  },
+  "integrity": {
+    "old_pilot_only_development": true,
+    "fresh_registry_not_run": true,
+    "GPU_used": false,
+    "quality_or_reference_inputs_in_runtime": false,
+    "wall_time_or_dataset_label_inputs_in_runtime": false,
+    "pycache_files_at_freeze": 0
+  },
+  "next_allowed_action": "independent audit, then prospective run only on a newly frozen registry",
+  "prohibited_action": "do not tune parameters or claim paper superiority from the old pilot"
+}
