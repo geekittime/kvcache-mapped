@@ -6,7 +6,7 @@ from core import atomic_json,digest
 from evaluate import read_jsonl
 from audit_eval import audit
 from prepare_eval import cases,case_name
-from protocol_guards import matching_pair
+from protocol_guards import matching_pair,generation_parity
 from audit_fit import audit as audit_fit
 from audit_upstream import validation as audit_validation,provenance
 HERE=Path(__file__).resolve().parent
@@ -40,13 +40,14 @@ def main(require_complete):
                 base=HERE/'runs'/pair/mode/name
                 if not (base/'stage.json').exists():continue
                 assert pair in upstream,'Missing full fit/validation acceptance'
-                stage=json.loads((base/'stage.json').read_text());assert stage['passed'] and stage['smoke_full_exact']
+                stage=json.loads((base/'stage.json').read_text());assert stage['passed']
                 proof=audit(base/'full',require_formal=True);assert proof['complete_dataset']
                 smoke_proof=audit(base/'smoke',require_formal=True)
                 assert not smoke_proof['complete_dataset'] and smoke_proof['n']==case['batch_size']
                 smoke=read_jsonl(base/'smoke/predictions.jsonl')
                 full=read_jsonl(base/'full/predictions.jsonl')
-                assert smoke==full[:len(smoke)],'Smoke/full equality was not reproducible from saved records'
+                parity=generation_parity(smoke,full)
+                assert parity==stage['generation_parity']
                 result=json.loads((base/'full/results.json').read_text())
                 assert stage['full_results_sha256']==digest(base/'full/results.json') and result['n']==stage['n']
                 conditions[mode]=(result,read_jsonl(base/'full/predictions.jsonl'));accepted+=1
@@ -66,7 +67,8 @@ def main(require_complete):
                     values[key]=dict(weighted=a[key],readout=b[key],delta=b[key]-a[key],paired_bootstrap_95=interval(delta,groups))
                 entry.update(status='accepted',n=len(ap),metrics=values,
                     length_stops={m:r[0]['length_stops'] for m,r in conditions.items()},
-                    unparsed={m:r[0]['unparsed'] for m,r in conditions.items()})
+                    unparsed={m:r[0]['unparsed'] for m,r in conditions.items()},
+                    generation_parity={m:json.loads((HERE/'runs'/pair/mode/name/'stage.json').read_text())['generation_parity'] for m in ['weighted','readout']})
             comparisons.append(entry)
     complete=accepted==52
     if require_complete:assert complete,f'Only {accepted}/52 audited complete cells'

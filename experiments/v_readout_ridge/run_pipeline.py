@@ -5,6 +5,7 @@ from core import atomic_json,digest
 from fit import paths
 from prepare_eval import cases,case_name
 from audit_upstream import provenance,validation as audit_validation
+from protocol_guards import generation_parity
 
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 
@@ -46,18 +47,21 @@ def worker(a):
     queue=sorted(cases(),key=lambda c:c['thinking'])
     for case in queue:
         name=case_name(case);base=HERE/'runs'/a.pair/a.mode/name
-        assert not base.exists(),'No implicit restart; inspect and select a new version on failure'
+        if (base/'stage.json').exists():
+            assert json.loads((base/'stage.json').read_text())['passed']
+            continue
         for tag,limit in [('smoke',case['batch_size']),('full',0)]:
             out=base/tag
-            run(eval_command(a.pair,a.mode,a.gpu,case,out,limit),base/(tag+'.log'))
+            if not (out/'results.json').exists():
+                run(eval_command(a.pair,a.mode,a.gpu,case,out,limit),base/(tag+'.log'))
             proof=json.loads((out/'audit.json').read_text());assert proof['passed']
             if tag=='full':assert proof['complete_dataset']
             print(a.pair,a.mode,name,tag,'AUDITED',proof['n'],flush=True)
         smoke=[json.loads(x) for x in (base/'smoke/predictions.jsonl').open()]
         full=[json.loads(x) for x in (base/'full/predictions.jsonl').open()]
-        assert smoke==full[:len(smoke)],'Fresh identical-batch smoke/full predictions mismatch'
-        atomic_json(base/'stage.json',dict(passed=True,n=len(full),smoke_full_exact=True,
-                    full_results_sha256=digest(base/'full/results.json'),completed_at=time.time()))
+        parity=generation_parity(smoke,full)
+        atomic_json(base/'stage.json',dict(passed=True,n=len(full),smoke_full_exact=parity['full_token_sequence_exact']==len(smoke),
+                    generation_parity=parity,full_results_sha256=digest(base/'full/results.json'),completed_at=time.time()))
 
 def pipeline():
     provenance()

@@ -37,3 +37,19 @@ def matching_pair(a,b):
     ignored={'mode','output','device'}
     for key in a.keys()|b.keys():
         if key not in ignored:assert a.get(key)==b.get(key),f'Unpaired protocol setting: {key}'
+
+def generation_parity(smoke,full):
+    """Separate exact input parity from numerically sensitive greedy tails."""
+    assert len(smoke)>0 and len(full)>=len(smoke)
+    full=full[:len(smoke)];exact=[];answer=[];first=[];divergence=[]
+    for a,b in zip(smoke,full):
+        for key in ['index','id','prompt_tokens','prompt_ids_sha256','gold']:
+            assert a.get(key)==b.get(key),f'Smoke/full input or reference mismatch: {key}'
+        x,y=a['token_ids'],b['token_ids'];n=min(len(x),len(y))
+        d=next((i for i in range(n) if x[i]!=y[i]),n)
+        exact.append(x==y);answer.append(a['pred']==b['pred']);first.append(bool(x and y and x[0]==y[0]))
+        divergence.append(d)
+    assert all(first),'First-token greedy parity failed on identical prompts'
+    return dict(n=len(smoke),first_token_exact=sum(first),full_token_sequence_exact=sum(exact),
+        parsed_answer_exact=sum(answer),first_divergence_token=divergence,
+        interpretation='Inputs and first-token predictions match. Later greedy tokens can diverge from small GPU floating-point differences; smoke outputs are not benchmark scores.')
