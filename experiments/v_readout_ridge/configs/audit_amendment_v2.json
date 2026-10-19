@@ -1,0 +1,22 @@
+{
+  "created_at": 1792406372.5624313,
+  "original_freeze_sha256": "68388fe930c3163e070856ff68c6b412f4abd7d7c4834b7c9313df563c5019d3",
+  "numerical_code_unchanged": {
+    "fit.py": "d94f06d64322d0d79c98d1e2cc5746819c814a8b05203526a3615e99c95e299e",
+    "readout.py": "2149fef9ad7bff10ec4edcbdc3f925b60d7923690bf540a67f37935c3effa74a",
+    "core.py": "423ec5fa31bd4eee3e5fe7256be9617c7a341707a4f1e1aac772c51adda4e300",
+    "evaluate.py": "57716538b115fbda8247d3628acbb68762501df82fa6ab64b46b2433d9ef77fc",
+    "validate.py": "b3a6842ad88bc4321347df2105157d55a22224884ac097ea1eac819dd90d296a",
+    "prepare_eval.py": "1d7a5f016907299ca1440ae1a6f113c37187ddd14af69e6a9771c7cbdfa13dfa"
+  },
+  "audit_code_sha256": {
+    "audit_eval.py": "59da7c34f7c279713dc54708297d88395a3c8ae0eb3d48042cb5a0954b613f37",
+    "audit_fit.py": "afea6cb514e4fb75212b2289d87a0c0cc95d426b98aba0ab821addf48438656f",
+    "audit_upstream.py": "faf16346e7e2c09cab8778eb10fa4fe203936c4aca02ca498b1da35981189cc8",
+    "audit_training_source.py": "e8cff05d7b6d15f9d599ddef3fa6184ad07948a54c550f29b0dd47412826ce61",
+    "protocol_guards.py": "c0560fe0aeeaa3cec3893ccb399a179eab70e2a18793911102babbab27ea1c34",
+    "report.py": "32331da183aebda867a9c26de14a2da89ec64912863399567af39e51a7616d2f",
+    "run_pipeline.py": "3c32573d520c129822cc175dca288ad2037fa3b6f2814c2c47211a8dafbe2df2"
+  },
+  "reason": "Strengthen acceptance gates; no fitting, inference, scoring or scientific protocol changes."
+}

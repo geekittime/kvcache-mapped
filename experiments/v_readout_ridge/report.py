@@ -6,6 +6,9 @@ from core import atomic_json,digest
 from evaluate import read_jsonl
 from audit_eval import audit
 from prepare_eval import cases,case_name
+from protocol_guards import matching_pair
+from audit_fit import audit as audit_fit
+from audit_upstream import validation as audit_validation,provenance
 HERE=Path(__file__).resolve().parent
 
 def interval(delta,groups=None):
@@ -18,20 +21,38 @@ def interval(delta,groups=None):
     return [float(x) for x in np.quantile(values,[.025,.975])]
 
 def main(require_complete):
+    provenance()
     comparisons=[];accepted=0
+    upstream={}
     for pair in ['06_17','17_06']:
+        artifact=HERE/'artifacts'/pair/'full_v1';validation=HERE/'checks'/f'validation_{pair}_full'
+        if (artifact/'independent_fit_audit.json').exists() and (validation/'audit.json').exists():
+            fit_proof=audit_fit(artifact,deep=False);assert fit_proof['n']==400
+            audit_validation(validation)
+            vr=json.loads((validation/'results.json').read_text())
+            assert vr['n']==64 and vr['protocol']['limit']==0 and vr['protocol']['pair']==pair
+            assert Path(vr['protocol']['artifact']).resolve()==artifact
+            upstream[pair]=dict(passed=True,fit_run_sha256=digest(artifact/'run.json'),
+                validation_results_sha256=digest(validation/'results.json'),validation_summary=vr['summary'])
         for case in cases():
             name=case_name(case);entry=dict(pair=pair,case=name,status='pending');conditions={}
             for mode in ['weighted','readout']:
                 base=HERE/'runs'/pair/mode/name
                 if not (base/'stage.json').exists():continue
+                assert pair in upstream,'Missing full fit/validation acceptance'
                 stage=json.loads((base/'stage.json').read_text());assert stage['passed'] and stage['smoke_full_exact']
-                proof=audit(base/'full');assert proof['complete_dataset']
+                proof=audit(base/'full',require_formal=True);assert proof['complete_dataset']
+                smoke_proof=audit(base/'smoke',require_formal=True)
+                assert not smoke_proof['complete_dataset'] and smoke_proof['n']==case['batch_size']
+                smoke=read_jsonl(base/'smoke/predictions.jsonl')
+                full=read_jsonl(base/'full/predictions.jsonl')
+                assert smoke==full[:len(smoke)],'Smoke/full equality was not reproducible from saved records'
                 result=json.loads((base/'full/results.json').read_text())
                 assert stage['full_results_sha256']==digest(base/'full/results.json') and result['n']==stage['n']
                 conditions[mode]=(result,read_jsonl(base/'full/predictions.jsonl'));accepted+=1
             if len(conditions)==2:
                 a,ap=conditions['weighted'];b,bp=conditions['readout']
+                matching_pair(a['protocol'],b['protocol'])
                 assert len(ap)==len(bp) and a['protocol']['data_sha256']==b['protocol']['data_sha256']
                 ap=sorted(ap,key=lambda x:x['index']);bp=sorted(bp,key=lambda x:x['index'])
                 for x,y in zip(ap,bp):
@@ -50,6 +71,7 @@ def main(require_complete):
     complete=accepted==52
     if require_complete:assert complete,f'Only {accepted}/52 audited complete cells'
     result=dict(complete=complete,accepted_cells=accepted,expected_cells=52,comparisons=comparisons,
+        upstream=upstream,
         interpretation='Paired fixed-dataset comparison; only V loss differs. Bootstrap intervals describe sampling uncertainty, not variation over fit seeds. No claim of exact hidden paper split or guaranteed improvement.',
         protocol_sha256=digest(HERE/'README.md'))
     lines=['# V weighted ridge vs V readout ridge','',f'Audited full cells: {accepted}/52. Complete: {complete}.',

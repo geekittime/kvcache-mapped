@@ -134,6 +134,7 @@
       "status": "pending"
     }
   ],
+  "upstream": {},
   "interpretation": "Paired fixed-dataset comparison; only V loss differs. Bootstrap intervals describe sampling uncertainty, not variation over fit seeds. No claim of exact hidden paper split or guaranteed improvement.",
-  "protocol_sha256": "90534d27c9f08f327b4cb5a35bb5cf6e535f5e3e61ec444fd432e3e7d64e3abe"
+  "protocol_sha256": "862b7532376b07b8bb7379cfed386c249f88d7ae7ca0bd4cd6b6ffb28642d477"
 }

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "train": 400,
+  "validation": 64,
+  "raw_members": 4041,
+  "exact_prefix_and_continuation_token_equality": true,
+  "raw_hashes_verified": true,
+  "member_split_disjoint": true,
+  "target_answer_excluded_from_own_fillers": true,
+  "auditor_sha256": "e8cff05d7b6d15f9d599ddef3fa6184ad07948a54c550f29b0dd47412826ce61",
+  "limitation": "Verifies the frozen local construction; does not recover unpublished author sample IDs or packing code."
+}

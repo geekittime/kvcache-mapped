@@ -2,6 +2,8 @@
   "passed": true,
   "n": 4,
   "complete_dataset": false,
+  "frozen_case_verified": false,
+  "auditor_sha256": "59da7c34f7c279713dc54708297d88395a3c8ae0eb3d48042cb5a0954b613f37",
   "predictions_sha256": "b8d2898f44b01d74377effcd2fb37e9f803e7a33a583f23727cc26942669fdf7",
   "results_sha256": "9ac79f8ce08f20d6530b8f940cdf4fa4f1857b4225c67625bd2279df60a48393",
   "checks": [

@@ -1,7 +1,10 @@
 {
-  "pid": 1382698,
+  "pid": 1413488,
   "command": [
     "/home/tiger/kvcache-mapped/.venv/bin/python",
     "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/run_pipeline.py"
-  ]
+  ],
+  "started_at": 1792406372.5638177,
+  "replaces_pid": 1382698,
+  "reason": "Audited coordinator adds independent stage gates. Four existing fit processes retained."
 }

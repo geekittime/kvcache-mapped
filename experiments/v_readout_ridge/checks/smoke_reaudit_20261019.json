@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "outputs": [
+    {
+      "path": "experiments/v_readout_ridge/checks/generation_smoke_06_17_readout",
+      "n": 4,
+      "passed": true,
+      "complete_dataset": false
+    },
+    {
+      "path": "experiments/v_readout_ridge/checks/generation_smoke_06_17_weighted",
+      "n": 4,
+      "passed": true,
+      "complete_dataset": false
+    },
+    {
+      "path": "experiments/v_readout_ridge/checks/generation_smoke_17_06_readout",
+      "n": 4,
+      "passed": true,
+      "complete_dataset": false
+    },
+    {
+      "path": "experiments/v_readout_ridge/checks/generation_smoke_17_06_weighted",
+      "n": 4,
+      "passed": true,
+      "complete_dataset": false
+    },
+    {
+      "path": "experiments/v_readout_ridge/checks/ruler32k_capacity_06_17",
+      "n": 4,
+      "passed": true,
+      "complete_dataset": false
+    },
+    {
+      "path": "experiments/v_readout_ridge/checks/ruler32k_capacity_17_06",
+      "n": 4,
+      "passed": true,
+      "complete_dataset": false
+    }
+  ]
+}

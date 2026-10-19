@@ -29,3 +29,11 @@ Ran actual32k RULER cache injection for both directions at the planned batch siz
 ## Algebra, smoke and real-model gates passed
 
 Seven mathematical tests passed. Both directions completed four-example smoke fits; all 28 layers passed regularized normal residual and cross-objective optimum checks, K matrices bitwise equal. Actual BF16 identity cache and split logits checks passed for both models. Full-length native 1.7B capture at the longest training prefix passed all 28 layers: independently computed attention mass equal; identity readout cross/target moments equal direct Gram slices. Evidence in checks and artifacts/*/smoke_v1. Started fresh full400 fits on four GPUs, two shards per direction, collecting both conditions together. No old mapper reused.
+
+## 2026-10-19 detailed whole-task audit
+
+Found acceptance gaps rather than a demonstrated fit arithmetic failure: formal evaluation was not bound to the frozen prepared case, and final reporting trusted upstream/smoke stage markers too much. Added protocol guards, independent serialized-FP32 fit audit, independent validation-record checks, repeated model-weight provenance checks and direct saved smoke/full comparison. Numerical fit/inference/scoring code hashes remain unchanged; configs/audit_amendment_v2.json records the audit-only amendment.
+
+Independently rebuilt all 400 training and 64 validation rows from 4,041 raw conversation UUIDs; prefix/continuation tokens matched exactly, raw hashes matched, no train/validation member overlap. All 28 tests passed, including new causal capture and upstream RULER metric checks. Reaudited all six generation/capacity outputs: all remain smoke, none is an accepted full benchmark result. Both four-example fits passed the new serialized-weight audit; the full fits must pass separately.
+
+Stopped only the old waiting coordinator and restarted its amended version (checks/pipeline_process.json), preserving all four fitting processes. Full fits/64-row validations/52 benchmark cells remain pending. The report refuses completion at 0/52. Comprehensive findings, paper-reproduction limitations, proxy-loss caveats and precise evaluation scope are documented in AUDIT_20261019.md. No push.

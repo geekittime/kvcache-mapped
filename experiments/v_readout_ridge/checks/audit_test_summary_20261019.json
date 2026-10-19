@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "tests": 28,
+  "log_sha256": "0b6ae01e96d7573a3b7d3147468ccd812e9c885fc663e55972100b2e5337d429",
+  "tests_sha256": {
+    "test_decoder_alignment.py": "2f44cc190484a654974fad2a23af4bc0e553615a178148402e0523978aea1ad8",
+    "test_evaluation.py": "daa7e85d33755076f5bca5911f40c4d7b41c67228b239f651647dd462d0b58bd",
+    "test_official_ruler_metric.py": "4118f64e006dd1b98d9f4d30917bec14e6bc3fb45082dd8eb0ac10f722d99123",
+    "test_protocol_guards.py": "bfe94b4e58dfdea5a3778cdec7646f2b70c19d8d376f50b308a998cee6c2a2e4",
+    "test_readout.py": "fd48e05cb9e07e545db655c32452fc32b02829aec19a2b6f20cb08f8f69d31f6"
+  },
+  "created_at": 1792406494.3996255
+}

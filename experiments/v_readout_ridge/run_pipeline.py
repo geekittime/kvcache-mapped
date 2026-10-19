@@ -4,6 +4,7 @@ from pathlib import Path
 from core import atomic_json,digest
 from fit import paths
 from prepare_eval import cases,case_name
+from audit_upstream import provenance,validation as audit_validation
 
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 
@@ -59,6 +60,7 @@ def worker(a):
                     full_results_sha256=digest(base/'full/results.json'),completed_at=time.time()))
 
 def pipeline():
+    provenance()
     infos=json.loads((HERE/'checks/fit_processes.json').read_text())
     for info in infos:wait_exact(info)
     for pair in ['06_17','17_06']:
@@ -68,6 +70,7 @@ def pipeline():
         run([sys.executable,str(HERE/'fit.py'),'merge','--pair',pair,'--output',str(out),'--shards','2'],
             HERE/'checks'/f'merge_full_{pair}.log')
         assert json.loads((out/'audit.json').read_text())['n']==400
+        run([sys.executable,str(HERE/'audit_fit.py'),str(out)],HERE/'checks'/f'independent_fit_{pair}.log')
     print('BOTH FULL FITS AUDITED',flush=True)
     # The first validation program has already passed a genuine model smoke.
     assert json.loads((HERE/'checks/validation_smoke/audit.json').read_text())['passed']
@@ -82,9 +85,13 @@ def pipeline():
     for pair,p in procs:
         assert p.wait()==0,pair
         proof=json.loads((HERE/'checks'/f'validation_{pair}_full/audit.json').read_text());assert proof['passed'] and proof['n']==64
+        run([sys.executable,str(HERE/'validate.py'),'--pair',pair,'--artifact',str(HERE/'artifacts'/pair/'full_v1'),
+             '--output',str(HERE/'checks'/f'validation_{pair}_full'),'--audit-only'],HERE/'checks'/f'validation_reaudit_{pair}.log')
+        audit_validation(HERE/'checks'/f'validation_{pair}_full')
     print('HELD-OUT VALIDATION AUDITED',flush=True)
     prep=json.loads((HERE/'checks/prepare_eval_process.json').read_text());wait_exact(prep)
     assert json.loads((HERE/'checks/evaluation_inputs.json').read_text())['passed']
+    provenance()
     procs=[]
     for gpu,(pair,mode) in enumerate([('06_17','weighted'),('06_17','readout'),('17_06','weighted'),('17_06','readout')]):
         cmd=[sys.executable,str(Path(__file__)),'--worker','--pair',pair,'--mode',mode,'--gpu',str(gpu)]
