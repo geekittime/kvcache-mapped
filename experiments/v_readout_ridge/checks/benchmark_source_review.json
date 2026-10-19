@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "mmlu_arc_json_matches_original_parquet": true,
+  "all13_prompt_cases_prepared": true,
+  "evaluation_inputs_sha256": "9a252ee26b758c0d4779aa803882df4981ea08382051c4feb469a77ff96c7bcd"
+}

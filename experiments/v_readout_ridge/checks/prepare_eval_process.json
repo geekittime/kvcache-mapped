@@ -1,0 +1,7 @@
+{
+  "pid": 1379578,
+  "command": [
+    "/home/tiger/kvcache-mapped/.venv/bin/python",
+    "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/prepare_eval.py"
+  ]
+}

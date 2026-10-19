@@ -1,0 +1,49 @@
+{
+  "complete": true,
+  "n": 1,
+  "protocol": {
+    "pair": "06_17",
+    "source": "/home/tiger/models/Qwen3-0.6B",
+    "target": "/home/tiger/models/Qwen3-1.7B",
+    "data": "/home/tiger/kvcache-mapped/data/kv_lingo/training_paper_v7/validation.jsonl",
+    "data_sha256": "e18dcefdc7085c96a7e3eca00beffbeb392f7b0dc12cf87204ff4f0560eae6b9",
+    "limit": 1,
+    "artifact": "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/06_17/smoke_v1",
+    "artifact_sha256": "8a0fdbae4bd11baa75846b4e1907bb4626ecc1cc1833ed7e6219b358947e3931",
+    "code_sha256": {
+      "validate.py": "b3a6842ad88bc4321347df2105157d55a22224884ac097ea1eac819dd90d296a",
+      "core.py": "423ec5fa31bd4eee3e5fe7256be9617c7a341707a4f1e1aac772c51adda4e300",
+      "readout.py": "2149fef9ad7bff10ec4edcbdc3f925b60d7923690bf540a67f37935c3effa74a",
+      "evaluate.py": "57716538b115fbda8247d3628acbb68762501df82fa6ab64b46b2433d9ef77fc"
+    },
+    "decoder": "native split prefix[:-1] vs mapped prefix[:-1]; teacher forcing from last prefix token; FP32 log probs",
+    "intrinsic": "full fit-prefix native teacher prefix-only attention, head-wise query rows; no ridge penalty on validation"
+  },
+  "summary": {
+    "weighted": {
+      "weighted_v": 572086.7804888011,
+      "readout_v": 62450.922470785816,
+      "weighted_v_relative": 1.4470643932796947,
+      "readout_v_relative": 0.8858382468385539,
+      "kl_sample_mean": 1.764197500128495,
+      "kl_token_mean": 1.764197500128495,
+      "native_ce": 1.5678033326801502,
+      "mapped_ce": 3.093165949771279,
+      "mapped_ppl": 22.04676655782062,
+      "native_ppl": 4.796101175156543
+    },
+    "readout": {
+      "weighted_v": 308026.6851850126,
+      "readout_v": 32760.263039493588,
+      "weighted_v_relative": 0.7791378222904615,
+      "readout_v_relative": 0.464689596706124,
+      "kl_sample_mean": 1.6885751423082853,
+      "kl_token_mean": 1.6885751423082853,
+      "native_ce": 1.5678033326801502,
+      "mapped_ce": 2.9664142006321956,
+      "mapped_ppl": 19.42215064655101,
+      "native_ppl": 4.796101175156543
+    }
+  },
+  "predictions_sha256": "0451604fc37974942154ccc488ccb9d4e329ed36ac659616c9ebb43b3fa422d9"
+}

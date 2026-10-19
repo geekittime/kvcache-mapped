@@ -1,0 +1,72 @@
+{
+  "train": {
+    "n": 400,
+    "prefix_tokens": 3809293,
+    "natural_bins": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "member_uuids": 3472,
+    "sha256": "346b97a57dcb6b5f1d0873f4aa34c387c8582d88142deb1bcf6878091051c3a0"
+  },
+  "validation": {
+    "n": 64,
+    "prefix_tokens": 613671,
+    "natural_bins": [
+      4,
+      2,
+      4,
+      2,
+      4,
+      4,
+      2,
+      4,
+      2,
+      4
+    ],
+    "member_uuids": 569,
+    "sha256": "e18dcefdc7085c96a7e3eca00beffbeb392f7b0dc12cf87204ff4f0560eae6b9"
+  },
+  "mmlu_pro": {
+    "n": 1400,
+    "sha256": "6d90095e9161ff6a31d22cf335265f0a76caecc3cc183be74dfb55e06f5645c5"
+  },
+  "arc_c": {
+    "n": 1172,
+    "sha256": "03227c30fd557ad1416c2cb955eeb6dc79eeb21e0679456a1ccd42eaccc0ff87"
+  },
+  "hotpotqa_distractor_validation": {
+    "n": 7405,
+    "sha256": "e545c27a9edd47dce8d1efb779bb27de2452a456557b4be6f3ed6014423e4ca3"
+  },
+  "passed": true,
+  "tokenizers_identical": true,
+  "member_overlap": 0,
+  "raw_manifest": {
+    "dataset": "nvidia/Nemotron-SFT-Instruction-Following-Chat-v2",
+    "revision": "1a9454ed054b8544503ab8d8c0a519d141a44c5b",
+    "candidate_records": 100000,
+    "files": {
+      "off": {
+        "path": "/home/tiger/datasets/kv_lingo/Nemotron-SFT-Instruction-Following-Chat-v2/1a9454ed054b8544503ab8d8c0a519d141a44c5b/reasoning_off_first_100000.jsonl",
+        "bytes": 558630118,
+        "sha256": "5f595a0087c181226b90ec420792db18ec1a9eb2054bcca830f82b58f632b171",
+        "records": 100000
+      },
+      "on": {
+        "path": "/home/tiger/datasets/kv_lingo/Nemotron-SFT-Instruction-Following-Chat-v2/1a9454ed054b8544503ab8d8c0a519d141a44c5b/reasoning_on_first_100000.jsonl",
+        "bytes": 1086527198,
+        "sha256": "d2bf017442ecdf153b013251739d3879bbcc4424dbd4728ce54bec973dc1b646",
+        "records": 100000
+      }
+    }
+  }
+}

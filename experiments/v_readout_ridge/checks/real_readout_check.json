@@ -1,0 +1,294 @@
+{
+  "passed": true,
+  "train_row": 242,
+  "prefix": 15938,
+  "continuation": 317,
+  "layers": [
+    {
+      "layer": 0,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 2.384185791015625e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 1,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 2.384185791015625e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 2,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 3.5762786865234375e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 3,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 4.76837158203125e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 4,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 4.76837158203125e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 5,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.960464477539062e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 6,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 7.152557373046875e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 7,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 4.76837158203125e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 8,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 7.152557373046875e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 9,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.364418029785156e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 10,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 4.76837158203125e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 11,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.364418029785156e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 12,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.960464477539062e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 13,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.364418029785156e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 14,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.960464477539062e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 15,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.960464477539062e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 16,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.960464477539062e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 17,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 4.76837158203125e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 18,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.960464477539062e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 19,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 6.556510925292969e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 20,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 8.344650268554688e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 21,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 7.152557373046875e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 22,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.960464477539062e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 23,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 6.556510925292969e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 24,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 7.152557373046875e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 25,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 7.152557373046875e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 26,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 5.960464477539062e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    },
+    {
+      "layer": 27,
+      "queries": 317,
+      "query_heads": 16,
+      "kv_heads": 8,
+      "prefix": 15938,
+      "max_attention_row_mass_error": 6.556510925292969e-07,
+      "identity_readout_moments_match": true,
+      "independent_attention_mass_match": true
+    }
+  ],
+  "seconds": 10.99156467244029,
+  "code_sha256": {
+    "readout.py": "2149fef9ad7bff10ec4edcbdc3f925b60d7923690bf540a67f37935c3effa74a",
+    "core.py": "423ec5fa31bd4eee3e5fe7256be9617c7a341707a4f1e1aac772c51adda4e300",
+    "real_readout_check.py": "1a1e2d263e903d122e00f972b04cb26b58e5370bf68c44fab10f4135bef913a8"
+  }
+}

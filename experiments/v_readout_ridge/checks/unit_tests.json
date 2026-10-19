@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "passed_tests": 15,
+  "log_sha256": "b901ebb3a6a0b3101a055eef987a1d9315e6da841b94ad6b409f054ec8d60b0a",
+  "tests": {
+    "tests/test_evaluation.py": "daa7e85d33755076f5bca5911f40c4d7b41c67228b239f651647dd462d0b58bd",
+    "tests/test_readout.py": "fd48e05cb9e07e545db655c32452fc32b02829aec19a2b6f20cb08f8f69d31f6"
+  }
+}

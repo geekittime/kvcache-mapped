@@ -1,0 +1,22 @@
+[
+  {
+    "model": "Qwen3-0.6B",
+    "reconstructed_vs_native_split_cache_exact": true,
+    "split_logits_exact": true,
+    "batch_identity_exact": true,
+    "batch_vs_single_exact": true,
+    "max_logit_error_bf16": 0.5625,
+    "rms_logit_error_bf16": 0.10014462471008301,
+    "sequences": 3
+  },
+  {
+    "model": "Qwen3-1.7B",
+    "reconstructed_vs_native_split_cache_exact": true,
+    "split_logits_exact": true,
+    "batch_identity_exact": true,
+    "batch_vs_single_exact": true,
+    "max_logit_error_bf16": 0.625,
+    "rms_logit_error_bf16": 0.13572342693805695,
+    "sequences": 3
+  }
+]

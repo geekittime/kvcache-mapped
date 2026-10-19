@@ -1,0 +1,139 @@
+{
+  "complete": false,
+  "accepted_cells": 0,
+  "expected_cells": 52,
+  "comparisons": [
+    {
+      "pair": "06_17",
+      "case": "arc_off",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "mmlu_off",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "ruler_4k_off",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "ruler_8k_off",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "ruler_16k_off",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "ruler_32k_off",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "arc_on",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "mmlu_on",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "ruler_4k_on",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "ruler_8k_on",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "ruler_16k_on",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "ruler_32k_on",
+      "status": "pending"
+    },
+    {
+      "pair": "06_17",
+      "case": "hotpot_off",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "arc_off",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "mmlu_off",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "ruler_4k_off",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "ruler_8k_off",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "ruler_16k_off",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "ruler_32k_off",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "arc_on",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "mmlu_on",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "ruler_4k_on",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "ruler_8k_on",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "ruler_16k_on",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "ruler_32k_on",
+      "status": "pending"
+    },
+    {
+      "pair": "17_06",
+      "case": "hotpot_off",
+      "status": "pending"
+    }
+  ],
+  "interpretation": "Paired fixed-dataset comparison; only V loss differs. Bootstrap intervals describe sampling uncertainty, not variation over fit seeds. No claim of exact hidden paper split or guaranteed improvement.",
+  "protocol_sha256": "90534d27c9f08f327b4cb5a35bb5cf6e535f5e3e61ec444fd432e3e7d64e3abe"
+}

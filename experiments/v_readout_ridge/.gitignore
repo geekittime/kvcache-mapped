@@ -1,0 +1,3 @@
+checks/*.log
+checks/prompt_hashes.json
+*.lock

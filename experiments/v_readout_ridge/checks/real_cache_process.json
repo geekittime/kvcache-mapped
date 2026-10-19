@@ -1,0 +1,9 @@
+{
+  "pid": 1373956,
+  "command": [
+    "/home/tiger/kvcache-mapped/.venv/bin/python",
+    "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/real_cache_check.py",
+    "--output",
+    "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/checks/real_cache_check.json"
+  ]
+}

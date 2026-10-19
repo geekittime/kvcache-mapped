@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "n": 7405,
+  "raw_sha256": "c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6",
+  "prepared_sha256": "e545c27a9edd47dce8d1efb779bb27de2452a456557b4be6f3ed6014423e4ca3",
+  "all_original_documents": true,
+  "no_gold_or_supporting_fact_labels_added": true,
+  "note": "Old dataset manifest evaluation_subset says first500; this experiment uses all7405 and records its own protocol. Original file preserved."
+}

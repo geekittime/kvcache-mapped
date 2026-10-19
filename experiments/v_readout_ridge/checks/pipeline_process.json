@@ -1,0 +1,7 @@
+{
+  "pid": 1382698,
+  "command": [
+    "/home/tiger/kvcache-mapped/.venv/bin/python",
+    "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/run_pipeline.py"
+  ]
+}

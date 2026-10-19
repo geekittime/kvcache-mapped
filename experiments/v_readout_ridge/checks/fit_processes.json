@@ -1,0 +1,86 @@
+[
+  {
+    "pid": 1376705,
+    "command": [
+      "/home/tiger/kvcache-mapped/.venv/bin/python",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/fit.py",
+      "fit",
+      "--pair",
+      "06_17",
+      "--output",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/06_17/full_v1",
+      "--shards",
+      "2",
+      "--shard",
+      "0",
+      "--device",
+      "cuda:0"
+    ],
+    "pair": "06_17",
+    "shard": 0,
+    "gpu": 0
+  },
+  {
+    "pid": 1376706,
+    "command": [
+      "/home/tiger/kvcache-mapped/.venv/bin/python",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/fit.py",
+      "fit",
+      "--pair",
+      "06_17",
+      "--output",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/06_17/full_v1",
+      "--shards",
+      "2",
+      "--shard",
+      "1",
+      "--device",
+      "cuda:1"
+    ],
+    "pair": "06_17",
+    "shard": 1,
+    "gpu": 1
+  },
+  {
+    "pid": 1376707,
+    "command": [
+      "/home/tiger/kvcache-mapped/.venv/bin/python",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/fit.py",
+      "fit",
+      "--pair",
+      "17_06",
+      "--output",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/17_06/full_v1",
+      "--shards",
+      "2",
+      "--shard",
+      "0",
+      "--device",
+      "cuda:2"
+    ],
+    "pair": "17_06",
+    "shard": 0,
+    "gpu": 2
+  },
+  {
+    "pid": 1376708,
+    "command": [
+      "/home/tiger/kvcache-mapped/.venv/bin/python",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/fit.py",
+      "fit",
+      "--pair",
+      "17_06",
+      "--output",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/17_06/full_v1",
+      "--shards",
+      "2",
+      "--shard",
+      "1",
+      "--device",
+      "cuda:3"
+    ],
+    "pair": "17_06",
+    "shard": 1,
+    "gpu": 3
+  }
+]

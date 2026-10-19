@@ -1,0 +1,17 @@
+{
+  "pid": 1378507,
+  "command": [
+    "/home/tiger/kvcache-mapped/.venv/bin/python",
+    "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/validate.py",
+    "--pair",
+    "06_17",
+    "--artifact",
+    "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/06_17/smoke_v1",
+    "--output",
+    "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/checks/validation_smoke",
+    "--limit",
+    "1",
+    "--device",
+    "cuda:0"
+  ]
+}

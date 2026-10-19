@@ -1,0 +1,18 @@
+{
+  "pid": 1373954,
+  "command": [
+    "/home/tiger/kvcache-mapped/.venv/bin/python",
+    "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/fit.py",
+    "fit",
+    "--pair",
+    "06_17",
+    "--output",
+    "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/06_17/smoke_v1",
+    "--shards",
+    "1",
+    "--limit",
+    "4",
+    "--device",
+    "cuda:0"
+  ]
+}
