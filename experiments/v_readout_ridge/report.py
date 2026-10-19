@@ -70,6 +70,7 @@ def main(require_complete):
                 entry.update(status='accepted',n=len(ap),metrics=values,
                     length_stops={m:r[0]['length_stops'] for m,r in conditions.items()},
                     unparsed={m:r[0]['unparsed'] for m,r in conditions.items()},
+                    mean_generated_tokens={m:r[0]['mean_generated_tokens'] for m,r in conditions.items()},
                     scoring_v1={m:r[0].get('scoring_v1') for m,r in conditions.items()},
                     generation_parity={m:json.loads((HERE/'runs'/pair/m/name/'stage.json').read_text())['generation_parity'] for m in ['weighted','readout']})
             comparisons.append(entry)
@@ -89,10 +90,20 @@ def main(require_complete):
         for metric,v in c['metrics'].items():
             lo,hi=v['paired_bootstrap_95']
             lines.append(f"| {c['pair']} | {c['case']} | {c['n']} | {metric} | {v['weighted']*100:.3f} | {v['readout']*100:.3f} | {v['delta']*100:+.3f} | [{lo*100:+.3f}, {hi*100:+.3f}] |")
+    lines += ['', 'Generation diagnostics for complete paired cells (weighted/readout):', '',
+              '| Direction | Task/mode | n | Length stops | Unparsed | Mean generated tokens |',
+              '|---|---|---:|---|---|---|']
+    for c in comparisons:
+        if c['status'] != 'accepted':
+            continue
+        counts = [f"{c[key]['weighted']}/{c[key]['readout']}" for key in ['length_stops', 'unparsed']]
+        lengths = c['mean_generated_tokens']
+        lines.append(f"| {c['pair']} | {c['case']} | {c['n']} | {counts[0]} | {counts[1]} | {lengths['weighted']:.2f}/{lengths['readout']:.2f} |")
     lines+=['','06_17 = Qwen3-0.6B → 1.7B; 17_06 = reverse. on/off indicates reasoning mode.',
             'MMLU-Pro uses macro accuracy; ARC-C accuracy; RULER NIAH recall at each length; HotpotQA answer EM/F1 and raw scores.',
             'Intervals use 2,000 paired bootstrap draws (MMLU stratified by subject). They do not measure training-seed variability. No tuning on these outcomes.',
             'MC scores use parser v2 for LaTeX option wrappers and Markdown option letters. Original parser scores and all changed records remain in per-cell mc_scoring_v2.json.',
+            'Length-capped and unparsed predictions remain in every score denominator. See HOTPOT_DIAGNOSTICS.md for descriptive output-format and question-type effects; extracted-answer and raw Hotpot scores can move in opposite directions.',
             'Full protocol and unavailable author details: README.md. Process and stage evidence: PROCESS.md and checks/.', '']
     atomic_json(HERE/'RESULTS.json',result);(HERE/'RESULTS.md').write_text('\n'.join(lines))
     print(json.dumps(dict(complete=complete,accepted=accepted)),flush=True)

@@ -1,37 +1,563 @@
 {
   "complete": false,
-  "accepted_cells": 0,
+  "accepted_cells": 28,
   "expected_cells": 52,
   "comparisons": [
     {
       "pair": "06_17",
       "case": "arc_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 1172,
+      "metrics": {
+        "accuracy": {
+          "weighted": 0.5708191126279863,
+          "readout": 0.5844709897610921,
+          "delta": 0.013651877133105783,
+          "paired_bootstrap_95": [
+            -0.005119453924914676,
+            0.033276450511945395
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 4,
+        "readout": 5
+      },
+      "unparsed": {
+        "weighted": 1,
+        "readout": 2
+      },
+      "mean_generated_tokens": {
+        "weighted": 82.8037542662116,
+        "readout": 95.78754266211604
+      },
+      "scoring_v1": {
+        "weighted": {
+          "accuracy": 0.5665529010238908,
+          "macro_accuracy": 0.5665529010238908,
+          "unparsed": 6,
+          "by_category": {
+            "all": 0.5665529010238908
+          }
+        },
+        "readout": {
+          "accuracy": 0.5750853242320819,
+          "macro_accuracy": 0.5750853242320819,
+          "unparsed": 13,
+          "by_category": {
+            "all": 0.5750853242320819
+          }
+        }
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 32,
+          "first_token_exact": 32,
+          "full_token_sequence_exact": 32,
+          "parsed_answer_exact": 32,
+          "first_divergence_token": [
+            202,
+            7,
+            106,
+            152,
+            1024,
+            143,
+            240,
+            11,
+            193,
+            4,
+            4,
+            10,
+            160,
+            10,
+            4,
+            6,
+            172,
+            85,
+            88,
+            8,
+            5,
+            326,
+            11,
+            297,
+            4,
+            5,
+            14,
+            207,
+            8,
+            7,
+            233,
+            9
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 32,
+          "first_token_exact": 32,
+          "full_token_sequence_exact": 32,
+          "parsed_answer_exact": 32,
+          "first_divergence_token": [
+            115,
+            7,
+            188,
+            157,
+            529,
+            129,
+            14,
+            11,
+            87,
+            126,
+            204,
+            10,
+            201,
+            104,
+            4,
+            6,
+            161,
+            112,
+            1024,
+            8,
+            121,
+            333,
+            2,
+            299,
+            3,
+            5,
+            12,
+            187,
+            8,
+            7,
+            243,
+            315
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "06_17",
       "case": "mmlu_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 1400,
+      "metrics": {
+        "macro_accuracy": {
+          "weighted": 0.2842857142857143,
+          "readout": 0.3057142857142857,
+          "delta": 0.021428571428571408,
+          "paired_bootstrap_95": [
+            0.0007142857142857134,
+            0.04214285714285715
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 126,
+        "readout": 150
+      },
+      "unparsed": {
+        "weighted": 146,
+        "readout": 143
+      },
+      "mean_generated_tokens": {
+        "weighted": 297.97857142857146,
+        "readout": 325.47714285714284
+      },
+      "scoring_v1": {
+        "weighted": {
+          "accuracy": 0.24928571428571428,
+          "macro_accuracy": 0.2492857142857143,
+          "unparsed": 295,
+          "by_category": {
+            "biology": 0.44,
+            "business": 0.31,
+            "chemistry": 0.2,
+            "computer science": 0.33,
+            "economics": 0.4,
+            "engineering": 0.05,
+            "health": 0.22,
+            "history": 0.19,
+            "law": 0.17,
+            "math": 0.16,
+            "other": 0.21,
+            "philosophy": 0.27,
+            "physics": 0.21,
+            "psychology": 0.33
+          }
+        },
+        "readout": {
+          "accuracy": 0.27,
+          "macro_accuracy": 0.2700000000000001,
+          "unparsed": 279,
+          "by_category": {
+            "biology": 0.47,
+            "business": 0.27,
+            "chemistry": 0.24,
+            "computer science": 0.43,
+            "economics": 0.33,
+            "engineering": 0.07,
+            "health": 0.22,
+            "history": 0.23,
+            "law": 0.16,
+            "math": 0.3,
+            "other": 0.2,
+            "philosophy": 0.26,
+            "physics": 0.25,
+            "psychology": 0.35
+          }
+        }
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 32,
+          "first_token_exact": 32,
+          "full_token_sequence_exact": 32,
+          "parsed_answer_exact": 32,
+          "first_divergence_token": [
+            888,
+            21,
+            16,
+            29,
+            1024,
+            8,
+            15,
+            14,
+            19,
+            16,
+            464,
+            13,
+            222,
+            153,
+            323,
+            150,
+            16,
+            18,
+            221,
+            101,
+            1024,
+            127,
+            2,
+            21,
+            21,
+            48,
+            25,
+            214,
+            325,
+            2,
+            18,
+            79
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 32,
+          "first_token_exact": 32,
+          "full_token_sequence_exact": 32,
+          "parsed_answer_exact": 32,
+          "first_divergence_token": [
+            28,
+            21,
+            16,
+            3,
+            297,
+            7,
+            15,
+            13,
+            42,
+            13,
+            977,
+            22,
+            605,
+            178,
+            389,
+            161,
+            24,
+            27,
+            207,
+            124,
+            625,
+            112,
+            2,
+            21,
+            20,
+            46,
+            153,
+            2,
+            273,
+            2,
+            20,
+            133
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "06_17",
       "case": "ruler_4k_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 400,
+      "metrics": {
+        "recall": {
+          "weighted": 0.97,
+          "readout": 0.9775,
+          "delta": 0.007500000000000062,
+          "paired_bootstrap_95": [
+            0.0,
+            0.0175
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 63.555,
+        "readout": 51.895
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            205,
+            25,
+            24,
+            77,
+            47,
+            24,
+            47,
+            24
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            25,
+            52,
+            24,
+            58,
+            65,
+            24,
+            26,
+            64
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "06_17",
       "case": "ruler_8k_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 400,
+      "metrics": {
+        "recall": {
+          "weighted": 0.9675,
+          "readout": 0.9825,
+          "delta": 0.015000000000000013,
+          "paired_bootstrap_95": [
+            0.0025,
+            0.03
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 1,
+        "readout": 1
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 57.1125,
+        "readout": 69.0575
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            78,
+            115,
+            24,
+            73,
+            116,
+            128,
+            52,
+            24
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            25,
+            64,
+            24,
+            26,
+            70,
+            53,
+            68,
+            83
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "06_17",
       "case": "ruler_16k_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 400,
+      "metrics": {
+        "recall": {
+          "weighted": 0.945,
+          "readout": 0.9775,
+          "delta": 0.032500000000000084,
+          "paired_bootstrap_95": [
+            0.0125,
+            0.055
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 1,
+        "readout": 0
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 72.6525,
+        "readout": 90.82
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            24,
+            24,
+            66,
+            24,
+            69,
+            97,
+            25,
+            74
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            24,
+            81,
+            65,
+            137,
+            94,
+            114,
+            98,
+            101
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "06_17",
       "case": "ruler_32k_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 400,
+      "metrics": {
+        "recall": {
+          "weighted": 0.9225,
+          "readout": 0.97,
+          "delta": 0.04749999999999999,
+          "paired_bootstrap_95": [
+            0.025,
+            0.0725
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 0,
+        "readout": 1
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 51.965,
+        "readout": 88.085
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 4,
+          "first_token_exact": 4,
+          "full_token_sequence_exact": 4,
+          "parsed_answer_exact": 4,
+          "first_divergence_token": [
+            24,
+            24,
+            23,
+            24
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 4,
+          "first_token_exact": 4,
+          "full_token_sequence_exact": 4,
+          "parsed_answer_exact": 4,
+          "first_divergence_token": [
+            127,
+            24,
+            96,
+            118
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "06_17",
@@ -66,37 +592,670 @@
     {
       "pair": "06_17",
       "case": "hotpot_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 7405,
+      "metrics": {
+        "em": {
+          "weighted": 0.08831870357866306,
+          "readout": 0.13558406482106686,
+          "delta": 0.0472653612424038,
+          "paired_bootstrap_95": [
+            0.03956785955435516,
+            0.054557731262660364
+          ]
+        },
+        "f1": {
+          "weighted": 0.20578600861043125,
+          "readout": 0.25166914431041876,
+          "delta": 0.045883135699987504,
+          "paired_bootstrap_95": [
+            0.038701892928619135,
+            0.052726781625437674
+          ]
+        },
+        "raw_em": {
+          "weighted": 0.01674544226873734,
+          "readout": 0.007967589466576637,
+          "delta": -0.008777852802160703,
+          "paired_bootstrap_95": [
+            -0.011478730587440918,
+            -0.006212018906144497
+          ]
+        },
+        "raw_f1": {
+          "weighted": 0.14419827877713562,
+          "readout": 0.11164882395222626,
+          "delta": -0.032549454824909355,
+          "paired_bootstrap_95": [
+            -0.036268733830912045,
+            -0.029044319529335214
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 106,
+        "readout": 48
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 40.97771775827144,
+        "readout": 57.59891964888589
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 16,
+          "first_token_exact": 16,
+          "full_token_sequence_exact": 16,
+          "parsed_answer_exact": 16,
+          "first_divergence_token": [
+            14,
+            60,
+            33,
+            31,
+            18,
+            33,
+            3,
+            50,
+            9,
+            14,
+            39,
+            66,
+            33,
+            61,
+            19,
+            13
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 16,
+          "first_token_exact": 16,
+          "full_token_sequence_exact": 16,
+          "parsed_answer_exact": 16,
+          "first_divergence_token": [
+            28,
+            256,
+            63,
+            43,
+            33,
+            34,
+            30,
+            50,
+            52,
+            47,
+            39,
+            27,
+            33,
+            63,
+            56,
+            140
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "17_06",
       "case": "arc_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 1172,
+      "metrics": {
+        "accuracy": {
+          "weighted": 0.6604095563139932,
+          "readout": 0.7209897610921502,
+          "delta": 0.060580204778156954,
+          "paired_bootstrap_95": [
+            0.03583617747440273,
+            0.08617747440273038
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "unparsed": {
+        "weighted": 6,
+        "readout": 2
+      },
+      "mean_generated_tokens": {
+        "weighted": 49.88481228668942,
+        "readout": 31.927474402730375
+      },
+      "scoring_v1": {
+        "weighted": {
+          "accuracy": 0.6604095563139932,
+          "macro_accuracy": 0.6604095563139932,
+          "unparsed": 6,
+          "by_category": {
+            "all": 0.6604095563139932
+          }
+        },
+        "readout": {
+          "accuracy": 0.7209897610921502,
+          "macro_accuracy": 0.7209897610921502,
+          "unparsed": 2,
+          "by_category": {
+            "all": 0.7209897610921502
+          }
+        }
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 32,
+          "first_token_exact": 32,
+          "full_token_sequence_exact": 32,
+          "parsed_answer_exact": 32,
+          "first_divergence_token": [
+            54,
+            36,
+            86,
+            72,
+            103,
+            83,
+            79,
+            78,
+            115,
+            31,
+            50,
+            60,
+            16,
+            51,
+            19,
+            14,
+            11,
+            40,
+            86,
+            67,
+            63,
+            76,
+            18,
+            98,
+            18,
+            82,
+            16,
+            28,
+            84,
+            62,
+            103,
+            84
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 32,
+          "first_token_exact": 32,
+          "full_token_sequence_exact": 32,
+          "parsed_answer_exact": 32,
+          "first_divergence_token": [
+            13,
+            26,
+            29,
+            49,
+            148,
+            80,
+            65,
+            47,
+            15,
+            10,
+            59,
+            14,
+            62,
+            13,
+            10,
+            10,
+            60,
+            38,
+            134,
+            10,
+            11,
+            59,
+            20,
+            279,
+            9,
+            75,
+            20,
+            102,
+            26,
+            12,
+            16,
+            22
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "17_06",
       "case": "mmlu_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 1400,
+      "metrics": {
+        "macro_accuracy": {
+          "weighted": 0.2371428571428571,
+          "readout": 0.2792857142857143,
+          "delta": 0.042142857142857204,
+          "paired_bootstrap_95": [
+            0.021428571428571432,
+            0.0642857142857143
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 9,
+        "readout": 14
+      },
+      "unparsed": {
+        "weighted": 32,
+        "readout": 29
+      },
+      "mean_generated_tokens": {
+        "weighted": 101.21571428571428,
+        "readout": 138.03285714285715
+      },
+      "scoring_v1": {
+        "weighted": {
+          "accuracy": 0.22785714285714287,
+          "macro_accuracy": 0.22785714285714284,
+          "unparsed": 102,
+          "by_category": {
+            "biology": 0.43,
+            "business": 0.15,
+            "chemistry": 0.15,
+            "computer science": 0.25,
+            "economics": 0.4,
+            "engineering": 0.14,
+            "health": 0.18,
+            "history": 0.24,
+            "law": 0.19,
+            "math": 0.23,
+            "other": 0.14,
+            "philosophy": 0.25,
+            "physics": 0.12,
+            "psychology": 0.32
+          }
+        },
+        "readout": {
+          "accuracy": 0.2757142857142857,
+          "macro_accuracy": 0.2757142857142857,
+          "unparsed": 60,
+          "by_category": {
+            "biology": 0.42,
+            "business": 0.31,
+            "chemistry": 0.17,
+            "computer science": 0.29,
+            "economics": 0.46,
+            "engineering": 0.2,
+            "health": 0.22,
+            "history": 0.28,
+            "law": 0.2,
+            "math": 0.26,
+            "other": 0.17,
+            "philosophy": 0.34,
+            "physics": 0.19,
+            "psychology": 0.35
+          }
+        }
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 32,
+          "first_token_exact": 32,
+          "full_token_sequence_exact": 32,
+          "parsed_answer_exact": 32,
+          "first_divergence_token": [
+            40,
+            79,
+            74,
+            70,
+            99,
+            16,
+            85,
+            11,
+            68,
+            101,
+            23,
+            9,
+            61,
+            128,
+            66,
+            27,
+            57,
+            84,
+            60,
+            11,
+            76,
+            64,
+            11,
+            5,
+            81,
+            57,
+            122,
+            88,
+            5,
+            84,
+            52,
+            36
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 32,
+          "first_token_exact": 32,
+          "full_token_sequence_exact": 32,
+          "parsed_answer_exact": 32,
+          "first_divergence_token": [
+            40,
+            85,
+            68,
+            36,
+            123,
+            5,
+            5,
+            10,
+            5,
+            112,
+            112,
+            10,
+            83,
+            143,
+            372,
+            16,
+            10,
+            78,
+            15,
+            10,
+            330,
+            107,
+            74,
+            5,
+            5,
+            49,
+            32,
+            83,
+            29,
+            5,
+            23,
+            16
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "17_06",
       "case": "ruler_4k_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 400,
+      "metrics": {
+        "recall": {
+          "weighted": 0.995,
+          "readout": 1.0,
+          "delta": 0.0050000000000000044,
+          "paired_bootstrap_95": [
+            0.0,
+            0.0125
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 22.9275,
+        "readout": 24.41
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            24,
+            20,
+            20,
+            19,
+            20,
+            19,
+            25,
+            19
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            26,
+            28,
+            20,
+            27,
+            20,
+            19,
+            25,
+            23
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "17_06",
       "case": "ruler_8k_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 400,
+      "metrics": {
+        "recall": {
+          "weighted": 1.0,
+          "readout": 1.0,
+          "delta": 0.0,
+          "paired_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 23.43,
+        "readout": 24.3
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            20,
+            23,
+            23,
+            26,
+            19,
+            27,
+            23,
+            24
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            20,
+            23,
+            23,
+            25,
+            23,
+            27,
+            27,
+            24
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "17_06",
       "case": "ruler_16k_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 400,
+      "metrics": {
+        "recall": {
+          "weighted": 0.995,
+          "readout": 0.9975,
+          "delta": 0.0025000000000000577,
+          "paired_bootstrap_95": [
+            0.0,
+            0.0075
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 24.2275,
+        "readout": 24.4825
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            20,
+            24,
+            20,
+            23,
+            26,
+            24,
+            23,
+            27
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 8,
+          "first_token_exact": 8,
+          "full_token_sequence_exact": 8,
+          "parsed_answer_exact": 8,
+          "first_divergence_token": [
+            25,
+            27,
+            20,
+            19,
+            26,
+            26,
+            22,
+            27
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "17_06",
       "case": "ruler_32k_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 400,
+      "metrics": {
+        "recall": {
+          "weighted": 0.995,
+          "readout": 0.995,
+          "delta": 0.0,
+          "paired_bootstrap_95": [
+            -0.01,
+            0.01
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 23.435,
+        "readout": 23.755
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 4,
+          "first_token_exact": 4,
+          "full_token_sequence_exact": 4,
+          "parsed_answer_exact": 4,
+          "first_divergence_token": [
+            23,
+            24,
+            26,
+            19
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 4,
+          "first_token_exact": 4,
+          "full_token_sequence_exact": 4,
+          "parsed_answer_exact": 4,
+          "first_divergence_token": [
+            23,
+            23,
+            25,
+            23
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     },
     {
       "pair": "17_06",
@@ -131,10 +1290,180 @@
     {
       "pair": "17_06",
       "case": "hotpot_off",
-      "status": "pending"
+      "status": "accepted",
+      "n": 7405,
+      "metrics": {
+        "em": {
+          "weighted": 0.08453747467927077,
+          "readout": 0.09831195138419986,
+          "delta": 0.013774476704929095,
+          "paired_bootstrap_95": [
+            0.009047940580688724,
+            0.018909520594193097
+          ]
+        },
+        "f1": {
+          "weighted": 0.24331724046985367,
+          "readout": 0.2547189656487804,
+          "delta": 0.011401725178926708,
+          "paired_bootstrap_95": [
+            0.0065924397617458655,
+            0.016448867767931336
+          ]
+        },
+        "raw_em": {
+          "weighted": 0.019041188386225524,
+          "readout": 0.04159351789331533,
+          "delta": 0.022552329507089804,
+          "paired_bootstrap_95": [
+            0.019041188386225524,
+            0.02633355840648211
+          ]
+        },
+        "raw_f1": {
+          "weighted": 0.1950776507212054,
+          "readout": 0.2115412493643281,
+          "delta": 0.016463598643122718,
+          "paired_bootstrap_95": [
+            0.012459637386720327,
+            0.020832636799666612
+          ]
+        }
+      },
+      "length_stops": {
+        "weighted": 0,
+        "readout": 1
+      },
+      "unparsed": {
+        "weighted": 0,
+        "readout": 0
+      },
+      "mean_generated_tokens": {
+        "weighted": 20.35557056043214,
+        "readout": 21.92896691424713
+      },
+      "scoring_v1": {
+        "weighted": null,
+        "readout": null
+      },
+      "generation_parity": {
+        "weighted": {
+          "n": 16,
+          "first_token_exact": 16,
+          "full_token_sequence_exact": 16,
+          "parsed_answer_exact": 16,
+          "first_divergence_token": [
+            21,
+            28,
+            32,
+            19,
+            18,
+            10,
+            18,
+            25,
+            9,
+            14,
+            16,
+            4,
+            9,
+            22,
+            24,
+            11
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        },
+        "readout": {
+          "n": 16,
+          "first_token_exact": 16,
+          "full_token_sequence_exact": 16,
+          "parsed_answer_exact": 16,
+          "first_divergence_token": [
+            21,
+            33,
+            12,
+            2,
+            18,
+            8,
+            3,
+            25,
+            9,
+            14,
+            12,
+            4,
+            5,
+            22,
+            24,
+            11
+          ],
+          "interpretation": "Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores."
+        }
+      }
     }
   ],
-  "upstream": {},
+  "upstream": {
+    "06_17": {
+      "passed": true,
+      "fit_run_sha256": "a0afa550033e24713a89daddc9bee32b93c02b9c24a247d01503667b1e71ef49",
+      "validation_results_sha256": "d604ba787214b268fdc4c39510d6f3e81781e3fa794f9546165e2bb1821a4f2d",
+      "validation_summary": {
+        "weighted": {
+          "weighted_v": 127426.81240451023,
+          "readout_v": 6188.806608995785,
+          "weighted_v_relative": 0.35239834881297505,
+          "readout_v_relative": 0.1297235372884092,
+          "kl_sample_mean": 0.21620029141846345,
+          "kl_token_mean": 0.19283843166373332,
+          "native_ce": 2.105320391453517,
+          "mapped_ce": 2.2755015455056564,
+          "mapped_ppl": 9.732799230343371,
+          "native_ppl": 8.209732916535573
+        },
+        "readout": {
+          "weighted_v": 203719.69787433717,
+          "readout_v": 6571.894107417819,
+          "weighted_v_relative": 0.56338602368628,
+          "readout_v_relative": 0.1377534319879849,
+          "kl_sample_mean": 0.16651668499929878,
+          "kl_token_mean": 0.13721303440344873,
+          "native_ce": 2.105320391453517,
+          "mapped_ce": 2.206441457200964,
+          "mapped_ppl": 9.083335374901933,
+          "native_ppl": 8.209732916535573
+        }
+      }
+    },
+    "17_06": {
+      "passed": true,
+      "fit_run_sha256": "6e7f2e819ac32431d74b162233e3b145e5294fd286cd78c8ee828829109f5f55",
+      "validation_results_sha256": "45b8d88d519793f21e8fe731b7d4a83413d8b97dfd2f9a18a038be01a61892c0",
+      "validation_summary": {
+        "weighted": {
+          "weighted_v": 21184.059895670067,
+          "readout_v": 965.3158367068055,
+          "weighted_v_relative": 0.3171204952416005,
+          "readout_v_relative": 0.12522504603485077,
+          "kl_sample_mean": 0.09157855767983565,
+          "kl_token_mean": 0.08845637493640288,
+          "native_ce": 1.9106254952138724,
+          "mapped_ce": 1.9557308002423741,
+          "mapped_ppl": 7.069083224205496,
+          "native_ppl": 6.757314144582727
+        },
+        "readout": {
+          "weighted_v": 32939.4525567443,
+          "readout_v": 993.7738834316946,
+          "weighted_v_relative": 0.49309601460846647,
+          "readout_v_relative": 0.12891674990593163,
+          "kl_sample_mean": 0.06877092485412842,
+          "kl_token_mean": 0.0644524338067824,
+          "native_ce": 1.9106254952138724,
+          "mapped_ce": 1.9257247140131346,
+          "mapped_ppl": 6.8601184888321205,
+          "native_ppl": 6.757314144582727
+        }
+      }
+    }
+  },
   "interpretation": "Paired fixed-dataset comparison; only V loss differs. Bootstrap intervals describe sampling uncertainty, not variation over fit seeds. No claim of exact hidden paper split or guaranteed improvement.",
-  "protocol_sha256": "862b7532376b07b8bb7379cfed386c249f88d7ae7ca0bd4cd6b6ffb28642d477"
+  "protocol_sha256": "0b20ae900213edca827abd0274b77f7d025ce587fcb72a3d2be1230685db72c6"
 }

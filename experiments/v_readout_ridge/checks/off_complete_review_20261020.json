@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "accepted_cells": 28,
+  "complete": false,
+  "tests": 43,
+  "results_sha256": "250b65550bc48091b6b919ddaf36be4c827c94906489ba394fe334f1ce4ae3ad",
+  "report_sha256": "8d7f3820ec4002c31c5e6812d14de425d3b480a03b3c99d6642c6368c11f897d",
+  "hotpot_diagnostics_sha256": "821200c968c86de804ce5d250f50a19e67d3768ac61c7a049eee7e15796063bb",
+  "no_numerical_code_changes": true,
+  "remaining": "24 reasoning-on cells"
+}
