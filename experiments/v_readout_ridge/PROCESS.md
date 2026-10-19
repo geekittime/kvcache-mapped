@@ -51,3 +51,7 @@ Stopped the four old evaluation queues, preserved all outputs under runs_nondete
 ## MC scorer correction after raw-output review
 
 Found explicit option formats missed by parser v1: LaTeX boxed text wrappers and Markdown option letters. Implemented prediction-only presentation normalization in rescore_mc.py;41 tests passed, including false-positive guards. Apply uniformly to all MC cells; do not alter frozen generation code, token outputs or original metrics. Final reporting uses v2 and saves v1/v2 and changed-row receipts in each full/mc_scoring_v2.json. This supersedes provisional verbal MC scores. See configs/mc_scoring_amendment_v4.json and audit section9.
+
+## Memory-aware queue correction, 2026-10-20
+
+An8192-token MMLU-on smoke exhausted GPU2 memory while32k RULER occupied the same card. Archived traceback and process/log evidence in checks/oom_schedule_v3. No failed smoke was accepted. Restarted only owned evaluation groups with original inputs and generation budgets, preserving complete prediction batches. All GPU calls now acquire a shared scheduling lock, except ARC/MMLU reasoning-on acquire an exclusive lock. This serializes high-memory MC inference while retaining concurrent ordinary jobs. Numerical/runtime/scoring configuration remains unchanged; see scheduling_amendment_v5.json.

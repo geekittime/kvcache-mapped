@@ -1,0 +1,11 @@
+{
+  "created_at": 1792425730.5513284,
+  "trigger": "MMLU-on smoke OOM while simultaneous32k RULER",
+  "change": "Shared GPU lock for ordinary tasks, exclusive GPU lock for8192-token ARC/MMLU reasoning-on",
+  "batch_sizes_unchanged": true,
+  "token_budgets_unchanged": true,
+  "partial_outputs_preserved": true,
+  "numerical_code_unchanged": true,
+  "run_pipeline_sha256": "79ed79c9f60f11bf45073f0cbee19c759ab664ee96fa0a0bdf375e9d76b30797",
+  "original_runtime_sha256": "96ee65d5725f6334020fe50e587c5bae41cf9c3f637524a1ba163355fc33440c"
+}

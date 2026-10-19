@@ -1,5 +1,5 @@
 """Durable stage-gated fit merge, held-out checks and four paired evaluation queues."""
-import argparse,json,os,subprocess,sys,time,traceback
+import argparse,json,os,subprocess,sys,time,traceback,fcntl
 from pathlib import Path
 from core import atomic_json,digest
 from fit import paths
@@ -21,10 +21,20 @@ def wait_exact(info):
 
 def run(cmd,log):
     log=Path(log);log.parent.mkdir(parents=True,exist_ok=True)
+    lease=None
+    if '--device' in cmd:
+        gpu=cmd[cmd.index('--device')+1].replace(':','_')
+        lease=(HERE/'checks'/f'{gpu}.schedule.lock').open('a')
+        task=cmd[cmd.index('--task')+1] if '--task' in cmd else None
+        exclusive='--thinking' in cmd and task in ('arc','mmlu')
+        print('WAIT GPU LEASE',gpu,'exclusive' if exclusive else 'shared',str(log),flush=True)
+        fcntl.flock(lease,fcntl.LOCK_EX if exclusive else fcntl.LOCK_SH)
     with log.open('w') as f:
         proc=subprocess.Popen(cmd,cwd=ROOT,stdout=f,stderr=subprocess.STDOUT)
         atomic_json(log.with_suffix('.process.json'),dict(pid=proc.pid,command=cmd,started_at=time.time()))
         code=proc.wait()
+    if lease is not None:
+        fcntl.flock(lease,fcntl.LOCK_UN);lease.close()
     if code:raise RuntimeError(f'Failed exit {code}: {log}')
 
 def eval_command(pair,mode,gpu,case,output,limit=0):
