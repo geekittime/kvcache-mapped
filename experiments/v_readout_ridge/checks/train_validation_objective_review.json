@@ -1,0 +1,95 @@
+{
+  "descriptive_only": true,
+  "no_parameter_selection": true,
+  "pairs": {
+    "06_17": {
+      "train": {
+        "weighted": {
+          "weighted_train_loss": 50190049.59903708,
+          "readout_train_loss": 2344348.68468666,
+          "penalty": 22463.663611321936,
+          "readout_train_loss_per_example": 5860.87171171665
+        },
+        "readout": {
+          "weighted_train_loss": 79793898.14087349,
+          "readout_train_loss": 1434343.7677297648,
+          "penalty": 10546.002510928769,
+          "readout_train_loss_per_example": 3585.859419324412
+        }
+      },
+      "validation": {
+        "weighted": {
+          "weighted_v": 127426.81240451023,
+          "readout_v": 6188.806608995785,
+          "weighted_v_relative": 0.35239834881297505,
+          "readout_v_relative": 0.1297235372884092,
+          "kl_sample_mean": 0.21620029141846345,
+          "kl_token_mean": 0.19283843166373332,
+          "native_ce": 2.105320391453517,
+          "mapped_ce": 2.2755015455056564,
+          "mapped_ppl": 9.732799230343371,
+          "native_ppl": 8.209732916535573
+        },
+        "readout": {
+          "weighted_v": 203719.69787433717,
+          "readout_v": 6571.894107417819,
+          "weighted_v_relative": 0.56338602368628,
+          "readout_v_relative": 0.1377534319879849,
+          "kl_sample_mean": 0.16651668499929878,
+          "kl_token_mean": 0.13721303440344873,
+          "native_ce": 2.105320391453517,
+          "mapped_ce": 2.206441457200964,
+          "mapped_ppl": 9.083335374901933,
+          "native_ppl": 8.209732916535573
+        }
+      },
+      "fit_sha256": "a0afa550033e24713a89daddc9bee32b93c02b9c24a247d01503667b1e71ef49",
+      "validation_sha256": "d604ba787214b268fdc4c39510d6f3e81781e3fa794f9546165e2bb1821a4f2d"
+    },
+    "17_06": {
+      "train": {
+        "weighted": {
+          "weighted_train_loss": 8320475.157394787,
+          "readout_train_loss": 350912.3972539205,
+          "penalty": 119.27459007558942,
+          "readout_train_loss_per_example": 877.2809931348013
+        },
+        "readout": {
+          "weighted_train_loss": 12855544.856668366,
+          "readout_train_loss": 222793.09926445974,
+          "penalty": 157.87254187630663,
+          "readout_train_loss_per_example": 556.9827481611494
+        }
+      },
+      "validation": {
+        "weighted": {
+          "weighted_v": 21184.059895670067,
+          "readout_v": 965.3158367068055,
+          "weighted_v_relative": 0.3171204952416005,
+          "readout_v_relative": 0.12522504603485077,
+          "kl_sample_mean": 0.09157855767983565,
+          "kl_token_mean": 0.08845637493640288,
+          "native_ce": 1.9106254952138724,
+          "mapped_ce": 1.9557308002423741,
+          "mapped_ppl": 7.069083224205496,
+          "native_ppl": 6.757314144582727
+        },
+        "readout": {
+          "weighted_v": 32939.4525567443,
+          "readout_v": 993.7738834316946,
+          "weighted_v_relative": 0.49309601460846647,
+          "readout_v_relative": 0.12891674990593163,
+          "kl_sample_mean": 0.06877092485412842,
+          "kl_token_mean": 0.0644524338067824,
+          "native_ce": 1.9106254952138724,
+          "mapped_ce": 1.9257247140131346,
+          "mapped_ppl": 6.8601184888321205,
+          "native_ppl": 6.757314144582727
+        }
+      },
+      "fit_sha256": "6e7f2e819ac32431d74b162233e3b145e5294fd286cd78c8ee828829109f5f55",
+      "validation_sha256": "45b8d88d519793f21e8fe731b7d4a83413d8b97dfd2f9a18a038be01a61892c0"
+    }
+  },
+  "interpretation": "The readout fit minimizes its regularized training objective, yet unregularized held-out teacher-attention readout error is higher in both directions. Held-out native-vs-mapped continuation KL and CE are lower. Training optimality does not guarantee validation improvement. Teacher attention is fixed for the intrinsic proxy; runtime attention changes with mapped K and downstream hidden states. These observations do not identify a causal mechanism or justify tuning on benchmark outcomes."
+}
