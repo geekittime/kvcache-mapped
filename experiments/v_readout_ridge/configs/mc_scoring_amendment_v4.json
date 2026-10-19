@@ -1,0 +1,11 @@
+{
+  "created_at": 1792421397.6165204,
+  "supersedes": "MC answer parsing only; raw generation and previous scorer evidence retained",
+  "generation_changed": false,
+  "applies_to": "all ARC-C/MMLU-Pro cells, both directions/modes",
+  "scorer_sha256": "16ccc5809001226de261c5a9dcb3cc4171ac1f090ce3453d84bbc80c9c56da0f",
+  "report_sha256": "8e6a757479d434df59842030310799ad2c9db7d98844af30d4ade26d922844a5",
+  "test_sha256": "026fe6edd2cc56676e6b54158cf7c4d07c3ced42e7d93e37bb3f6562fd4359ba",
+  "tests_passed": 41,
+  "prior_runtime_freeze_sha256": "96ee65d5725f6334020fe50e587c5bae41cf9c3f637524a1ba163355fc33440c"
+}

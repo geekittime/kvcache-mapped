@@ -9,6 +9,7 @@ from prepare_eval import cases,case_name
 from protocol_guards import matching_pair,generation_parity
 from audit_fit import audit as audit_fit
 from audit_upstream import validation as audit_validation,provenance
+from rescore_mc import rescore
 HERE=Path(__file__).resolve().parent
 
 def interval(delta,groups=None):
@@ -50,7 +51,8 @@ def main(require_complete):
                 assert parity==stage['generation_parity']
                 result=json.loads((base/'full/results.json').read_text())
                 assert stage['full_results_sha256']==digest(base/'full/results.json') and result['n']==stage['n']
-                conditions[mode]=(result,read_jsonl(base/'full/predictions.jsonl'));accepted+=1
+                conditions[mode]=rescore(base/'full') if case['task'] in ('arc','mmlu') else (result,read_jsonl(base/'full/predictions.jsonl'))
+                accepted+=1
             if len(conditions)==2:
                 a,ap=conditions['weighted'];b,bp=conditions['readout']
                 matching_pair(a['protocol'],b['protocol'])
@@ -68,6 +70,7 @@ def main(require_complete):
                 entry.update(status='accepted',n=len(ap),metrics=values,
                     length_stops={m:r[0]['length_stops'] for m,r in conditions.items()},
                     unparsed={m:r[0]['unparsed'] for m,r in conditions.items()},
+                    scoring_v1={m:r[0].get('scoring_v1') for m,r in conditions.items()},
                     generation_parity={m:json.loads((HERE/'runs'/pair/m/name/'stage.json').read_text())['generation_parity'] for m in ['weighted','readout']})
             comparisons.append(entry)
     complete=accepted==52
@@ -89,6 +92,7 @@ def main(require_complete):
     lines+=['','06_17 = Qwen3-0.6B → 1.7B; 17_06 = reverse. on/off indicates reasoning mode.',
             'MMLU-Pro uses macro accuracy; ARC-C accuracy; RULER NIAH recall at each length; HotpotQA answer EM/F1 and raw scores.',
             'Intervals use 2,000 paired bootstrap draws (MMLU stratified by subject). They do not measure training-seed variability. No tuning on these outcomes.',
+            'MC scores use parser v2 for LaTeX option wrappers and Markdown option letters. Original parser scores and all changed records remain in per-cell mc_scoring_v2.json.',
             'Full protocol and unavailable author details: README.md. Process and stage evidence: PROCESS.md and checks/.', '']
     atomic_json(HERE/'RESULTS.json',result);(HERE/'RESULTS.md').write_text('\n'.join(lines))
     print(json.dumps(dict(complete=complete,accepted=accepted)),flush=True)
