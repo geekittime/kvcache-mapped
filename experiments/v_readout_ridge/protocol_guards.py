@@ -47,9 +47,11 @@ def generation_parity(smoke,full):
             assert a.get(key)==b.get(key),f'Smoke/full input or reference mismatch: {key}'
         x,y=a['token_ids'],b['token_ids'];n=min(len(x),len(y))
         d=next((i for i in range(n) if x[i]!=y[i]),n)
-        exact.append(x==y);answer.append(a['pred']==b['pred']);first.append(bool(x and y and x[0]==y[0]))
+        exact.append(x==y);answer.append(a['pred']==b['pred'])
+        first.append(x[:1]==y[:1] and (bool(x) or a['eos_token_id']==b['eos_token_id']))
         divergence.append(d)
     assert all(first),'First-token greedy parity failed on identical prompts'
+    assert all(exact) and smoke==full,'Deterministic smoke/full outputs differ'
     return dict(n=len(smoke),first_token_exact=sum(first),full_token_sequence_exact=sum(exact),
         parsed_answer_exact=sum(answer),first_divergence_token=divergence,
-        interpretation='Inputs and first-token predictions match. Later greedy tokens can diverge from small GPU floating-point differences; smoke outputs are not benchmark scores.')
+        interpretation='Deterministic CUDA runtime: identical input and complete generated records. Smoke never contributes to benchmark scores.')

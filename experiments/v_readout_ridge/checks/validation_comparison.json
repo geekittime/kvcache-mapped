@@ -1,0 +1,68 @@
+{
+  "06_17": {
+    "n": 64,
+    "weighted": {
+      "weighted_v": 127426.81240451023,
+      "readout_v": 6188.806608995785,
+      "weighted_v_relative": 0.35239834881297505,
+      "readout_v_relative": 0.1297235372884092,
+      "kl_sample_mean": 0.21620029141846345,
+      "kl_token_mean": 0.19283843166373332,
+      "native_ce": 2.105320391453517,
+      "mapped_ce": 2.2755015455056564,
+      "mapped_ppl": 9.732799230343371,
+      "native_ppl": 8.209732916535573
+    },
+    "readout": {
+      "weighted_v": 203719.69787433717,
+      "readout_v": 6571.894107417819,
+      "weighted_v_relative": 0.56338602368628,
+      "readout_v_relative": 0.1377534319879849,
+      "kl_sample_mean": 0.16651668499929878,
+      "kl_token_mean": 0.13721303440344873,
+      "native_ce": 2.105320391453517,
+      "mapped_ce": 2.206441457200964,
+      "mapped_ppl": 9.083335374901933,
+      "native_ppl": 8.209732916535573
+    },
+    "kl_sample_delta": -0.049683606419164715,
+    "kl_sample_delta_paired_95": [
+      -0.06363170601399264,
+      -0.03492253708703827
+    ],
+    "results_sha256": "d604ba787214b268fdc4c39510d6f3e81781e3fa794f9546165e2bb1821a4f2d"
+  },
+  "17_06": {
+    "n": 64,
+    "weighted": {
+      "weighted_v": 21184.059895670067,
+      "readout_v": 965.3158367068055,
+      "weighted_v_relative": 0.3171204952416005,
+      "readout_v_relative": 0.12522504603485077,
+      "kl_sample_mean": 0.09157855767983565,
+      "kl_token_mean": 0.08845637493640288,
+      "native_ce": 1.9106254952138724,
+      "mapped_ce": 1.9557308002423741,
+      "mapped_ppl": 7.069083224205496,
+      "native_ppl": 6.757314144582727
+    },
+    "readout": {
+      "weighted_v": 32939.4525567443,
+      "readout_v": 993.7738834316946,
+      "weighted_v_relative": 0.49309601460846647,
+      "readout_v_relative": 0.12891674990593163,
+      "kl_sample_mean": 0.06877092485412842,
+      "kl_token_mean": 0.0644524338067824,
+      "native_ce": 1.9106254952138724,
+      "mapped_ce": 1.9257247140131346,
+      "mapped_ppl": 6.8601184888321205,
+      "native_ppl": 6.757314144582727
+    },
+    "kl_sample_delta": -0.022807632825707226,
+    "kl_sample_delta_paired_95": [
+      -0.02926547862540974,
+      -0.01695884635655633
+    ],
+    "results_sha256": "45b8d88d519793f21e8fe731b7d4a83413d8b97dfd2f9a18a038be01a61892c0"
+  }
+}

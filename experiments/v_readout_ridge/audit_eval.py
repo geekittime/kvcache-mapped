@@ -25,6 +25,11 @@ def audit(out,require_formal=False):
     assert len(preds)==len(expected) and {x['index'] for x in preds}==set(expected)
     formal=require_formal or run['train_count']==400
     case=formal_protocol(p,len(preds),run) if formal else None
+    if formal:
+        runtime=json.loads((out/'runtime.json').read_text())
+        assert runtime['cublas_workspace_config']==':4096:8' and runtime['deterministic_algorithms'] is True
+        assert runtime['seed']==42 and runtime['wrapper_sha256']==digest(HERE/'deterministic_eval.py')
+        assert runtime['evaluate_sha256']==digest(HERE/'evaluate.py')
     frozen_hashes=json.loads((HERE/'checks/prompt_hashes.json').read_text())[case['name']] if formal else None
     if formal:
         assert hashlib.sha256(json.dumps(frozen_hashes).encode()).hexdigest()==case['prompt_hash_list_sha256']

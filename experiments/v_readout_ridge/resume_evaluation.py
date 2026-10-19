@@ -15,11 +15,13 @@ def main():
         assert validation(HERE/'checks'/f'validation_{pair}_full')['n']==64
     procs=[]
     for gpu,(pair,mode) in enumerate([('06_17','weighted'),('06_17','readout'),('17_06','weighted'),('17_06','readout')]):
-        cmd=[sys.executable,str(HERE/'run_pipeline.py'),'--worker','--pair',pair,'--mode',mode,'--gpu',str(gpu)]
-        log=(HERE/'checks'/f'eval_{pair}_{mode}.log').open('w')
-        p=subprocess.Popen(cmd,cwd=HERE.parents[1],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-        atomic_json(HERE/'checks'/f'eval_{pair}_{mode}_process.json',dict(pid=p.pid,command=cmd,started_at=time.time(),resume=True))
-        procs.append((pair,mode,p,log))
+        for lane in [0,1]:
+            cmd=[sys.executable,str(HERE/'run_pipeline.py'),'--worker','--pair',pair,'--mode',mode,'--gpu',str(gpu),
+                 '--lane',str(lane),'--lanes','2']
+            log=(HERE/'checks'/f'eval_{pair}_{mode}_lane{lane}.log').open('w')
+            p=subprocess.Popen(cmd,cwd=HERE.parents[1],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+            atomic_json(HERE/'checks'/f'eval_{pair}_{mode}_lane{lane}_process.json',dict(pid=p.pid,command=cmd,started_at=time.time(),resume=True))
+            procs.append((pair,mode,p,log))
     failures=[]
     for pair,mode,p,log in procs:
         code=p.wait();log.close()
@@ -30,7 +32,7 @@ def main():
         code=subprocess.call(cmd,cwd=HERE.parents[1],stdout=log,stderr=subprocess.STDOUT)
     if code:raise RuntimeError(f'Final report rejected, exit={code}')
     with (HERE/'PROCESS.md').open('a') as f:
-        f.write('\n## Evaluation resume after numeric parity review\n\nAll existing cells were preserved. Smoke/full prompt IDs, references, and first greedy token are checked exactly. Full decoded text can diverge later due GPU floating-point sensitivity, so its divergence and parsed-answer parity are recorded rather than incorrectly requiring byte equality. Formal benchmark outputs remain independently rescored.\n')
+        f.write('\n## Deterministic evaluation completed\n\nAll52 formal cells passed independent auditing and exact smoke/full record parity under deterministic CUDA settings. Two disjoint queues per GPU preserved every case and its batch geometry. See RESULTS.md. Archived nondeterministic outputs are excluded.\n')
     print('ALL EVALUATION CELLS COMPLETED AND AUDITED',flush=True)
 
 if __name__=='__main__':

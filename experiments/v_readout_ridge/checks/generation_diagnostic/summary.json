@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "results": {
+    "default": {
+      "n": 32,
+      "exact_generated_records": 18,
+      "all_top2_steps_identical": false,
+      "files_sha256": {
+        "default_seed42.json": "de94161bc726a710f661ef4fa1f899361ef0be7ced11d313914ff2e1701923f8",
+        "default_seed43.json": "6c05a4b47d04d0d7b715cb2e46af75c34bd557424e037779e9aa325f24408efa"
+      }
+    },
+    "deterministic": {
+      "n": 32,
+      "exact_generated_records": 32,
+      "all_top2_steps_identical": true,
+      "files_sha256": {
+        "deterministic_seed42.json": "3c927fc02c9b529f52409924ad08de720c568896cffdee2829aab4c6ca957290",
+        "deterministic_seed43.json": "29551200e10b3a0b860868eed9769a5ac5692b5589bf360327b1532b1202b11d"
+      }
+    }
+  },
+  "diagnostic_only": true
+}

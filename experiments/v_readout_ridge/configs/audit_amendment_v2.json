@@ -14,10 +14,9 @@
     "audit_fit.py": "afea6cb514e4fb75212b2289d87a0c0cc95d426b98aba0ab821addf48438656f",
     "audit_upstream.py": "faf16346e7e2c09cab8778eb10fa4fe203936c4aca02ca498b1da35981189cc8",
     "audit_training_source.py": "e8cff05d7b6d15f9d599ddef3fa6184ad07948a54c550f29b0dd47412826ce61",
-    "protocol_guards.py": "4efad8d36794d462032513902b84adcd687403c157911671ff35ecb7440bd925",
-    "report.py": "cf52a7f632ab7da9143291d47b6d69208a59cf7f1272162758915c9e6c16509c",
-    "run_pipeline.py": "20bdfeaf7372491067528060c85163548a7844959f3241844ac0270973070e33",
-    "resume_evaluation.py": "3cc94db1e06031c871b43857f036fa1d9dca4b519872734846c9d09265ba9fc0"
+    "protocol_guards.py": "c0560fe0aeeaa3cec3893ccb399a179eab70e2a18793911102babbab27ea1c34",
+    "report.py": "32331da183aebda867a9c26de14a2da89ec64912863399567af39e51a7616d2f",
+    "run_pipeline.py": "3c32573d520c129822cc175dca288ad2037fa3b6f2814c2c47211a8dafbe2df2"
   },
   "reason": "Strengthen acceptance gates; no fitting, inference, scoring or scientific protocol changes."
 }

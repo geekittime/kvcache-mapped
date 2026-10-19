@@ -29,7 +29,7 @@ def run(cmd,log):
 
 def eval_command(pair,mode,gpu,case,output,limit=0):
     sp,tp=paths(pair)
-    cmd=[sys.executable,str(HERE/'evaluate.py'),'--artifact',str(HERE/'artifacts'/pair/'full_v1'),
+    cmd=[sys.executable,str(HERE/'deterministic_eval.py'),'--artifact',str(HERE/'artifacts'/pair/'full_v1'),
          '--output',str(output),'--task',case['task'],'--mode',mode,'--source-model',sp,'--target-model',tp,
          '--device',f'cuda:{gpu}','--batch-size',str(case['batch_size']),'--limit',str(limit)]
     if case['length']:cmd+=['--length',case['length']]
@@ -44,7 +44,7 @@ def worker(a):
     data=json.loads((HERE/'checks/evaluation_inputs.json').read_text());assert data['passed']
     for name,value in data['code_sha256'].items():assert digest(HERE/name)==value
     # Finish all reasoning-off including Hotpot before longer reasoning-on cases.
-    queue=sorted(cases(),key=lambda c:c['thinking'])
+    queue=sorted(cases(),key=lambda c:c['thinking'])[a.lane::a.lanes]
     for case in queue:
         name=case_name(case);base=HERE/'runs'/a.pair/a.mode/name
         if (base/'stage.json').exists():
@@ -113,9 +113,10 @@ def pipeline():
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--worker',action='store_true');p.add_argument('--pair');p.add_argument('--mode');p.add_argument('--gpu',type=int)
+    p.add_argument('--lane',type=int,default=0);p.add_argument('--lanes',type=int,default=1)
     a=p.parse_args()
     try:worker(a) if a.worker else pipeline()
     except Exception:
-        name=f'failure_{a.pair}_{a.mode}' if a.worker else 'pipeline_failure'
+        name=f'failure_{a.pair}_{a.mode}_lane{a.lane}' if a.worker else 'pipeline_failure'
         atomic_json(HERE/'checks'/(name+'.json'),dict(failed_at=time.time(),traceback=traceback.format_exc()))
         raise

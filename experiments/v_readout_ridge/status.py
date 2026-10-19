@@ -29,7 +29,7 @@ def main():
                 result['evaluation'].append(dict(pair=pair,mode=mode,case=path.name,
                     stage_audited=(path/'stage.json').exists(),full_progress=last_progress(path/'full.log'),
                     smoke_progress=last_progress(path/'smoke.log')))
-    for p in list((HERE/'checks').glob('failure_*.json'))+list((HERE/'checks').glob('pipeline_failure.json')):
+    for p in list((HERE/'checks').glob('failure_*.json'))+list((HERE/'checks').glob('*_failure.json')):
         result['failures'].append(dict(path=str(p),details=json.loads(p.read_text())))
     print(json.dumps(result,ensure_ascii=False,indent=2))
 

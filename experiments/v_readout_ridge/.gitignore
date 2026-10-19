@@ -1,3 +1,5 @@
-checks/*.log
-checks/prompt_hashes.json
-*.lock
+# Preserve locally for diagnosis; do not publish archived benchmark output trees.
+runs_nondeterministic_v1/
+# Large per-token diagnostics have compact checksums and counts in summary.json.
+checks/generation_diagnostic/default_seed*.json
+checks/generation_diagnostic/deterministic_seed*.json

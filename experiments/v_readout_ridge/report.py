@@ -68,7 +68,7 @@ def main(require_complete):
                 entry.update(status='accepted',n=len(ap),metrics=values,
                     length_stops={m:r[0]['length_stops'] for m,r in conditions.items()},
                     unparsed={m:r[0]['unparsed'] for m,r in conditions.items()},
-                    generation_parity={m:json.loads((HERE/'runs'/pair/mode/name/'stage.json').read_text())['generation_parity'] for m in ['weighted','readout']})
+                    generation_parity={m:json.loads((HERE/'runs'/pair/m/name/'stage.json').read_text())['generation_parity'] for m in ['weighted','readout']})
             comparisons.append(entry)
     complete=accepted==52
     if require_complete:assert complete,f'Only {accepted}/52 audited complete cells'

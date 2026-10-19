@@ -29,15 +29,22 @@ def test_paired_budget_mismatch_rejected():
     b['max_new']=1024
     with pytest.raises(AssertionError,match='max_new'):matching_pair(a,b)
 
-def test_greedy_tail_drift_is_recorded_but_input_and_first_token_are_required():
+def test_deterministic_greedy_tail_drift_is_rejected():
     a=dict(index=0,id='0',prompt_tokens=4,prompt_ids_sha256='same',gold='A',
            token_ids=[8,9,10],pred='A')
     b=dict(index=0,id='0',prompt_tokens=4,prompt_ids_sha256='same',gold='A',
            token_ids=[8,9,11],pred='A')
+    with pytest.raises(AssertionError,match='Deterministic'):generation_parity([a],[b])
+    b['token_ids']=[8,9,10]
     result=generation_parity([a],[b])
-    assert result['first_token_exact']==1 and result['full_token_sequence_exact']==0
-    assert result['parsed_answer_exact']==1 and result['first_divergence_token']==[2]
+    assert result['full_token_sequence_exact']==1
     b['prompt_ids_sha256']='different'
     with pytest.raises(AssertionError):generation_parity([a],[b])
     b['prompt_ids_sha256']='same';b['token_ids'][0]=7
     with pytest.raises(AssertionError,match='First-token'):generation_parity([a],[b])
+
+def test_identical_immediate_eos_is_a_valid_failed_answer_not_a_pipeline_error():
+    a=dict(index=0,id='0',prompt_tokens=4,prompt_ids_sha256='same',gold='A',
+           token_ids=[],pred='',eos_token_id=151645,stop_reason='eos')
+    result=generation_parity([a],[dict(a)])
+    assert result['full_token_sequence_exact']==1 and result['first_token_exact']==1

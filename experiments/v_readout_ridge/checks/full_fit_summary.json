@@ -1,0 +1,16 @@
+{
+  "06_17": {
+    "n": 400,
+    "passed": true,
+    "K_bitwise_equal": true,
+    "max_saved_fp32_normal_residual": 2.1259379048524314e-07,
+    "run_sha256": "a0afa550033e24713a89daddc9bee32b93c02b9c24a247d01503667b1e71ef49"
+  },
+  "17_06": {
+    "n": 400,
+    "passed": true,
+    "K_bitwise_equal": true,
+    "max_saved_fp32_normal_residual": 1.0830965091689289e-07,
+    "run_sha256": "6e7f2e819ac32431d74b162233e3b145e5294fd286cd78c8ee828829109f5f55"
+  }
+}

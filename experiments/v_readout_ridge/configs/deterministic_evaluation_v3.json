@@ -1,0 +1,20 @@
+{
+  "created_at": 1792417128.2638373,
+  "supersedes": "nondeterministic v1 formal evaluation outputs; all archived, excluded",
+  "scientific_settings_unchanged": true,
+  "fit_artifacts_reused": true,
+  "numerical_core_unchanged": true,
+  "cublas_workspace_config": ":4096:8",
+  "deterministic_algorithms": true,
+  "seed": 42,
+  "exact_full_smoke_required": true,
+  "code_sha256": {
+    "deterministic_eval.py": "75639205e41d85bd269d9c460ef8dc41710a871df8558c64c18921a36162d3b7",
+    "run_pipeline.py": "f1211827e74f9488f23e11e7978c2a63db94cec5c6a77b899aa23e4035bafdac",
+    "resume_evaluation.py": "c1a5e7dc1237e76a52a5fe8606da67bc5ccc685ecb4528725568288bfaeddc30",
+    "audit_eval.py": "0e40b833ec82e6d96906f4c6ad7da819e0165c19c8ad6403726dc7f712c0519f",
+    "report.py": "b57aa29b1e1dc04c06916a77dc49016cdd4b5952d842f05a940614a5425fdd3d",
+    "protocol_guards.py": "60217c07f6f6b14c5bf6b214a75e55d91e4141b949376aef1f0477063d2ffe68"
+  },
+  "queues_per_gpu": 2
+}

@@ -24,4 +24,6 @@ source experiments/v_readout_ridge/env.sh
 .venv/bin/python experiments/v_readout_ridge/status.py
 ```
 
-The already-launched durable coordinator is recorded in `checks/pipeline_process.json`. Do not launch it a second time against the same output paths. It uses the four exact fit processes in `checks/fit_processes.json`, then stage-gated validation and evaluation. `report.py --require-complete` independently audits all full cells and refuses to declare success until all52 pass.
+The current durable coordinator is recorded in `checks/resume_evaluation_process.json` (the original fit coordinator is historical). Do not launch another coordinator against the same output paths. Both400-example fits and both64-example validation sets have passed their gates. Two disjoint case queues per GPU now evaluate under `deterministic_eval.py`: deterministic PyTorch algorithms, CUBLAS workspace `:4096:8`, seed42, with per-output runtime receipts. Exact full smoke/full record parity is required. This fixes a reproduced default-CUDA decoding nondeterminism; prior outputs are archived under `runs_nondeterministic_v1/` and excluded. See AUDIT_20261019.md §8 and configs/deterministic_evaluation_v3.json.
+
+`report.py --require-complete` independently audits all full cells and refuses to declare success until all52 pass. Current interim results, when generated, explicitly mark incomplete cells. Fit and validation numerical code/weights, prompts, budgets and scoring rules are unchanged by the deterministic evaluation correction.
