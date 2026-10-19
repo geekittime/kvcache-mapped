@@ -1,0 +1,33 @@
+{
+  "completed": true,
+  "training_sha256": "346b97a57dcb6b5f1d0873f4aa34c387c8582d88142deb1bcf6878091051c3a0",
+  "train_count": 400,
+  "screen": "Full normalized question substring in training prefixes+continuations, >=40 characters and >=8 words",
+  "limitation": "No semantic/paraphrase detection; short ambiguous questions excluded. This cannot certify the original model pretraining corpus.",
+  "checks": [
+    {
+      "task": "arc",
+      "dataset_sha256": "03227c30fd557ad1416c2cb955eeb6dc79eeb21e0679456a1ccd42eaccc0ff87",
+      "n": 1172,
+      "screened": 1103,
+      "short_question_excluded": 69,
+      "normalized_exact_matches": []
+    },
+    {
+      "task": "mmlu",
+      "dataset_sha256": "6d90095e9161ff6a31d22cf335265f0a76caecc3cc183be74dfb55e06f5645c5",
+      "n": 1400,
+      "screened": 1307,
+      "short_question_excluded": 93,
+      "normalized_exact_matches": []
+    },
+    {
+      "task": "hotpot",
+      "dataset_sha256": "e545c27a9edd47dce8d1efb779bb27de2452a456557b4be6f3ed6014423e4ca3",
+      "n": 7405,
+      "screened": 7285,
+      "short_question_excluded": 120,
+      "normalized_exact_matches": []
+    }
+  ]
+}

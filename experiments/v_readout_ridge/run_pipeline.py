@@ -26,7 +26,7 @@ def run(cmd,log):
         gpu=cmd[cmd.index('--device')+1].replace(':','_')
         lease=(HERE/'checks'/f'{gpu}.schedule.lock').open('a')
         task=cmd[cmd.index('--task')+1] if '--task' in cmd else None
-        exclusive='--thinking' in cmd and task in ('arc','mmlu')
+        exclusive=os.environ.get('KV_LINGO_SERIALIZE_ALL')=='1' or ('--thinking' in cmd and task in ('arc','mmlu'))
         print('WAIT GPU LEASE',gpu,'exclusive' if exclusive else 'shared',str(log),flush=True)
         fcntl.flock(lease,fcntl.LOCK_EX if exclusive else fcntl.LOCK_SH)
     with log.open('w') as f:

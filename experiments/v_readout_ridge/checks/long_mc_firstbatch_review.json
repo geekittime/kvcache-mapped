@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "pair": "17_06",
+  "results": {
+    "weighted": {
+      "n": 32,
+      "entire_records_exact": true,
+      "max_new": 8192,
+      "smoke_length_stops": 5
+    },
+    "readout": {
+      "n": 32,
+      "entire_records_exact": true,
+      "max_new": 8192,
+      "smoke_length_stops": 5
+    }
+  }
+}

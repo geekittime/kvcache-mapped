@@ -1,0 +1,9 @@
+{
+  "created_at": 1792429164.237634,
+  "previous_scheduling_sha256": "b84afe5eb648b7acd61c8e46a4dafd3c0279078045f1ec9aa7834afb07db0ef0",
+  "run_pipeline_sha256": "18ec72d010f8b1894d7f620af82871f2752e4ee6dda28849817a8ef9592f87c6",
+  "guard_execution_sha256": "b1e1696e74102ddd724be1380351dc17104e3175fcee2bcb100b7fe8e79ca1bd",
+  "test_sha256": "9607408686d73c32da8b7fe763071d87bd1d55e66f9ef2f2fb6eac3753aa9f6e",
+  "numerical_changes": false,
+  "policy": "Monitor existing coordinator, archive proof and retry resource-only failures with all-GPU-exclusive calls; never bypass audit; require52 accepted cells"
+}

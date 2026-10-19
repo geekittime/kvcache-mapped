@@ -55,3 +55,13 @@ Found explicit option formats missed by parser v1: LaTeX boxed text wrappers and
 ## Memory-aware queue correction, 2026-10-20
 
 An8192-token MMLU-on smoke exhausted GPU2 memory while32k RULER occupied the same card. Archived traceback and process/log evidence in checks/oom_schedule_v3. No failed smoke was accepted. Restarted only owned evaluation groups with original inputs and generation budgets, preserving complete prediction batches. All GPU calls now acquire a shared scheduling lock, except ARC/MMLU reasoning-on acquire an exclusive lock. This serializes high-memory MC inference while retaining concurrent ordinary jobs. Numerical/runtime/scoring configuration remains unchanged; see scheduling_amendment_v5.json.
+
+## Continued execution review, 2026-10-20
+
+At this review24/52 deterministic formal cells were complete; every completed stage passed exact entire-record smoke/full equality. Both17_06 MMLU-on full first batches separately matched all32 smoke records including8192-token capped examples. Memory-aware scheduling was verified to serialize long MC and retain shared ordinary tasks; no new failure records after the scheduling fix. Full400 fits and64 validation sets remain accepted. Long-running generation is still incomplete and must not be reported as complete. The background coordinator runs the remaining queues and calls report.py --require-complete before writing the completion marker.
+
+Added an exact normalized question substring screen over calibration prefixes, continuations and filler conversations: zero matches among1,103 ARC,1,307 MMLU and7,285 Hotpot questions with>=40 characters/>=8 words. Short questions were excluded; no claim of semantic contamination exclusion. Evidence in checks/benchmark_overlap_screen.json. RUNBOOK.md documents commands, gates and safe recovery. No push.
+
+## Durable resource-only recovery guard
+
+Added guard_execution.py around the already-live coordinator. It verifies process identity, writes minute-level progress, permits at most two automatic retries only for CUDA OOM, archives all relevant logs and preserves saved batches. OOM retry sets all GPU calls exclusive without changing batch sizes, budgets, numerical code or scoring. Non-resource failures stop; no audit bypass. Only52/52 accepted complete results plus coordinator exit creates guard_complete.json.43 tests passed, including rejection of numerical/input failures as resource retries. Evidence: resource_guard_v6.json and checks/guard_process.json.
