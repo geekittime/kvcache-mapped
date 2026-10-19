@@ -20,6 +20,12 @@ Started durable run_pipeline.py after these gates. It verifies exact fit process
 
 All13 prompt cases completed preparation with exact tokenizer ID equality and context-budget checks. Every selected MMLU-PRO/ARC-C JSON record equals its downloaded parquet record. Independently reconstructed all7405 HotpotQA prompts from raw validation parquet: all original distractor documents included in order, correct references, no appended gold answer or supporting-fact labels. The legacy Hotpot dataset manifest still mentions first500 (an old experiment); this run explicitly selects all7405 in its own immutable protocol and does not use that old subset annotation. Source audit proofs are in checks/benchmark_source_review.json and checks/hotpot_source_review.json.
 
+## Continued pre-evaluation review
+
+Verified all four full-fit processes and the durable coordinator remain live; no failure records. Added an independent teacher-forcing test against a full forward on a tiny Qwen3 model, covering131 continuation tokens and both64-token chunk boundaries. It passed; this is a new check of the existing validation implementation, with no change to numerical code or fitting protocol.
+
+Ran actual32k RULER cache injection for both directions at the planned batch size4, using the existing smoke mappers and16-token output cap. Both completed all four rows and passed independent prompt retokenization, saved-token decoding and score/reference auditing. These are execution checks, not accepted benchmark results. Evidence: checks/continuation_stage_review.json and checks/ruler32k_capacity_*/. Formal runs retain the2048-token RULER budget and full400-example fitted mappers. The current two directions each reached170/400 fit examples at this review; held-out validation and formal benchmarks are still pending. Existing fitting/evaluation code fingerprints remain unchanged. No push.
+
 ## Algebra, smoke and real-model gates passed
 
 Seven mathematical tests passed. Both directions completed four-example smoke fits; all 28 layers passed regularized normal residual and cross-objective optimum checks, K matrices bitwise equal. Actual BF16 identity cache and split logits checks passed for both models. Full-length native 1.7B capture at the longest training prefix passed all 28 layers: independently computed attention mass equal; identity readout cross/target moments equal direct Gram slices. Evidence in checks and artifacts/*/smoke_v1. Started fresh full400 fits on four GPUs, two shards per direction, collecting both conditions together. No old mapper reused.

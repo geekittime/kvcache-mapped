@@ -1,0 +1,27 @@
+{
+  "artifact": "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/06_17/smoke_v1",
+  "output": "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/checks/ruler32k_capacity_06_17",
+  "task": "ruler",
+  "mode": "readout",
+  "length": "32k",
+  "source_model": "/home/tiger/models/Qwen3-0.6B",
+  "target_model": "/home/tiger/models/Qwen3-1.7B",
+  "device": "cuda:0",
+  "max_new": 16,
+  "limit": 4,
+  "shards": 1,
+  "shard": 0,
+  "batch_size": 4,
+  "thinking": false,
+  "data": "/home/tiger/datasets/RULER_generated/32k/niah_single_2/validation.jsonl",
+  "data_sha256": "9821e599898c3fe368d32ac6cc8841dc8835da25f80693fe98664c42776aed87",
+  "code_sha256": {
+    "evaluate.py": "57716538b115fbda8247d3628acbb68762501df82fa6ab64b46b2433d9ef77fc",
+    "core.py": "423ec5fa31bd4eee3e5fe7256be9617c7a341707a4f1e1aac772c51adda4e300"
+  },
+  "scoring": "generation, prediction-only extraction; official Hotpot answer normalization/F1",
+  "mapper_run_sha256": "8a0fdbae4bd11baa75846b4e1907bb4626ecc1cc1833ed7e6219b358947e3931",
+  "model_config_sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+  "source_config_sha256": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd",
+  "tokenizer_config_sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+}

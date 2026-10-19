@@ -1,0 +1,60 @@
+[
+  {
+    "pid": 1394589,
+    "command": [
+      "/home/tiger/kvcache-mapped/.venv/bin/python",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/evaluate.py",
+      "--artifact",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/06_17/smoke_v1",
+      "--output",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/checks/ruler32k_capacity_06_17",
+      "--task",
+      "ruler",
+      "--length",
+      "32k",
+      "--mode",
+      "readout",
+      "--source-model",
+      "/home/tiger/models/Qwen3-0.6B",
+      "--target-model",
+      "/home/tiger/models/Qwen3-1.7B",
+      "--device",
+      "cuda:0",
+      "--batch-size",
+      "4",
+      "--limit",
+      "4",
+      "--max-new",
+      "16"
+    ]
+  },
+  {
+    "pid": 1394590,
+    "command": [
+      "/home/tiger/kvcache-mapped/.venv/bin/python",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/evaluate.py",
+      "--artifact",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/artifacts/17_06/smoke_v1",
+      "--output",
+      "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/checks/ruler32k_capacity_17_06",
+      "--task",
+      "ruler",
+      "--length",
+      "32k",
+      "--mode",
+      "readout",
+      "--source-model",
+      "/home/tiger/models/Qwen3-1.7B",
+      "--target-model",
+      "/home/tiger/models/Qwen3-0.6B",
+      "--device",
+      "cuda:2",
+      "--batch-size",
+      "4",
+      "--limit",
+      "4",
+      "--max-new",
+      "16"
+    ]
+  }
+]

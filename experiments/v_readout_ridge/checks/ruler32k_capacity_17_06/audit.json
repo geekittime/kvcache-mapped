@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "n": 4,
+  "complete_dataset": false,
+  "predictions_sha256": "d655106e06502d8b99f6cc00e3d6ea10878296cb186875a181223b464e2f38d8",
+  "results_sha256": "5140001b6ac496c24708391201921d8259e19414c6747579cc45a09f2d5cdacd",
+  "checks": [
+    "exact row coverage",
+    "source/mapper/data fingerprints",
+    "retokenized prompts",
+    "decoded saved output tokens",
+    "fresh score and aggregate",
+    "budget and stop accounting"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "checked_at": 1792404691.451391,
+  "decoder_alignment_test_passed": true,
+  "decoder_test_sha256": "a14130eeb9b89bb28139e370963b0044ce8808431ed7241e4467252e3a919e67",
+  "long_context_checks": [
+    {
+      "pair": "06_17",
+      "passed": true,
+      "n": 4,
+      "max_prompt_tokens": 32651,
+      "smoke_only": true,
+      "audit_sha256": "afa6a85ed3ec282fac4edbd710029f3d0effb8332609697b1997648946982d79"
+    },
+    {
+      "pair": "17_06",
+      "passed": true,
+      "n": 4,
+      "max_prompt_tokens": 32651,
+      "smoke_only": true,
+      "audit_sha256": "31a8f82b1a7fb3ccabdaf635d9b6a2206d8c2e1ae52663745ca04e296e2126e3"
+    }
+  ],
+  "scope": "Independent teacher-forcing offsets and 32k batch4 cache execution; short16-token decoding with smoke mappers, no benchmark acceptance"
+}
