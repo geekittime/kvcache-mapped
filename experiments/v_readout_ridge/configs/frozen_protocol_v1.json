@@ -1,0 +1,68 @@
+{
+  "fit": {
+    "directions": [
+      "06_17",
+      "17_06"
+    ],
+    "conditions": [
+      "weighted",
+      "readout"
+    ],
+    "train_count": 400,
+    "validation_count": 64,
+    "lambda": 0.01,
+    "bias": false,
+    "attention_normalization": "prefix",
+    "head_mixing": true,
+    "source_layer_map": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27
+    ],
+    "source": "/home/tiger/kvcache-mapped/experiments/v_readout_ridge/README.md"
+  },
+  "files": {
+    "real_cache_check.py": "55bb4b51831055d6cd5db0200035490c91a9fdc6a49f7f026878cdc9c1fc1bd4",
+    "readout.py": "2149fef9ad7bff10ec4edcbdc3f925b60d7923690bf540a67f37935c3effa74a",
+    "prepare_eval.py": "1d7a5f016907299ca1440ae1a6f113c37187ddd14af69e6a9771c7cbdfa13dfa",
+    "audit_eval.py": "abcd27932ed5c2e35989e425f82926faf5bc0f76bc10989f30b5b4784ec779cb",
+    "real_readout_check.py": "1a1e2d263e903d122e00f972b04cb26b58e5370bf68c44fab10f4135bef913a8",
+    "check_data.py": "5c3db08df57e5b6a9f21bfa6668704640f461839601e6ed78621276a0ff22a5b",
+    "status.py": "476110d03e5bac3e41e4cf5dfbe684cc812dcdb8157f70ec19b031e3bb7f6cdf",
+    "fit.py": "d94f06d64322d0d79c98d1e2cc5746819c814a8b05203526a3615e99c95e299e",
+    "validate.py": "b3a6842ad88bc4321347df2105157d55a22224884ac097ea1eac819dd90d296a",
+    "evaluate.py": "57716538b115fbda8247d3628acbb68762501df82fa6ab64b46b2433d9ef77fc",
+    "run_pipeline.py": "a4005feda63db9138877af649c0497a1f20854df46784521ad7cd854d13fe3c8",
+    "report.py": "f2e0dfee8e4988789a85be54ffc574499a2a9cdfa7c43e16051234735d481726",
+    "core.py": "423ec5fa31bd4eee3e5fe7256be9617c7a341707a4f1e1aac772c51adda4e300",
+    "env.sh": "65adf2f1b7bdadd6dcc676911483a0a01f06a8dbd478e8efb928c00c74b1963e",
+    "README.md": "862b7532376b07b8bb7379cfed386c249f88d7ae7ca0bd4cd6b6ffb28642d477",
+    "DERIVATION.md": "0fe360fc4c8500e71093bcad3294b21bbdff001bc1537f2611013325832bcfb1",
+    "source/environment_freeze.txt": "f8820cb51424a4575b5d30bb1562a99ee6c7f91c8ba9c43bb75b9ab615d2866e"
+  }
+}
