@@ -1,6 +1,6 @@
 # V weighted ridge vs V readout ridge
 
-Audited full cells: 28/52. Complete: False.
+Audited full cells: 29/52. Complete: False.
 
 | Direction | Task/mode | n | Metric | Weighted (%) | Readout (%) | Δ (pp) | Paired 95% CI (pp) |
 |---|---|---:|---|---:|---:|---:|---|
@@ -37,6 +37,23 @@ Audited full cells: 28/52. Complete: False.
 | 17_06 | hotpot_off | 7405 | raw_em | 1.904 | 4.159 | +2.255 | [+1.904, +2.633] |
 | 17_06 | hotpot_off | 7405 | raw_f1 | 19.508 | 21.154 | +1.646 | [+1.246, +2.083] |
 
+Individually audited full cells awaiting the paired condition (no paired conclusion yet):
+
+| Direction | Task/mode | Completed condition | n | Metric | Score (%) |
+|---|---|---|---:|---|---:|
+| 06_17 | arc_on | weighted | 1172 | accuracy | 86.092 |
+
+Held-out validation, 64 examples per direction (lower is better):
+
+| Direction | Condition | KL per example | KL per token | CE per token | Perplexity | Relative V readout squared error |
+|---|---|---:|---:|---:|---:|---:|
+| 06_17 | weighted | 0.216200 | 0.192838 | 2.275502 | 9.732799 | 0.129724 |
+| 06_17 | readout | 0.166517 | 0.137213 | 2.206441 | 9.083335 | 0.137753 |
+| 17_06 | weighted | 0.091579 | 0.088456 | 1.955731 | 7.069083 | 0.125225 |
+| 17_06 | readout | 0.068771 | 0.064452 | 1.925725 | 6.860118 | 0.128917 |
+
+KL per example averages each continuation's per-token KL equally across examples; KL/CE per token pool all continuation tokens. Relative readout error divides pooled squared error by pooled native readout energy. The readout fit lowers regularized training readout loss and held-out continuation KL/CE, but its held-out teacher-attention readout error is higher in both directions. These proxies must not be described as uniformly improving.
+
 Generation diagnostics for complete paired cells (weighted/readout):
 
 | Direction | Task/mode | n | Length stops | Unparsed | Mean generated tokens |
@@ -56,6 +73,7 @@ Generation diagnostics for complete paired cells (weighted/readout):
 | 17_06 | ruler_32k_off | 400 | 0/0 | 0/0 | 23.43/23.75 |
 | 17_06 | hotpot_off | 7405 | 0/1 | 0/0 | 20.36/21.93 |
 
+Report generated at 2026-10-20T01:49:35.076888+00:00 (UTC). Only cells present and audited during this report are included.
 06_17 = Qwen3-0.6B → 1.7B; 17_06 = reverse. on/off indicates reasoning mode.
 MMLU-Pro uses macro accuracy; ARC-C accuracy; RULER NIAH recall at each length; HotpotQA answer EM/F1 and raw scores.
 Intervals use 2,000 paired bootstrap draws (MMLU stratified by subject). They do not measure training-seed variability. No tuning on these outcomes.

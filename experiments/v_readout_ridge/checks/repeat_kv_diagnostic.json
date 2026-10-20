@@ -1,0 +1,45 @@
+{
+  "synthetic_only": true,
+  "production_changed": false,
+  "rows": [
+    {
+      "n": 512,
+      "exact": true,
+      "stride": [
+        1048576,
+        65536,
+        128,
+        1
+      ],
+      "expand_reshape": 0.0001564759761095047,
+      "cat_heads": 0.0001388896256685257,
+      "repeat_interleave": 0.00015661027282476425
+    },
+    {
+      "n": 4096,
+      "exact": true,
+      "stride": [
+        8388608,
+        524288,
+        128,
+        1
+      ],
+      "expand_reshape": 0.0011274194344878196,
+      "cat_heads": 0.0010464360937476158,
+      "repeat_interleave": 0.001127023622393608
+    },
+    {
+      "n": 8192,
+      "exact": true,
+      "stride": [
+        16777216,
+        1048576,
+        128,
+        1
+      ],
+      "expand_reshape": 0.0022760286927223207,
+      "cat_heads": 0.002083027735352516,
+      "repeat_interleave": 0.002274833619594574
+    }
+  ]
+}

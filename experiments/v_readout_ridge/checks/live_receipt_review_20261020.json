@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "accepted_cells": 28,
+  "complete": false,
+  "frozen_code": {
+    "fit.py": "d94f06d64322d0d79c98d1e2cc5746819c814a8b05203526a3615e99c95e299e",
+    "readout.py": "2149fef9ad7bff10ec4edcbdc3f925b60d7923690bf540a67f37935c3effa74a",
+    "core.py": "423ec5fa31bd4eee3e5fe7256be9617c7a341707a4f1e1aac772c51adda4e300",
+    "evaluate.py": "57716538b115fbda8247d3628acbb68762501df82fa6ab64b46b2433d9ef77fc",
+    "validate.py": "b3a6842ad88bc4321347df2105157d55a22224884ac097ea1eac819dd90d296a",
+    "prepare_eval.py": "1d7a5f016907299ca1440ae1a6f113c37187ddd14af69e6a9771c7cbdfa13dfa"
+  },
+  "accepted": [
+    "runs/06_17/readout/arc_off",
+    "runs/06_17/readout/hotpot_off",
+    "runs/06_17/readout/mmlu_off",
+    "runs/06_17/readout/ruler_16k_off",
+    "runs/06_17/readout/ruler_32k_off",
+    "runs/06_17/readout/ruler_4k_off",
+    "runs/06_17/readout/ruler_8k_off",
+    "runs/06_17/weighted/arc_off",
+    "runs/06_17/weighted/hotpot_off",
+    "runs/06_17/weighted/mmlu_off",
+    "runs/06_17/weighted/ruler_16k_off",
+    "runs/06_17/weighted/ruler_32k_off",
+    "runs/06_17/weighted/ruler_4k_off",
+    "runs/06_17/weighted/ruler_8k_off",
+    "runs/17_06/readout/arc_off",
+    "runs/17_06/readout/hotpot_off",
+    "runs/17_06/readout/mmlu_off",
+    "runs/17_06/readout/ruler_16k_off",
+    "runs/17_06/readout/ruler_32k_off",
+    "runs/17_06/readout/ruler_4k_off",
+    "runs/17_06/readout/ruler_8k_off",
+    "runs/17_06/weighted/arc_off",
+    "runs/17_06/weighted/hotpot_off",
+    "runs/17_06/weighted/mmlu_off",
+    "runs/17_06/weighted/ruler_16k_off",
+    "runs/17_06/weighted/ruler_32k_off",
+    "runs/17_06/weighted/ruler_4k_off",
+    "runs/17_06/weighted/ruler_8k_off"
+  ]
+}

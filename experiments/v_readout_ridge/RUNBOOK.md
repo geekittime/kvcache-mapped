@@ -74,4 +74,6 @@ source experiments/v_readout_ridge/env.sh
 
 最终必须52/52。MC主分数由 `rescore_mc.py` 统一处理明确的LaTeX/Markdown选项格式，原预测和v1分数不覆盖，变更明细存 `full/mc_scoring_v2.json`。其他任务使用原评分。结果写 `RESULTS.json`/`RESULTS.md`，配对置信区间、长度截断和未解析数量同时保存。
 
+最终交付监听器 `finalize_delivery.py --wait` 已独立运行，进程身份记录在 `checks/delivery_process.json`，等待状态见 `checks/delivery_status.json`。不要重复启动。它只在执行监控器生成 `guard_complete.json` 后工作：核对52单元、26组配对比较、样本数、分数、首批一致性及证据指纹，然后生成 `FINAL_REPORT_ZH.md` 和 `checks/final_delivery.json`。中文报告在此之前明确标记未完成。此步骤不调用模型、不改变评分、不执行 Git push；验收异常写入 `checks/delivery_failure.json`，不会产出完成声明。
+
 本轮目标仅Stage1两种V目标的比较。不能将NIAH子任务写成全RULER套件综合分；不能将本地训练样本声称为作者未公开的原始样本；不能用训练损失下降代替任务分数。过程见 `PROCESS.md`，缺陷与纠正证据见 `AUDIT_20261019.md`。不push。

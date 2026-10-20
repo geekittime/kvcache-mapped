@@ -1,5 +1,6 @@
 """Only audited full cells enter paired score differences; no partial-run scores."""
 import argparse,json
+from datetime import datetime, timezone
 from pathlib import Path
 import numpy as np
 from core import atomic_json,digest
@@ -53,6 +54,15 @@ def main(require_complete):
                 assert stage['full_results_sha256']==digest(base/'full/results.json') and result['n']==stage['n']
                 conditions[mode]=rescore(base/'full') if case['task'] in ('arc','mmlu') else (result,read_jsonl(base/'full/predictions.jsonl'))
                 accepted+=1
+            # Preserve individually accepted full cells while their counterpart
+            # is still running. Never publish scores from an unfinished cell.
+            entry['complete_conditions']={
+                mode:{key:value for key,value in values[0].items()
+                      if key in ('n','accuracy','macro_accuracy','recall','em','f1',
+                                 'raw_em','raw_f1','length_stops','unparsed',
+                                 'mean_generated_tokens','predictions_sha256',
+                                 'scoring_revision')}
+                for mode,values in conditions.items()}
             if len(conditions)==2:
                 a,ap=conditions['weighted'];b,bp=conditions['readout']
                 matching_pair(a['protocol'],b['protocol'])
@@ -77,6 +87,7 @@ def main(require_complete):
     complete=accepted==52
     if require_complete:assert complete,f'Only {accepted}/52 audited complete cells'
     result=dict(complete=complete,accepted_cells=accepted,expected_cells=52,comparisons=comparisons,
+        generated_at_utc=datetime.now(timezone.utc).isoformat(),
         upstream=upstream,
         interpretation='Paired fixed-dataset comparison; only V loss differs. Bootstrap intervals describe sampling uncertainty, not variation over fit seeds. No claim of exact hidden paper split or guaranteed improvement.',
         protocol_sha256=digest(HERE/'README.md'))
@@ -90,6 +101,26 @@ def main(require_complete):
         for metric,v in c['metrics'].items():
             lo,hi=v['paired_bootstrap_95']
             lines.append(f"| {c['pair']} | {c['case']} | {c['n']} | {metric} | {v['weighted']*100:.3f} | {v['readout']*100:.3f} | {v['delta']*100:+.3f} | [{lo*100:+.3f}, {hi*100:+.3f}] |")
+    singles=[c for c in comparisons if c['status']!='accepted' and c['complete_conditions']]
+    if singles:
+        lines += ['', 'Individually audited full cells awaiting the paired condition (no paired conclusion yet):', '',
+                  '| Direction | Task/mode | Completed condition | n | Metric | Score (%) |',
+                  '|---|---|---|---:|---|---:|']
+        for c in singles:
+            for mode,summary in c['complete_conditions'].items():
+                keys = ['em','f1','raw_em','raw_f1'] if c['case'].startswith('hotpot') else ['recall'] if c['case'].startswith('ruler') else ['macro_accuracy'] if c['case'].startswith('mmlu') else ['accuracy']
+                for key in keys:
+                    lines.append(f"| {c['pair']} | {c['case']} | {mode} | {summary['n']} | {key} | {summary[key]*100:.3f} |")
+    lines += ['', 'Held-out validation, 64 examples per direction (lower is better):', '',
+              '| Direction | Condition | KL per example | KL per token | CE per token | Perplexity | Relative V readout squared error |',
+              '|---|---|---:|---:|---:|---:|---:|']
+    for pair,proof in upstream.items():
+        for mode,summary in proof['validation_summary'].items():
+            lines.append(f"| {pair} | {mode} | {summary['kl_sample_mean']:.6f} | {summary['kl_token_mean']:.6f} | {summary['mapped_ce']:.6f} | {summary['mapped_ppl']:.6f} | {summary['readout_v_relative']:.6f} |")
+    lines += ['', 'KL per example averages each continuation\'s per-token KL equally across examples; KL/CE per token pool all continuation tokens. '
+              'Relative readout error divides pooled squared error by pooled native readout energy. '
+              'The readout fit lowers regularized training readout loss and held-out continuation KL/CE, but its held-out teacher-attention readout error is higher in both directions. '
+              'These proxies must not be described as uniformly improving.']
     lines += ['', 'Generation diagnostics for complete paired cells (weighted/readout):', '',
               '| Direction | Task/mode | n | Length stops | Unparsed | Mean generated tokens |',
               '|---|---|---:|---|---|---|']
@@ -99,7 +130,8 @@ def main(require_complete):
         counts = [f"{c[key]['weighted']}/{c[key]['readout']}" for key in ['length_stops', 'unparsed']]
         lengths = c['mean_generated_tokens']
         lines.append(f"| {c['pair']} | {c['case']} | {c['n']} | {counts[0]} | {counts[1]} | {lengths['weighted']:.2f}/{lengths['readout']:.2f} |")
-    lines+=['','06_17 = Qwen3-0.6B → 1.7B; 17_06 = reverse. on/off indicates reasoning mode.',
+    lines+=['',f"Report generated at {result['generated_at_utc']} (UTC). Only cells present and audited during this report are included.",
+            '06_17 = Qwen3-0.6B → 1.7B; 17_06 = reverse. on/off indicates reasoning mode.',
             'MMLU-Pro uses macro accuracy; ARC-C accuracy; RULER NIAH recall at each length; HotpotQA answer EM/F1 and raw scores.',
             'Intervals use 2,000 paired bootstrap draws (MMLU stratified by subject). They do not measure training-seed variability. No tuning on these outcomes.',
             'MC scores use parser v2 for LaTeX option wrappers and Markdown option letters. Original parser scores and all changed records remain in per-cell mc_scoring_v2.json.',

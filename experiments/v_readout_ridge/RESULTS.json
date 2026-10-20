@@ -1,12 +1,34 @@
 {
   "complete": false,
-  "accepted_cells": 28,
+  "accepted_cells": 29,
   "expected_cells": 52,
   "comparisons": [
     {
       "pair": "06_17",
       "case": "arc_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "fe4924e2dfa2cc3245279188548d64753fa2228f668085cc1d5b5d0d333c43b5",
+          "n": 1172,
+          "length_stops": 4,
+          "unparsed": 1,
+          "mean_generated_tokens": 82.8037542662116,
+          "accuracy": 0.5708191126279863,
+          "macro_accuracy": 0.5708191126279863,
+          "scoring_revision": "v2: LaTeX single-option wrappers and Markdown presentation normalization"
+        },
+        "readout": {
+          "predictions_sha256": "47273c44ec7cca2fa5306cbec6a9546f7930c6e62dd7837c05428c760dba4d33",
+          "n": 1172,
+          "length_stops": 5,
+          "unparsed": 2,
+          "mean_generated_tokens": 95.78754266211604,
+          "accuracy": 0.5844709897610921,
+          "macro_accuracy": 0.5844709897610921,
+          "scoring_revision": "v2: LaTeX single-option wrappers and Markdown presentation normalization"
+        }
+      },
       "n": 1172,
       "metrics": {
         "accuracy": {
@@ -138,6 +160,28 @@
       "pair": "06_17",
       "case": "mmlu_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "cd53db4e7e5029e62ff6325c0610515664a230dc7fa340586a8b721070bb63c0",
+          "n": 1400,
+          "length_stops": 126,
+          "unparsed": 146,
+          "mean_generated_tokens": 297.97857142857146,
+          "accuracy": 0.2842857142857143,
+          "macro_accuracy": 0.2842857142857143,
+          "scoring_revision": "v2: LaTeX single-option wrappers and Markdown presentation normalization"
+        },
+        "readout": {
+          "predictions_sha256": "e124c83c42c1293dc45b3f9e8e32e26e2075d8380c5f63d31fc76c4c2444af2c",
+          "n": 1400,
+          "length_stops": 150,
+          "unparsed": 143,
+          "mean_generated_tokens": 325.47714285714284,
+          "accuracy": 0.3057142857142857,
+          "macro_accuracy": 0.3057142857142857,
+          "scoring_revision": "v2: LaTeX single-option wrappers and Markdown presentation normalization"
+        }
+      },
       "n": 1400,
       "metrics": {
         "macro_accuracy": {
@@ -295,6 +339,24 @@
       "pair": "06_17",
       "case": "ruler_4k_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "262a4fb835aab0abbf3bee5021f5e6093a6e07da2069b71ca9e635ab9c3938dd",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 63.555,
+          "recall": 0.97
+        },
+        "readout": {
+          "predictions_sha256": "e00aa4bd73bb9ef0f330ad870eb70e2ac8cd0cc23f409ad8f537b0c26567c031",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 51.895,
+          "recall": 0.9775
+        }
+      },
       "n": 400,
       "metrics": {
         "recall": {
@@ -364,6 +426,24 @@
       "pair": "06_17",
       "case": "ruler_8k_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "58c69357009d9225058f350c685f0f91e9ec6255c54c03f216eb32e761144a34",
+          "n": 400,
+          "length_stops": 1,
+          "unparsed": 0,
+          "mean_generated_tokens": 57.1125,
+          "recall": 0.9675
+        },
+        "readout": {
+          "predictions_sha256": "84fa7687249a2ebee4d49b1b93b9054975fcb187f5c703dc28937a1cc0abfad5",
+          "n": 400,
+          "length_stops": 1,
+          "unparsed": 0,
+          "mean_generated_tokens": 69.0575,
+          "recall": 0.9825
+        }
+      },
       "n": 400,
       "metrics": {
         "recall": {
@@ -433,6 +513,24 @@
       "pair": "06_17",
       "case": "ruler_16k_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "48caca008cc7ed4a2cb7158d0a3f490c5e4a0f2c98359082dc509a221c549b42",
+          "n": 400,
+          "length_stops": 1,
+          "unparsed": 0,
+          "mean_generated_tokens": 72.6525,
+          "recall": 0.945
+        },
+        "readout": {
+          "predictions_sha256": "d2154adaafb63bd6fac94d012d05210a15c8e02752b2d4188aee82ae38a32b9f",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 90.82,
+          "recall": 0.9775
+        }
+      },
       "n": 400,
       "metrics": {
         "recall": {
@@ -502,6 +600,24 @@
       "pair": "06_17",
       "case": "ruler_32k_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "a148596d07c38164842fdf7efd8a8b4b16d0db2aed9bfbe4fef95f7addc20f44",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 51.965,
+          "recall": 0.9225
+        },
+        "readout": {
+          "predictions_sha256": "01ff1f5ea97d7a4cb82c7eb3e9b8d2041e8b875b8475f63285ce88817dde8fcc",
+          "n": 400,
+          "length_stops": 1,
+          "unparsed": 0,
+          "mean_generated_tokens": 88.085,
+          "recall": 0.97
+        }
+      },
       "n": 400,
       "metrics": {
         "recall": {
@@ -562,37 +678,78 @@
     {
       "pair": "06_17",
       "case": "arc_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "97e9715c7d5a427292904218a4a17eee1105fd364c3322f167447c1ca4f1fb07",
+          "n": 1172,
+          "length_stops": 9,
+          "unparsed": 9,
+          "mean_generated_tokens": 1220.6774744027305,
+          "accuracy": 0.8609215017064846,
+          "macro_accuracy": 0.8609215017064846,
+          "scoring_revision": "v2: LaTeX single-option wrappers and Markdown presentation normalization"
+        }
+      }
     },
     {
       "pair": "06_17",
       "case": "mmlu_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "06_17",
       "case": "ruler_4k_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "06_17",
       "case": "ruler_8k_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "06_17",
       "case": "ruler_16k_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "06_17",
       "case": "ruler_32k_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "06_17",
       "case": "hotpot_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "0cbfb6a9791175579b4c51fa7682ad5a1eb017a3c8e0916ac3c8a895b47b422a",
+          "n": 7405,
+          "length_stops": 106,
+          "unparsed": 0,
+          "mean_generated_tokens": 40.97771775827144,
+          "em": 0.08831870357866306,
+          "f1": 0.20578600861043125,
+          "raw_em": 0.01674544226873734,
+          "raw_f1": 0.14419827877713562
+        },
+        "readout": {
+          "predictions_sha256": "aa1498f9e05924a186908f0955171451c48c3e65b6145258028320538554f81e",
+          "n": 7405,
+          "length_stops": 48,
+          "unparsed": 0,
+          "mean_generated_tokens": 57.59891964888589,
+          "em": 0.13558406482106686,
+          "f1": 0.25166914431041876,
+          "raw_em": 0.007967589466576637,
+          "raw_f1": 0.11164882395222626
+        }
+      },
       "n": 7405,
       "metrics": {
         "em": {
@@ -705,6 +862,28 @@
       "pair": "17_06",
       "case": "arc_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "e4aa4aa097aa3053fcb91036ac86e9e22436738da2e2aa7bb663d3d82c7eccdb",
+          "n": 1172,
+          "length_stops": 0,
+          "unparsed": 6,
+          "mean_generated_tokens": 49.88481228668942,
+          "accuracy": 0.6604095563139932,
+          "macro_accuracy": 0.6604095563139932,
+          "scoring_revision": "v2: LaTeX single-option wrappers and Markdown presentation normalization"
+        },
+        "readout": {
+          "predictions_sha256": "be58da55c9008844e9e109559678d73ea42410b1da07174a3e73d50233b95033",
+          "n": 1172,
+          "length_stops": 0,
+          "unparsed": 2,
+          "mean_generated_tokens": 31.927474402730375,
+          "accuracy": 0.7209897610921502,
+          "macro_accuracy": 0.7209897610921502,
+          "scoring_revision": "v2: LaTeX single-option wrappers and Markdown presentation normalization"
+        }
+      },
       "n": 1172,
       "metrics": {
         "accuracy": {
@@ -836,6 +1015,28 @@
       "pair": "17_06",
       "case": "mmlu_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "01b5bc90e8172c9663cd9977c156caab7911370864d78e8cc377560a826e3300",
+          "n": 1400,
+          "length_stops": 9,
+          "unparsed": 32,
+          "mean_generated_tokens": 101.21571428571428,
+          "accuracy": 0.23714285714285716,
+          "macro_accuracy": 0.2371428571428571,
+          "scoring_revision": "v2: LaTeX single-option wrappers and Markdown presentation normalization"
+        },
+        "readout": {
+          "predictions_sha256": "1dbf3cd8666fedb8baa8cf605cf0c3bc4b4b07aabc1239d2c6f2030abf940373",
+          "n": 1400,
+          "length_stops": 14,
+          "unparsed": 29,
+          "mean_generated_tokens": 138.03285714285715,
+          "accuracy": 0.2792857142857143,
+          "macro_accuracy": 0.2792857142857143,
+          "scoring_revision": "v2: LaTeX single-option wrappers and Markdown presentation normalization"
+        }
+      },
       "n": 1400,
       "metrics": {
         "macro_accuracy": {
@@ -993,6 +1194,24 @@
       "pair": "17_06",
       "case": "ruler_4k_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "684ae0e9b875f52b56d934be88aafa34da29e067bbdce8509c68fb9e3666cc7e",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 22.9275,
+          "recall": 0.995
+        },
+        "readout": {
+          "predictions_sha256": "70f9a80b3052dd15eca16fe24bab29328a20f321f16da2185e33ef123748ab7a",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 24.41,
+          "recall": 1.0
+        }
+      },
       "n": 400,
       "metrics": {
         "recall": {
@@ -1062,6 +1281,24 @@
       "pair": "17_06",
       "case": "ruler_8k_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "e0af74fb465cc4579aaf92c4fdf78b41d1fdc19e74c21f876f7329d561509fe7",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 23.43,
+          "recall": 1.0
+        },
+        "readout": {
+          "predictions_sha256": "cc621bf41a9bd6212aad95ff4497de424f2314a236340e923b3082d90fec6972",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 24.3,
+          "recall": 1.0
+        }
+      },
       "n": 400,
       "metrics": {
         "recall": {
@@ -1131,6 +1368,24 @@
       "pair": "17_06",
       "case": "ruler_16k_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "9d0bf07b62f0a303b9e165f3538a7e213b6d64d5fd97335e609708e1c48649d5",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 24.2275,
+          "recall": 0.995
+        },
+        "readout": {
+          "predictions_sha256": "6c03338aa43a1865c74c33342e5a1aa6804c24c0f8be2309ed101437b8da2b22",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 24.4825,
+          "recall": 0.9975
+        }
+      },
       "n": 400,
       "metrics": {
         "recall": {
@@ -1200,6 +1455,24 @@
       "pair": "17_06",
       "case": "ruler_32k_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "1c85a654031ecbdc5aa54f4d10216394c8947e66c5c68080a7a3b50cff6ddf92",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 23.435,
+          "recall": 0.995
+        },
+        "readout": {
+          "predictions_sha256": "57901dd085bf39a132d85fc9e7d8acdaa132e35364ce3ca26fb7c388621c61d4",
+          "n": 400,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 23.755,
+          "recall": 0.995
+        }
+      },
       "n": 400,
       "metrics": {
         "recall": {
@@ -1260,37 +1533,67 @@
     {
       "pair": "17_06",
       "case": "arc_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "17_06",
       "case": "mmlu_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "17_06",
       "case": "ruler_4k_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "17_06",
       "case": "ruler_8k_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "17_06",
       "case": "ruler_16k_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "17_06",
       "case": "ruler_32k_on",
-      "status": "pending"
+      "status": "pending",
+      "complete_conditions": {}
     },
     {
       "pair": "17_06",
       "case": "hotpot_off",
       "status": "accepted",
+      "complete_conditions": {
+        "weighted": {
+          "predictions_sha256": "501f77aea779a28abca80e1dd2c444aca3aa8723f38c3d8832aef7b3f62aeaf7",
+          "n": 7405,
+          "length_stops": 0,
+          "unparsed": 0,
+          "mean_generated_tokens": 20.35557056043214,
+          "em": 0.08453747467927077,
+          "f1": 0.24331724046985367,
+          "raw_em": 0.019041188386225524,
+          "raw_f1": 0.1950776507212054
+        },
+        "readout": {
+          "predictions_sha256": "356b060a771dc7343df0e77f6d8ac75d7e72d3b9ec9fa5e1520b509a917ada0c",
+          "n": 7405,
+          "length_stops": 1,
+          "unparsed": 0,
+          "mean_generated_tokens": 21.92896691424713,
+          "em": 0.09831195138419986,
+          "f1": 0.2547189656487804,
+          "raw_em": 0.04159351789331533,
+          "raw_f1": 0.2115412493643281
+        }
+      },
       "n": 7405,
       "metrics": {
         "em": {
@@ -1400,6 +1703,7 @@
       }
     }
   ],
+  "generated_at_utc": "2026-10-20T01:49:35.076888+00:00",
   "upstream": {
     "06_17": {
       "passed": true,

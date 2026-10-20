@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "time": "2026-10-20T01:50:24.555138+00:00",
+  "accepted_cells": 29,
+  "complete": false,
+  "prior_paired_metrics_unchanged": 14,
+  "individually_completed_unpaired_cells": 1,
+  "report_sha256": "53ae96ef1d3f0dce9915f75406f2ad3286fe5856c0caab769d34302180e50126",
+  "checks": [
+    "complete cells only",
+    "previous paired metrics and intervals unchanged",
+    "independent full audits rerun",
+    "unpaired ARC score retained without paired conclusion"
+  ]
+}
